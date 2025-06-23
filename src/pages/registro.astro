@@ -1,14 +1,61 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Input from "../components/input.astro";
 ---
 <Layout>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Inicio</title>
     </head>
-    <body>
-        <Input/>
-    </body>
+
+    <main>
+        <h1>Enviar mensaje de WhatsApp</h1>
+        <form id="whatsapp-form">
+            <label for="phone">Número de teléfono (ej: +523312345678):</label>
+            <input type="text" id="phone" name="phone" required />
+
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <p id="response"></p>
+    </main>
+
+    <script type="module">
+        const form = document.getElementById("whatsapp-form");
+        const response = document.getElementById("response");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const phone = document.getElementById("phone").value;
+            const message = document.getElementById("message").value;
+
+            try {
+                const res = await fetch("/api/sendWhatsappTest", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        to: phone,
+                        message: message,
+                    }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    response.textContent = "Mensaje enviado correctamente ✅";
+                } else {
+                    response.textContent = "Error: " + data.error;
+                }
+            } catch (err) {
+                response.textContent = "Fallo al conectar con el servidor ❌";
+                console.error(err);
+            }
+        });
+    </script>
 </Layout>
