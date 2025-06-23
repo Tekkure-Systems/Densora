@@ -1,20 +1,22 @@
 ---
+// src/layouts/BaseLayout.astro
 import "../styles/global.css";
 import '@fontsource-variable/manrope';
-import {ClientRouter} from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
+import NavBar from "../components/nav_bar.astro";
 ---
-<html data-theme="dark" lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <title>Densora</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="generator" content={Astro.generator}/>
-    <ClientRouter/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
 </head>
-<body class="bg-primaryBackground-light dark:bg-primaryBackground-dark">
-<button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded">Cambiar tema
-</button>
-<slot/>
+<body class="bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans">
+<button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded">Cambiar tema</button>
+<NavBar />
+<slot />
 <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const html = document.documentElement;
@@ -29,8 +31,3 @@ import {ClientRouter} from 'astro:transitions';
 </script>
 </body>
 </html>
-<style>
-    body {
-        font-family: Manrope, serif;
-    }
-</style>
