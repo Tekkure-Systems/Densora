@@ -1,15 +1,30 @@
 ---
 import Title from "./title.astro";
-const { text, mt, mb} = Astro.props;
-let marginTop = "mt-none"
-let marginBottom = "mb-none"
-if(mt == "true") {
-marginTop = "mt-4"
+const {text, mt, mb, href} = Astro.props;
+
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let isLink = false;
+
+if (mt === "true") {
+    marginTop = "mt-4";
 }
-if (mb == "true") {
-marginBottom = "mb-4"
+if (mb === "true") {
+    marginBottom = "mb-4";
 }
+if (href && href !== "") {
+    isLink = true;
+}
+const wrapperClasses = `flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-8 py-2 rounded text-white`;
 ---
-<div class={`flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-8 py-2 rounded`}>
-    <Title text={text} />
-</div>
+{isLink && (
+<a href={href} class={wrapperClasses}>
+    <Title text={text}/>
+</a>
+)}
+
+{!isLink && (
+<button class={`${wrapperClasses} cursor-pointer`} type="button" onClick={() => alert("Botón presionado")}>
+    <Title text={text}/>
+</button>
+)}
