@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+import type {APIRoute} from 'astro';
 import twilio from 'twilio';
 
 const accountSid = import.meta.env.accountSid;
@@ -10,16 +10,16 @@ const client = twilio(accountSid, authToken);
 console.log(accountSid);
 console.log(authToken);
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({request}) => {
     try {
         const data = await request.json(); // 👈 Aquí puede lanzar el error si body está vacío
 
-        const { to, message } = data;
+        const {to, message} = data;
 
         if (!to || !message) {
             return new Response(
-                JSON.stringify({ error: 'Número o mensaje faltante' }),
-                { status: 400 }
+                JSON.stringify({error: 'Número o mensaje faltante'}),
+                {status: 400}
             );
         }
         const msg = await client.messages.create({
@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
             body: message,
         });
 
-        return new Response(JSON.stringify({ sid: msg.sid }), {
+        return new Response(JSON.stringify({sid: msg.sid}), {
             status: 200,
         });
     } catch (err: any) {
