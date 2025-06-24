@@ -1,7 +1,15 @@
 ---
 import Title from "./title.astro";
-const { text } = Astro.props;
+const { text, mt, mb} = Astro.props;
+let marginTop = "mt-none"
+let marginBottom = "mb-none"
+if(mt == "true") {
+marginTop = "mt-4"
+}
+if (mb == "true") {
+marginBottom = "mb-4"
+}
 ---
-<div class="flex items-center justify-center w-full max-w-md border-3 border-primary bg-primary px-8 py-2 rounded mb-4">
-    <Title text={text}/>
+<div class={`flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-8 py-2 rounded`}>
+    <Title text={text} />
 </div>

@@ -1,4 +1,12 @@
 ---
-const {text} = Astro.props;
+const {text, mt, mb} = Astro.props;
+let marginTop = "mt-none"
+let marginBottom = "mb-none"
+if (mt == "true"){
+    marginTop = "mt-4"
+}
+if (mb == "true"){
+    marginBottom = "mb-4"
+}
 ---
-<p class="text-6xl font-bold text-primaryText-light dark:text-primaryText-dark">{text}</p>
+<p class={`text-6xl font-bold ${marginTop} ${marginBottom} text-primaryText-light dark:text-primaryText-dark`}>{text}</p>
