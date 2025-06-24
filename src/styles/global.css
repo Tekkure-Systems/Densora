@@ -10,8 +10,10 @@
     --color-secondaryBackground-light: #A5DAD1;
     --color-secondaryBackground-dark: #263835;
 
-    --color--primaryText-light: #222B29;
-    --color--primaryText-dark: #BEE9DF;
+    --color-primaryText-light: #222B29;
+    --color-primaryText-dark: #BEE9DF;
 
-    --color--hover: #29433D;
+    --color-hover-light: #93E4D7;
+    --color-hover-dark: #29433D;
 }
+

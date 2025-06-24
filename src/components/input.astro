@@ -2,11 +2,10 @@
 import Password_icon from '../assets/icons/password_icon.svg';
 
 const {label, value, iconLeft, iconRight} = Astro.props;
-
 ---
 
-<div class="flex border-3 border-primary bg-teal-200 pt-2 pb-2 pl-32 pr-32 rounded mb-4">
-    <Password_icon width="24" fill="red"/>
-    <input type="password" placeholder="Input" class="bg-transparent outline-none text-teal-700 w-full"/>
-    <Password_icon width="24" fill="red"/>
+<div class="w-80 flex border-3 border-primary pt-2 pb-2 pl-2 pr-2 rounded mb-4 bg-hover-light dark: bg-hover-dark">
+    <Password_icon class="text-primary" width="24"/>
+    <input type="password" placeholder="Input" class="w-full px-4 bg-transparent outline-none text-teal-700"/>
+    <Password_icon width="24" fill="primary"/>
 </div>
