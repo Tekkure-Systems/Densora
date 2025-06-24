@@ -2,20 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout>
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Inicio</title>
-    </head>
-
     <main>
-        <h1>Enviar mensaje de WhatsApp</h1>
+        <h1>Enviar código de verificación por WhatsApp</h1>
         <form id="whatsapp-form">
             <label for="phone">Número de teléfono (ej: +523312345678):</label>
             <input type="text" id="phone" name="phone" required/>
 
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" required></textarea>
+            <label for="code">Código de verificación:</label>
+            <input type="text" id="code" name="code" required/>
 
             <button type="submit">Enviar</button>
         </form>
@@ -31,7 +25,7 @@ import Layout from "../layouts/Layout.astro";
             e.preventDefault();
 
             const phone = document.getElementById("phone").value;
-            const message = document.getElementById("message").value;
+            const code = document.getElementById("code").value;
 
             try {
                 const res = await fetch("/api/sendWhatsappTest", {
@@ -41,7 +35,7 @@ import Layout from "../layouts/Layout.astro";
                     },
                     body: JSON.stringify({
                         to: phone,
-                        message: message,
+                        code: code,
                     }),
                 });
 
