@@ -7,6 +7,7 @@ import Title from "../components/title.astro";
 import Text from "../components/text.astro";
 import MiniText from "../components/miniText.astro";
 import StepIndicator from "../components/stepIndicator.astro";
+import Section from "../components/section.astro";
 ---
 <Layout>
     <head>
@@ -21,7 +22,9 @@ import StepIndicator from "../components/stepIndicator.astro";
         <Input placeholder="fwe"/>
         <ButtonPrimary text="Inciar Sesion"/>
         <ButtonSecondary text="Crear Cuenta"/>
-        <MiniText text="terminos y condiciones"/>
-        <StepIndicator/>
+        <Section importance="primary">
+            <MiniText text="terminos y condiciones"/>
+            <StepIndicator/>
+        </Section>
     </div>
 </Layout>

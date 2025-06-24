@@ -1,6 +1,10 @@
 ---
 const {importance} = Astro.props;
+let containerClass = "";
+if(importance == "primary"){
+    containerClass = "bg-secondaryBackground-light dark:bg-secondaryBackground-dark";
+}
 ---
-<div class="bg-primaryBackground-light">
-    <slot/>
+<div class={`flex flex-col  items-center justify-center p-4 ${containerClass}`}>
+    <slot />
 </div>
