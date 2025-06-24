@@ -5,7 +5,7 @@ import User_icon from '../assets/icons/user_icon.svg'
 import Light_icon from '../assets/icons/light_icon.svg'
 import Densora_logo from '../assets/icons/densora_logo.svg'
 import Find_icon from '../assets/icons/find_icon.svg'
-import Menu_icon from '../assets/icons/menu_icon.svg';
+import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
 ---
 
@@ -23,11 +23,9 @@ import Star_icon from '../assets/icons/star_icon.svg'
                      Q100,400 100,300 
                      V200 
                      Q100,100 200,100Z" 
-                  fill="#26CBB0"/>
+                  fill="#FFFFFF"/>
         </svg>
     </div>
-    
-    <!-- Contenedor de iconos -->
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
         <Menu_icon class="transform translate-y-2.5" width='28' height='28' />
@@ -38,8 +36,6 @@ import Star_icon from '../assets/icons/star_icon.svg'
         <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28' />
         <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
     </div>
-
-    <!-- Script para manejar el cambio de tema -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeIcons = document.querySelectorAll('#theme-icon');
@@ -49,7 +45,6 @@ import Star_icon from '../assets/icons/star_icon.svg'
                 icon.addEventListener('click', () => {
                     const currentTheme = html.getAttribute('data-theme');
                     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    
                     html.setAttribute('data-theme', newTheme);
                     localStorage.setItem('theme', newTheme);
                 });
@@ -57,4 +52,3 @@ import Star_icon from '../assets/icons/star_icon.svg'
         });
     </script>
 </header>
-

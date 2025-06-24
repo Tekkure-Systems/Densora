@@ -7,6 +7,9 @@ const whatsappNumber = 'whatsapp:+1555799155';
 
 const client = twilio(accountSid, authToken);
 
+console.log(accountSid);
+console.log(authToken);
+
 export const POST: APIRoute = async ({ request }) => {
     try {
         const data = await request.json(); // 👈 Aquí puede lanzar el error si body está vacío
@@ -19,7 +22,6 @@ export const POST: APIRoute = async ({ request }) => {
                 { status: 400 }
             );
         }
-
         const msg = await client.messages.create({
             from: whatsappNumber,
             to: `whatsapp:${to.replace(/^whatsapp:/, '')}`, // por si el front lo manda así
