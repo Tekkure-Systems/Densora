@@ -9,6 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.10.0"
+    "@fontsource-variable/manrope": "^5.2.6",
+    "@tailwindcss/vite": "^4.1.10",
+    "astro": "^5.10.0",
+    "dotenv": "^16.5.0",
+    "tailwindcss": "^4.1.10",
+    "twilio": "^5.7.1"
   }
 }
