@@ -1,6 +1,31 @@
 ---
-const {text} = Astro.props;
+import Title from "./title.astro";
+const { text, mt, mb, href, type} = Astro.props;
+
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let isLink = false;
+
+if (mt === "true") {
+    marginTop = "mt-4";
+}
+if (mb === "true") {
+    marginBottom = "mb-4";
+}
+if (href && href !== "") {
+    isLink = true;
+}
+
+const wrapperClasses = `flex items-center justify-center w-full max-w-md border-3 px-8 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
 ---
-<div class="flex items-center border-3 pt-2 pb-2 pl-32 pr-32 rounded mb-4 border-primary bg-hover-light dark:bg-hover-dark">
-    <p class="font-bold text-2xl w-full bg-transparent text-primaryText-light dark:text-primaryText-dark">{text}</p>
-</div>
+{isLink && (
+<a href={href} class={wrapperClasses}>
+    <Title text={text} />
+</a>
+    )}
+
+{!isLink && (
+<button type={type} class={`${wrapperClasses} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Title text={text} />
+</button>
+    )}

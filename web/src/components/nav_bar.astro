@@ -29,27 +29,77 @@ import Oval from '../assets/shapes/oval.svg'
     </div>
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
+
+        <a href="/options">
         <Menu_icon class="transform translate-y-2.5" width='28' height='28' />
+        </a>
+
+        <a href="search">
         <Find_icon class="transform translate-y-3.5" width='28' height='28' />
+        </a>
+
+        <a href="home">
         <Densora_logo class="transform translate-y-4" width='28' height='28' />
+        </a>
+        <!--o si ya estas logueado a /profile-->
+        <a href="login">
         <User_icon class="transform translate-y-3.5" width='28' height='28' />
+        </a>
+
+        <a href="calendar">
         <Calendar_icon class="transform translate-y-2.5" width='28' height='28' />
-        <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28' />
-        <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
+        </a>
+
+        <Light_icon class="light-icon transform translate-y-1.5 " width="28" height="28" />
+        <Dark_icon class="dark-icon transform translate-y-1.5 hidden" width="28" height="28" />
+
+
+   
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeIcons = document.querySelectorAll('#theme-icon');
-            const html = document.documentElement;
-            
-            themeIcons.forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            });
+<script>
+  function setupThemeToggle() {
+    const lightIcon = document.querySelector('.light-icon');
+    const darkIcon = document.querySelector('.dark-icon');
+    const html = document.documentElement;
+
+    function updateIcons() {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      if (lightIcon && darkIcon) {
+        lightIcon.classList.toggle('hidden', isDark);
+        darkIcon.classList.toggle('hidden', !isDark);
+      }
+    }
+
+    const toggleIcons = [lightIcon, darkIcon];
+    toggleIcons.forEach(icon => {
+      if (icon) {
+        icon.addEventListener('click', () => {
+          const currentTheme = html.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateIcons();
         });
-    </script>
+      }
+    });
+
+    updateIcons();
+  }
+
+  // Carga inicial
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    setupThemeToggle();
+  });
+
+  // Reasignar eventos después de cambiar de página con ClientRouter
+  window.addEventListener('astro:after-swap', () => {
+    setupThemeToggle();
+  });
+</script>
+
+
 </header>
