@@ -1,10 +1,18 @@
 ---
-const {importance} = Astro.props;
+const {importance, mt, mb} = Astro.props;
 let containerClass = "";
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+if (mt == "true") {
+    marginTop = "mt-4";
+}
+if (mb == "true") {
+    marginBottom = "mb-4";
+}
 if(importance == "primary"){
     containerClass = "bg-secondaryBackground-light dark:bg-secondaryBackground-dark";
 }
 ---
-<div class={`flex flex-col  items-center justify-center p-4 ${containerClass}`}>
+<div class={`flex flex-col ${marginTop} ${marginBottom} items-center justify-center p-4 ${containerClass}`}>
     <slot />
 </div>

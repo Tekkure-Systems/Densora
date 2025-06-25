@@ -1,17 +1,16 @@
 ---
-import Password_icon from '../assets/icons/password_icon.svg';
-const {placeholder , type, mt, mb} = Astro.props;
+const {placeholder , type, iconLeft: IconLeft, iconRight: IconRight, mt, mb} = Astro.props;
 let marginTop = "mt-none"
-let marginButton = "mb-none"
+let marginBottom = "mb-none"
 if(mt == "true"){
     marginTop = "mt-4"
 }
 if(mb == "true"){
-    marginButton = "mb-4"
+    marginBottom = "mb-4"
 }
 ---
-<div class={`flex justify-between w-full max-w-md border-3 p-2 rounded ${marginTop} ${marginButton} border-primary bg-hover-light dark:bg-hover-dark`}>
-    <Password_icon width="24" class="fill-secondary focus-within:fill-primary" />
-    <input type={type} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark" />
-    <Password_icon width="24" class="fill-secondary focus-within:fill-primary" />
+<div class={`flex justify-between w-full max-w-md border-3 p-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark`}>
+  {IconLeft && <IconLeft width="24" class="fill-secondary focus-within:fill-primary" />}
+  <input type={type} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark"/>
+  {IconRight && <IconRight width="24" class="fill-secondary focus-within:fill-primary" />}
 </div>

@@ -8,6 +8,7 @@ import Text from "../components/text.astro";
 import MiniText from "../components/miniText.astro";
 import StepIndicator from "../components/stepIndicator.astro";
 import Section from "../components/section.astro";
+import Password_icon from '../assets/icons/password_icon.svg';
 ---
 <Layout>
     <head>
@@ -18,7 +19,7 @@ import Section from "../components/section.astro";
     <div class="flex flex-col items-center justify-center w-full">
         <Title text="Bievenido a Densora"/>
         <Text text="Inicia Sesion para continuar" mb="true"/>
-        <Input placeholder="Numero de Telefono" mb="true"/>
+        <Input placeholder="Numero de Telefono" iconLeft={Password_icon} iconRight={Password_icon} mb="true"/>
         <ButtonPrimary text="Inciar Sesion" mb="true"/>
         <ButtonSecondary text="Crear Cuenta" mb="true"/>
         <Section importance="primary">
