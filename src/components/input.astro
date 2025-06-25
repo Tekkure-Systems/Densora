@@ -1,5 +1,5 @@
 ---
-const {placeholder , type, iconLeft: IconLeft, iconRight: IconRight, mt, mb} = Astro.props;
+const {placeholder, id, type, iconLeft: IconLeft, iconRight: IconRight, mt, mb} = Astro.props;
 let marginTop = "mt-none"
 let marginBottom = "mb-none"
 if(mt == "true"){
@@ -11,6 +11,6 @@ if(mb == "true"){
 ---
 <div class={`flex justify-between w-full max-w-md border-3 p-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark`}>
   {IconLeft && <IconLeft width="24" class="fill-secondary focus-within:fill-primary" />}
-  <input type={type} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark"/>
+  <input type={type} id={id} name={id} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark"/>
   {IconRight && <IconRight width="24" class="fill-secondary focus-within:fill-primary" />}
 </div>

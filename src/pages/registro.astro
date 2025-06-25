@@ -1,55 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Input from "../components/input.astro";
+import ButtonPrimary from "../components/buttonPrimary.astro";
+import Title from "../components/title.astro";
+import Text from "../components/text.astro";
+import MiniText from "../components/miniText.astro";
+import StepIndicator from "../components/stepIndicator.astro";
+import Section from "../components/section.astro";
+import Form from "../components/form.astro";
+import User_icon from '../assets/icons/user_icon.svg';
+import Mexico_flag from "../assets/flags/mexico_flag.svg";
+import Phone_icon from "../assets/icons/phone_icon.svg";
 ---
 <Layout>
-    <main>
-        <h1>Enviar código de verificación por WhatsApp</h1>
-        <form id="whatsapp-form">
-            <label for="phone">Número de teléfono (ej: +523312345678):</label>
-            <input type="text" id="phone" name="phone" required/>
-
-            <label for="code">Código de verificación:</label>
-            <input type="text" id="code" name="code" required/>
-
-            <button type="submit">Enviar</button>
-        </form>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+    </head>
+    <div class="flex flex-col items-center justify-center w-full">
+        <Title text="Bievenido a Densora"/>
+        <Text text="Crea una cuenta para continuar" mb="true"/>
+        <Form id="whatsappOTP">
+            <Input placeholder="Nombre Completo" id="phone" iconLeft={User_icon} mb="true"/>
+           <Input placeholder="Numero de Telefono" id="phone" iconLeft={Phone_icon} iconRight={Mexico_flag} mb="true"/>
+            <ButtonPrimary text="Inciar Sesion" mb="true"/>
+        </Form>
         <p id="response"></p>
-    </main>
-
-    <script type="module">
-        const form = document.getElementById("whatsapp-form");
-        const response = document.getElementById("response");
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const phone = document.getElementById("phone").value;
-            const code = document.getElementById("code").value;
-
-            try {
-                const res = await fetch("/api/sendWhatsappTest", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        to: phone,
-                        code: code,
-                    }),
-                });
-
-                const data = await res.json();
-
-                if (res.ok) {
-                    response.textContent = "Mensaje enviado correctamente ✅";
-                } else {
-                    response.textContent = "Error: " + data.error;
-                }
-            } catch (err) {
-                response.textContent = "Fallo al conectar con el servidor ❌";
-                console.error(err);
-            }
-        });
-    </script>
+        <Section importance="primary">
+            <MiniText text="terminos y condiciones" mb="true"/>
+            <StepIndicator/>
+        </Section>
+    </div>
 </Layout>

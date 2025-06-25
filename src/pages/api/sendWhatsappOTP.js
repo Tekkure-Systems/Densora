@@ -7,12 +7,9 @@ const { Twilio } = twilio;
 //const authToken =
 
 const client = new Twilio(accountSid, authToken);
-
 export async function POST({ request }) {
-    const raw = await request.text();
-    console.log("CUERPO RAW:", raw);
-
     let to, code;
+    code = "123456";
     try {
         const data = JSON.parse(raw);
         to = data.to;
