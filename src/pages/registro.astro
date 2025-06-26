@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Input from "../components/input.astro";
-import ButtonPrimary from "../components/buttonPrimary.astro";
 import Text from "../components/text.astro";
 import StepIndicator from "../components/stepIndicator.astro";
 import Section from "../components/section.astro";
@@ -20,15 +19,17 @@ import Button from "../components/button.astro";
     <div class="flex flex-col items-center justify-center w-full">
         <Text text="Bievenido a Densora" type="title"/>
         <Text text="Crea una cuenta para continuar" mb="true"/>
-        <Form id="whatsappOTP">
-           <Input placeholder="Nombre Completo" id="phone" iconLeft={User_icon} mb="true"/>
+        <Form id="register">
+           <Input placeholder="Nombre Completo" id="name" iconLeft={User_icon} mb="true"/>
            <Input placeholder="Numero de Telefono" id="phone" iconLeft={Phone_icon} iconRight={Mexico_flag} mb="true"/>
             <Button text="Crear tu Cuenta" mb="true" design="primary"/>
         </Form>
         <p id="response"></p>
-        <Section importance="primary">
+        <Section importance="primary" orientation="row">
             <Text text="terminos y condiciones" mb="true" type="text"/>
             <StepIndicator/>
         </Section>
     </div>
 </Layout>
+
+<script type="module" src="/src/scripts/register.js"></script>
