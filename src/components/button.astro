@@ -1,4 +1,69 @@
 ---
+import Text from "./text.astro";
 const {text, mt, mb, href, type, design} = Astro.props;
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let isLink = false;
+let primaryButton = false;
+let secondaryButton = false;
+let noBackgroundButton = false;
+
+if (mt === "true") {
+    marginTop = "mt-4";
+}
+if (mb === "true") {
+    marginBottom = "mb-4";
+}
+if (href && href !== "") {
+    isLink = true;
+}
+if (design == "primary"){
+    primaryButton = true;
+}
+if (design == "secondary"){
+    secondaryButton = true;
+}
+if (design == "noBg"){
+    noBackgroundButton = true;
+}
+const primaryDesign = `flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-8 py-2 rounded text-white`;
+const secondaryDesign = `flex items-center justify-center w-full max-w-md border-3 px-8 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
+const noBgDesign = `flex items-center justify-center w-full max-w-md ${marginTop} ${marginBottom} bg-none px-8 py-2 rounded text-white`;
 ---
 
+
+{isLink && primaryButton && (
+<a href={href} class={primaryDesign}>
+    <Text text={text} type="title"/>
+</a>
+)}
+
+{!isLink && primaryButton && (
+<button class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
+)}
+
+{isLink && secondaryButton &&(
+<a href={href} class={secondaryDesign}>
+    <Text text={text} type="title" />
+</a>
+    )}
+
+{!isLink && secondaryButton &&(
+<button type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title" />
+</button>
+    )}
+
+{isLink && noBackgroundButton &&(
+<a href={href} class={noBgDesign}>
+    <Text text={text} type="title" />
+</a>
+    )}
+
+{!isLink && noBackgroundButton &&(
+<button type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title" />
+</button>
+    )}
