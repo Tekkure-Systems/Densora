@@ -10,14 +10,17 @@ if (mt == "true") {
 if (mb == "true") {
     marginBottom = "mb-4";
 }
-if(importance == "primary"){
+if(importance == "primary") {
+    containerClass = "bg-primaryBackground-light dark:bg-primaryBackground-dark";
+}
+if(importance == "secondary") {
     containerClass = "bg-secondaryBackground-light dark:bg-secondaryBackground-dark";
 }
 if(orientation == "col"){
-    flexOrientation = "flex-col";
+    flexOrientation = "flex-row";
 }
 if(orientation == "row"){
-    flexOrientation = "flex-row";
+    flexOrientation = "flex-col";
 }
 ---
 <div class={`flex ${flexOrientation} ${marginTop} ${marginBottom} items-center justify-center p-4 ${containerClass}`}>
