@@ -1,0 +1,13 @@
+---
+const { profilePhoto } = Astro.props;
+---
+<div class="w-80 h-80">
+    {profilePhoto && (
+            <img src={profilePhoto} alt="Foto de perfil" class="w-full h-full object-cover" loading="lazy" />
+    )}
+</div>
+<div class="w-80 h-80">
+    {profilePhoto && (
+            <img src={profilePhoto} alt="Foto de perfil" class="w-full h-full object-cover" loading="lazy" />
+    )}
+</div>
