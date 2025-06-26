@@ -1,5 +1,5 @@
 ---
-import Title from "./title.astro";
+import Text from "./text.astro";
 const {text, mt, mb, href, type} = Astro.props;
 
 let marginTop = "mt-none";
@@ -19,12 +19,12 @@ const wrapperClasses = `flex items-center justify-center w-full max-w-md border-
 ---
 {isLink && (
 <a href={href} class={wrapperClasses}>
-    <Title text={text}/>
+    <Text text={text} type="title"/>
 </a>
 )}
 
 {!isLink && (
 <button class={`${wrapperClasses} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
-    <Title text={text}/>
+    <Text text={text} type="title"/>
 </button>
 )}
