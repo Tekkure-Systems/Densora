@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// 🔍 Leer los parámetros de la URL
+const url = new URL(Astro.request.url);
+const id = url.searchParams.get("id");
+const title = url.searchParams.get("title");
+const start = url.searchParams.get("start");
+---
+
+<Layout>
+  <!-- 🧱 Contenedor centrado -->
+  <div class="min-h-screen grid place-items-center bg-gray-100 dark:bg-gray-900 px-4">
+
+    <!-- 🗂️ Caja blanca de contenido -->
+    <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 max-w-md w-full p-6 rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold text-center mb-4">🗓️ Detalle del evento</h1>
+
+      <!-- 📋 Datos del evento -->
+      <div class="space-y-2">
+        <p><span class="font-semibold">🆔 ID del evento:</span> {id || "No recibido"}</p>
+        <p><span class="font-semibold">📌 Título:</span> {title || "No recibido"}</p>
+        <p><span class="font-semibold">⏰ Fecha:</span> {start || "No recibido"}</p>
+      </div>
+
+      <!-- 🔙 Botón para regresar -->
+      <div class="mt-6 text-center">
+        <a href="/calendar" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+          Volver al calendario
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
