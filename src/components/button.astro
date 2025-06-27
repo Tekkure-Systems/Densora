@@ -1,5 +1,6 @@
 ---
 import Text from "./text.astro";
+import Tooltip from "./toolTip.astro";
 const {text, mt, mb, href, type, design} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
@@ -39,9 +40,11 @@ const noBgDesign = `flex items-center justify-center w-full max-w-md ${marginTop
 )}
 
 {!isLink && primaryButton && (
+<Tooltip text="fwefw">
 <button class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
+</Tooltip>
 )}
 
 {isLink && secondaryButton &&(

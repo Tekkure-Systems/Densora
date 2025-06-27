@@ -1,0 +1,9 @@
+---
+const {children, text} = Astro.props;
+---
+<div class="relative w-full max-w-md group  block">
+    <slot/>
+    <p class="absolute -bottom-2 left-1/2 -translate-x-1/2 mt-1 px-2 py-1 text-sm font-semibold bg-[#00393e] text-[#0fa79c] rounded shadow opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-10 pointer-events-none">
+        {text}
+    </p>
+</div>
