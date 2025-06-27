@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme {
+    --color-primary: #26CBB0;
+    --color-secondary: #4CA99A;
+    --color-primaryBackground-light: #B6E4DC;
+    --color-primaryBackground-dark: #222B29;
+    --color-secondaryBackground-light: #A5DAD1;
+    --color-secondaryBackground-dark: #263835;
+    --color-primaryText-light: #222B29;
+    --color-primaryText-dark: #BEE9DF;
+    --color-hover-light: #93E4D7;
+    --color-hover-dark: #29433D;
+}

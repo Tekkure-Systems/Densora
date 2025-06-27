@@ -1,0 +1,17 @@
+---
+import Section from "./section.astro";
+const { profilePhoto } = Astro.props;
+import Text from "../components/text.astro";
+---
+<div class="w-80 h-80">
+    {profilePhoto && (
+            <img src={profilePhoto} alt="Foto de perfil" class="w-full h-full object-cover" loading="lazy" />
+    )}
+</div>
+
+
+<Section orientation="row" importance="primary">
+    <Text text="Nombre del dentista" type="title"/>
+    <Text text="Lorem Impsum ewfwjfwefwfwfwffwfkwfhjwefkwfhkejwhfwefewf" type="title"/>
+    <Text text="Nombre del dentista" type="title"/>
+</Section>
