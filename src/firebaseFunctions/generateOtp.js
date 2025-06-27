@@ -1,16 +1,11 @@
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app } from "../bd/firebase.js";
+// src/firebaseFunctions/generateOtp.js
+import { functions } from "../bd/firebase";
+import { httpsCallable } from "firebase/functions";
 
-const functions = getFunctions(app);
+const generateOtp = httpsCallable(functions, "generateOtp");
 
-export async function generateOtp(pacienteId) {
-    const fn = httpsCallable(functions, "generateOtp");
-    const res = await fn({ pacienteId });
-    return res.data;
+export async function generateOtpCall(pacienteId) {
+    const result = await generateOtp({ pacienteId });
+    return result.data;
 }
 
-export async function verifyOtp(pacienteId, otp) {
-    const fn = httpsCallable(functions, "verifyOtp");
-    const res = await fn({ pacienteId, otp });
-    return res.data;
-}
