@@ -7,7 +7,7 @@ import Densora_logo from '../assets/icons/densora_logo.svg'
 import Find_icon from '../assets/icons/find_icon.svg'
 import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
-import Oval from '../assets/shapes/oval.svg'
+import Button from "./button.astro";
 ---
 
 <header class="relative h-24">
@@ -28,31 +28,14 @@ import Oval from '../assets/shapes/oval.svg'
         <!--<Oval class="w-full h-20 fill-amber-300"/>-->
     </div>
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
-        <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
-
-        <a href="/options">
-        <Menu_icon class="transform translate-y-2.5" width='28' height='28' />
-        </a>
-
-        <a href="search">
-        <Find_icon class="transform translate-y-3.5" width='28' height='28' />
-        </a>
-
-        <a href="/">
-        <Densora_logo class="transform translate-y-4" width='28' height='28' />
-        </a>
-
-        <a href="profile">
-        <User_icon class="transform translate-y-3.5" width='28' height='28' />
-        </a>
-
-        <a href="calendar">
-        <Calendar_icon class="transform translate-y-2.5" width='28' height='28' />
-        </a>
-
-        <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28' />
-        <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
-   
+        <Button customClass="transform translate-y-1.5" design="icon" icon={Star_icon} type="button" toolTipText="ewfwef"/>
+        <Button customClass="transform translate-y-2.5" design="icon" icon={Menu_icon} type="link" href="/options"/>
+        <Button customClass="transform translate-y-3.5" design="icon" icon={Find_icon} type="link" href="/search"/>
+        <Button customClass="transform translate-y-4" design="icon" icon={Densora_logo} type="link" href="/"/>
+        <Button customClass="transform translate-y-3.5" design="icon" icon={User_icon} type="link" href="/profile"/>
+        <Button customClass="transform translate-y-2.5" design="icon" icon={Calendar_icon} type="button" href="/calendar"/>
+        <Button customClass="transform translate-y-1.5" design="icon" icon={Light_icon} type="button" id="theme-icon"/>
+        <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon"/>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
