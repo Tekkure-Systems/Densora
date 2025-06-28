@@ -1,12 +1,14 @@
 ---
 import Text from "./text.astro";
-const {text, mt, mb, href, type, design} = Astro.props;
+import Tooltip from "./toolTip.astro";
+const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
 let primaryButton = false;
 let secondaryButton = false;
 let noBackgroundButton = false;
+let iconButton = false;
 
 if (mt === "true") {
     marginTop = "mt-4";
@@ -26,44 +28,77 @@ if (design == "secondary"){
 if (design == "noBg"){
     noBackgroundButton = true;
 }
-const primaryDesign = `flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-8 py-2 rounded text-white`;
-const secondaryDesign = `flex items-center justify-center w-full max-w-md border-3 px-8 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
-const noBgDesign = `flex items-center justify-center w-full max-w-md ${marginTop} ${marginBottom} bg-none px-8 py-2 rounded text-white`;
+if (design == "icon") {
+    iconButton = true;
+}
+const primaryDesign = `flex items-center justify-center w-128 max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-16 py-2 rounded text-white`;
+const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
+const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop} ${marginBottom} bg-none px-16 py-2 rounded text-white`;
+const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-white ${marginTop} ${marginBottom} ${customClass}`;
 ---
 
-
 {isLink && primaryButton && (
-<a href={href} class={primaryDesign}>
-    <Text text={text} type="title"/>
-</a>
-)}
+<Tooltip text={toolTipText}>
+    <a href={href} class={primaryDesign}>
+        <Text text={text} type="title"/>
+    </a>
+</Tooltip>
+    )}
+
 
 {!isLink && primaryButton && (
-<button class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+<Tooltip text={toolTipText}>
+<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
+</Tooltip>
 )}
 
 {isLink && secondaryButton &&(
+<Tooltip text={toolTipText}>
 <a href={href} class={secondaryDesign}>
     <Text text={text} type="title" />
 </a>
-    )}
+</Tooltip>
+)}
 
 {!isLink && secondaryButton &&(
-<button type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<Tooltip text={toolTipText}>
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title" />
 </button>
+</Tooltip>
     )}
 
 {isLink && noBackgroundButton &&(
+<Tooltip text={toolTipText}>
 <a href={href} class={noBgDesign}>
     <Text text={text} type="title" />
 </a>
+</Tooltip>
     )}
 
 {!isLink && noBackgroundButton &&(
-<button type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<Tooltip text={toolTipText}>
+<button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title" />
 </button>
+</Tooltip>
+)}
+
+
+{isLink && iconButton && (
+<Tooltip text={toolTipText} icons={icons}>
+    <a href={href} class={iconDesign}>
+        <Icon class="transform translate-y-2.5" width='28' height='28'  />
+    </a>
+</Tooltip>
+    )}
+
+{!isLink && iconButton && (
+<Tooltip text={toolTipText} icons={icons}>
+    <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+        <Icon class="transform translate-y-2.5" width='28' height='28' />
+    </button>
+</Tooltip>
     )}

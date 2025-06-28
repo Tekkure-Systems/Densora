@@ -3,6 +3,19 @@ import "../styles/global.css";
 import '@fontsource-variable/manrope';
 import {ClientRouter} from 'astro:transitions';
 import NavBar from "../components/navBar.astro";
+const {align, orientation} = Astro.props;
+let contentWraper = "";
+let layoutOrientation = "";
+if(orientation == "row"){
+    layoutOrientation = "flex-col"
+}
+if(orientation == "column"){
+    layoutOrientation = "flex-row"
+
+}
+if(align == "center") {
+    contentWraper = 'flex items-center justify-center ';
+}
 ---
 <html lang="es" data-theme="light">
 <head>
@@ -12,12 +25,18 @@ import NavBar from "../components/navBar.astro";
     <meta name="generator" content={Astro.generator}/>
     <ClientRouter/>
 </head>
-<body class="bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans p-12 pt-0">
+<body class=" bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans p-12 pt-0">
 <header>
     <NavBar />
 </header>
+<<<<<<< HEAD
 <slot/>
 <script type="module" src="/scripts/barraDeBusqueda.js" />
+=======
+<div class={contentWraper + layoutOrientation}>
+    <slot/>
+</div>
+>>>>>>> cb1a28fd52dff4d5492ea97120fb5f39f79e136d
 </body>
 </html>
 <style>

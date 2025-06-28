@@ -1,3 +1,4 @@
-import { generateOtpCall } from "../firebaseFunctions/generateOtp.js";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "/src/bd/firebase.js";
 
-export const generateOtp = generateOtpCall;
+export const generateOtp = httpsCallable(functions, "generateOtp");
