@@ -31,9 +31,9 @@ if (design == "noBg"){
 if (design == "icon") {
     iconButton = true;
 }
-const primaryDesign = `flex items-center justify-center w-full max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-32 py-2 rounded text-white`;
-const secondaryDesign = `flex items-center justify-center w-full max-w-md border-3 px-32 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
-const noBgDesign = `flex items-center justify-center w-full max-w-md ${marginTop} ${marginBottom} bg-none px-32 py-2 rounded text-white`;
+const primaryDesign = `flex items-center justify-center w-128 max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-16 py-2 rounded text-white`;
+const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
+const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop} ${marginBottom} bg-none px-16 py-2 rounded text-white`;
 const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-white ${marginTop} ${marginBottom} ${customClass}`;
 ---
 
@@ -60,7 +60,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     <Text text={text} type="title" />
 </a>
 </Tooltip>
-    )}
+)}
 
 {!isLink && secondaryButton &&(
 <Tooltip text={toolTipText}>
