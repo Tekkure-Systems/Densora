@@ -35,7 +35,7 @@ import Button from "./button.astro";
         <Button customClass="transform translate-y-3.5" design="icon" icon={User_icon} type="link" href="/profile" toolTipText="perfil"/>
         <Button customClass="transform translate-y-2.5" design="icon" icon={Calendar_icon} type="button" href="/calendar" toolTipText="calendario"/>
         <Button customClass="transform translate-y-1.5" design="icon" icon={Light_icon} type="button" id="theme-icon" toolTipText="modo claro"/>
-        <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon" toolTipText="modo oscuro"/>
+        <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon" icons={[Star_icon, Menu_icon]}/>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

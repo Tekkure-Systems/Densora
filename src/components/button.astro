@@ -1,7 +1,7 @@
 ---
 import Text from "./text.astro";
 import Tooltip from "./toolTip.astro";
-const {text, mt, mb, href, type, design, toolTipText, icon: Icon, customClass} = Astro.props;
+const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -48,7 +48,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 
 {!isLink && primaryButton && (
 <Tooltip text={toolTipText}>
-<button class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
 </Tooltip>
@@ -64,7 +64,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 
 {!isLink && secondaryButton &&(
 <Tooltip text={toolTipText}>
-<button type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title" />
 </button>
 </Tooltip>
@@ -80,7 +80,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 
 {!isLink && noBackgroundButton &&(
 <Tooltip text={toolTipText}>
-<button type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title" />
 </button>
 </Tooltip>
@@ -88,7 +88,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 
 
 {isLink && iconButton && (
-<Tooltip text={toolTipText}>
+<Tooltip text={toolTipText} icons={icons}>
     <a href={href} class={iconDesign}>
         <Icon class="transform translate-y-2.5" width='28' height='28'  />
     </a>
@@ -96,8 +96,8 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     )}
 
 {!isLink && iconButton && (
-<Tooltip text={toolTipText}>
-    <button type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<Tooltip text={toolTipText} icons={icons}>
+    <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
         <Icon class="transform translate-y-2.5" width='28' height='28' />
     </button>
 </Tooltip>
