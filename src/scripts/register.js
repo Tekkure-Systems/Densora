@@ -9,11 +9,9 @@ import { generateOtp } from "/src/services/otp.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("register");
-    const otpBtn = document.getElementById("verifyOtpBtn");
     const response = document.getElementById("response");
 
     let currentPacienteId = null;
-
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -21,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const phone = document.getElementById("phone").value;
 
         try {
-            // Crear paciente en Firestore
             const pacienteRef = doc(collection(db, "pacientes"));
             await setDoc(pacienteRef, {
                 uid: pacienteRef.id,
@@ -31,11 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             currentPacienteId = pacienteRef.id;
 
-            // Generar OTP mediante Firebase Function
+            console.log("Llamando generateOtp con:", pacienteRef.id);
             const result = await generateOtp({ pacienteId: pacienteRef.id });
-            console.log("OTP generado (solo test):", result.otp);
+            console.log("Respuesta:", result);
 
-            response.textContent = `Paciente creado. OTP enviado. (Para pruebas: ${result.otp})`;
+            console.log("OTP generado (solo test):", result.data.otp);
+
+            response.textContent = `Paciente creado. OTP enviado. (Para pruebas: ${result.data.otp})`;
 
         } catch (err) {
             console.error(err);
