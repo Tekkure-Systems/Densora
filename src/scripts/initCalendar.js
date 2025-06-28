@@ -2,6 +2,8 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import { db } from '../bd/firebase.js'
+import { doc, setDoc } from 'firebase/firestore'
 
 const calendarEl = document.getElementById('calendar')
 
@@ -22,7 +24,6 @@ if (calendarEl) {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
 
-    // 📌 Eventos predefinidos
     events: [
       {
         id: '1',
