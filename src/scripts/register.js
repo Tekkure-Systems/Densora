@@ -13,26 +13,51 @@ document.addEventListener("DOMContentLoaded", () => {
         const phone = document.getElementById("phone").value;
 
         try {
+            // Crea referencia al doc (sin guardarlo aún)
             const pacienteRef = doc(collection(db, "pacientes"));
+            console.log("pacienteRef:", pacienteRef);
+            console.log("pacienteRef.id:", pacienteRef.id);
+
+            // Guarda el documento en Firestore
             await setDoc(pacienteRef, {
                 uid: pacienteRef.id,
                 name,
                 phone,
             });
+            console.log("Paciente guardado correctamente en Firestore.");
 
-            console.log("pacienteRef.id:", pacienteRef.id);
-
+            // Llama la Cloud Function
             const result = await generateOtp({
                 pacienteId: pacienteRef.id
             });
 
-            console.log("OTP generado:", result.data.otp);
+            console.log("Resultado de generateOtp:", result);
 
-            response.textContent = `Paciente creado. OTP enviado. (Pruebas: ${result.data.otp})`;
+            if (result?.data?.success) {
+                console.log("OTP generado:", result.data.otp);
+                response.textContent = `Paciente creado. OTP enviado. (Pruebas: ${result.data.otp})`;
+            } else {
+                console.error("generateOtp no devolvió éxito:", result);
+                response.textContent = "Error: no se generó OTP.";
+            }
 
         } catch (err) {
-            console.error(err);
-            response.textContent = "Error creando paciente.";
+            console.error("Error en submit:", err);
+            response.textContent = `Error creando paciente: ${err.message || JSON.stringify(err)}`;
         }
     });
+
+    (async () => {
+        try {
+            const testPacienteId = "psDljYHRlvZl0DsoIXnm";
+            console.log("Llamando generateOtp con id hardcodeado:", testPacienteId);
+            const result = await generateOtp({
+                pacienteId: testPacienteId
+            });
+            console.log("OTP generado hardcode:", result);
+        } catch (err) {
+            console.error("Error en generateOtp hardcode:", err);
+        }
+    })();
+    
 });
