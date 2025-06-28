@@ -13,7 +13,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+// 🔥 Fija la región explícitamente
+const functions = getFunctions(app, "us-central1");
+
 const db = getFirestore(app);
-const functions = getFunctions(app);
 
 export { db, functions, firebaseConfig };

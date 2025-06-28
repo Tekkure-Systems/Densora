@@ -1,17 +1,11 @@
 import { db } from "/src/bd/firebase.js";
-import {
-    collection,
-    doc,
-    setDoc
-} from "firebase/firestore";
-
-import { generateOtp } from "/src/services/otp.js";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { generateOtp } from "../services/otp.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("register");
     const response = document.getElementById("response");
 
-    let currentPacienteId = null;
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -26,15 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 phone,
             });
 
-            currentPacienteId = pacienteRef.id;
+            console.log("pacienteRef.id:", pacienteRef.id);
 
-            console.log("Llamando generateOtp con:", pacienteRef.id);
-            const result = await generateOtp({ pacienteId: pacienteRef.id });
-            console.log("Respuesta:", result);
+            const result = await generateOtp({
+                pacienteId: pacienteRef.id
+            });
 
-            console.log("OTP generado (solo test):", result.data.otp);
+            console.log("OTP generado:", result.data.otp);
 
-            response.textContent = `Paciente creado. OTP enviado. (Para pruebas: ${result.data.otp})`;
+            response.textContent = `Paciente creado. OTP enviado. (Pruebas: ${result.data.otp})`;
 
         } catch (err) {
             console.error(err);
