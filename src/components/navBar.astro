@@ -11,7 +11,7 @@ import Oval from '../assets/shapes/oval.svg'
 import Equis from '../assets/icons/x_icon.svg'
 ---
 
-<header class="relative h-24" >
+<header class="relative h-24">
     <div class="absolute top-0 left-0 w-full h-20 overflow-hidden -z-10">
         <svg width="100%" height="200" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg"
              class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[60%]">
@@ -28,15 +28,16 @@ import Equis from '../assets/icons/x_icon.svg'
         </svg>
         <!--<Oval class="w-full h-20 fill-amber-300"/>-->
     </div>
-    <div id="icon-bar" class="flex gap-10 items-center justify-center h-15 relative z-10">
+    <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
 
         <a href="/options">
         <Menu_icon class="transform translate-y-2.5" width='28' height='28' />
         </a>
 
-        <Find_icon width="28" height="28" class="pointer-events-none" />
-
+        <button id="toggle-search" class="transform translate-y-3.5">
+        <Find_icon width="28" height="28" />
+        </button>
 
         <a href="/">
         <Densora_logo class="transform translate-y-4" width='28' height='28' />
@@ -54,8 +55,7 @@ import Equis from '../assets/icons/x_icon.svg'
         <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
    
     </div>
-
-    <!--  Barra de búsqueda  -->
+    <!-- 🔎 Barra de búsqueda oculta al inicio -->
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
     <div class="relative w-2/3 max-w-md">
         <input
@@ -73,24 +73,54 @@ import Equis from '../assets/icons/x_icon.svg'
     </div>
     </div>
 
+                <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 🌗 Cambio de tema
+    const themeIcons = document.querySelectorAll('#theme-icon')
+    const html = document.documentElement
 
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeIcons = document.querySelectorAll('#theme-icon')
-        const html = document.documentElement
-
-        themeIcons.forEach(icon => {
-        icon.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme')
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
-            html.setAttribute('data-theme', newTheme)
-            localStorage.setItem('theme', newTheme)
-        })
-        })
+    themeIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme')
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+        html.setAttribute('data-theme', newTheme)
+        localStorage.setItem('theme', newTheme)
+      })
     })
-    </script>
 
-<script type="module" src='../scripts/barraDeBusqueda.js' />
+    // 🔍 Barra de búsqueda
+    const searchButton = document.getElementById('toggle-search')
+    const searchBar = document.getElementById('search-bar')
+    const iconBar = document.getElementById('icon-bar')
+    const searchInput = document.getElementById('search-input')
+    const clearSearch = document.getElementById('clear-search')
+
+    // Mostrar barra y ocultar íconos
+    searchButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      searchBar.classList.remove('hidden')
+      iconBar.classList.add('hidden')
+      searchInput.focus()
+    })
+
+    // Cerrar barra al dar clic en ❌
+    clearSearch.addEventListener('click', (e) => {
+      e.stopPropagation()
+      searchInput.value = ''
+      searchBar.classList.add('hidden')
+      iconBar.classList.remove('hidden')
+    })
+
+    // Cerrar barra al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
+      if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
+        searchInput.value = ''
+        searchBar.classList.add('hidden')
+        iconBar.classList.remove('hidden')
+      }
+    })
+  })
+</script>
 
 </header> 
