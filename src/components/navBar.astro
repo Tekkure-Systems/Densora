@@ -7,12 +7,9 @@ import Densora_logo from '../assets/icons/densora_logo.svg'
 import Find_icon from '../assets/icons/find_icon.svg'
 import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
-<<<<<<< HEAD
 import Oval from '../assets/shapes/oval.svg'
 import Equis from '../assets/icons/x_icon.svg'
-=======
-import Button from "./button.astro";
->>>>>>> cb1a28fd52dff4d5492ea97120fb5f39f79e136d
+import Button from "./button.astro"
 ---
 
 <header class="relative h-24">
@@ -32,8 +29,8 @@ import Button from "./button.astro";
         </svg>
         <!--<Oval class="w-full h-20 fill-amber-300"/>-->
     </div>
+
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
-<<<<<<< HEAD
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
 
         <a href="/options">
@@ -59,16 +56,8 @@ import Button from "./button.astro";
         <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28' />
         <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
    
-=======
-        <Button customClass="transform translate-y-1.5" design="icon" icon={Star_icon} type="button" toolTipText="idk"/>
-        <Button customClass="transform translate-y-2.5" design="icon" icon={Menu_icon} type="link" href="/options" toolTipText="opciones"/>
-        <Button customClass="transform translate-y-3.5" design="icon" icon={Find_icon} type="link" href="/search" toolTipText="buscar"/>
-        <Button customClass="transform translate-y-4" design="icon" icon={Densora_logo} type="link" href="/" toolTipText="home"/>
-        <Button customClass="transform translate-y-3.5" design="icon" icon={User_icon} type="link" href="/profile" toolTipText="perfil"/>
-        <Button customClass="transform translate-y-2.5" design="icon" icon={Calendar_icon} type="button" href="/calendar" toolTipText="calendario"/>
-        <Button customClass="transform translate-y-1.5" design="icon" icon={Light_icon} type="button" id="theme-icon" toolTipText="modo claro"/>
-        <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon" icons={[Star_icon, Menu_icon]}/>
->>>>>>> cb1a28fd52dff4d5492ea97120fb5f39f79e136d
+
+        
     </div>
     <!-- 🔎 Barra de búsqueda oculta al inicio -->
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
@@ -90,7 +79,7 @@ import Button from "./button.astro";
 
                 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 🌗 Cambio de tema
+  
     const themeIcons = document.querySelectorAll('#theme-icon')
     const html = document.documentElement
 
