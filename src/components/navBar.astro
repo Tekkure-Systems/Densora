@@ -92,14 +92,14 @@ import Button from "./button.astro"
       })
     })
 
-    // 🔍 Barra de búsqueda
+   
     const searchButton = document.getElementById('toggle-search')
     const searchBar = document.getElementById('search-bar')
     const iconBar = document.getElementById('icon-bar')
     const searchInput = document.getElementById('search-input')
     const clearSearch = document.getElementById('clear-search')
 
-    // Mostrar barra y ocultar íconos
+  
     searchButton.addEventListener('click', (e) => {
       e.stopPropagation()
       searchBar.classList.remove('hidden')
@@ -107,7 +107,7 @@ import Button from "./button.astro"
       searchInput.focus()
     })
 
-    // Cerrar barra al dar clic en ❌
+   
     clearSearch.addEventListener('click', (e) => {
       e.stopPropagation()
       searchInput.value = ''
@@ -115,7 +115,7 @@ import Button from "./button.astro"
       iconBar.classList.remove('hidden')
     })
 
-    // Cerrar barra al hacer clic fuera
+
     document.addEventListener('click', (e) => {
       const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
       if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
@@ -124,6 +124,18 @@ import Button from "./button.astro"
         iconBar.classList.remove('hidden')
       }
     })
+
+    searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const query = searchInput.value.trim()
+    if (query !== '') {
+    
+      window.location.href = `/navMap?q=${encodeURIComponent(query)}`
+    }
+  }
+})
+
+
   })
 </script>
 
