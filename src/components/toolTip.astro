@@ -22,11 +22,8 @@ const hasIconsTooltip = icons.length > 0;
                                     const action = actions[idx];
                                     if (typeof action === 'function') {
                                         action(); // ejecuta la función directamente
-
                                     } else if (typeof action === 'string') {
                                         console.log(`Trigger action: ${action}`);
-                                        // Podrías emitir un evento personalizado o usar un switch-case
-
                                     }
                                 }}
                         >
