@@ -1,28 +1,39 @@
 ---
-const { text, icons = [], type } = Astro.props;
+const {text, icons = [], actions = []} = Astro.props;
 
 const hasTextTooltip = text && text.trim() !== "";
 const hasIconsTooltip = icons.length > 0;
 ---
 
 <div class="relative w-auto max-w-md group block">
-    <slot />
-
+    <slot/>
     {hasTextTooltip && (
-            <p
-                    class="absolute -bottom-2 left-1/2 -translate-x-1/2 mt-1 px-2 py-1 text-sm font-semibold bg-[#00393e] text-[#0fa79c] rounded shadow opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-10 pointer-events-none"
-            >
+            <p class="absolute -bottom-2 left-1/2 -translate-x-1/2 mt-1 px-2 py-1 text-sm font-semibold bg-[#00393e] text-[#0fa79c] rounded shadow opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-10 pointer-events-none">
                 {text}
             </p>
     )}
-
     {!hasTextTooltip && hasIconsTooltip && (
-            <div
-                    class="absolute -bottom-2 left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-[#00393e] text-[#0fa79c] rounded shadow opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-10 pointer-events-none flex gap-2 items-center"
-            >
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-[#00393e] text-[#0fa79c] rounded shadow opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-10 pointer-events-none flex gap-2 items-center">
                 {icons.map((Icon, idx) => (
-                        <Icon key={idx} class="w-4 h-4 fill-secondary" />
+                        <button
+                                key={idx}
+                                type="button"
+                                onClick={() => {
+                                    const action = actions[idx];
+                                    if (typeof action === 'function') {
+                                        action(); // ejecuta la función directamente
+
+                                    } else if (typeof action === 'string') {
+                                        console.log(`Trigger action: ${action}`);
+                                        // Podrías emitir un evento personalizado o usar un switch-case
+
+                                    }
+                                }}
+                        >
+                            <Icon class="w-4 h-4 fill-secondary"/>
+                        </button>
                 ))}
+
             </div>
     )}
 </div>

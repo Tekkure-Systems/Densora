@@ -36,7 +36,6 @@ const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-
 const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop} ${marginBottom} bg-none px-16 py-2 rounded text-white`;
 const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-white ${marginTop} ${marginBottom} ${customClass}`;
 ---
-
 {isLink && primaryButton && (
 <Tooltip text={toolTipText}>
     <a href={href} class={primaryDesign}>
@@ -44,8 +43,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     </a>
 </Tooltip>
     )}
-
-
 {!isLink && primaryButton && (
 <Tooltip text={toolTipText}>
 <button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
@@ -53,7 +50,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </button>
 </Tooltip>
 )}
-
 {isLink && secondaryButton &&(
 <Tooltip text={toolTipText}>
 <a href={href} class={secondaryDesign}>
@@ -61,7 +57,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
 </Tooltip>
 )}
-
 {!isLink && secondaryButton &&(
 <Tooltip text={toolTipText}>
 <button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
@@ -69,7 +64,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </button>
 </Tooltip>
     )}
-
 {isLink && noBackgroundButton &&(
 <Tooltip text={toolTipText}>
 <a href={href} class={noBgDesign}>
@@ -77,7 +71,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
 </Tooltip>
     )}
-
 {!isLink && noBackgroundButton &&(
 <Tooltip text={toolTipText}>
 <button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
@@ -85,8 +78,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </button>
 </Tooltip>
 )}
-
-
 {isLink && iconButton && (
 <Tooltip text={toolTipText} icons={icons}>
     <a href={href} class={iconDesign}>
@@ -94,7 +85,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     </a>
 </Tooltip>
     )}
-
 {!isLink && iconButton && (
 <Tooltip text={toolTipText} icons={icons}>
     <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
