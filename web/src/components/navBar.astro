@@ -8,6 +8,16 @@ import Find_icon from '../assets/icons/find_icon.svg'
 import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
 import Oval from '../assets/shapes/oval.svg'
+import Equis from '../assets/icons/x_icon.svg'
+import Button from "./button.astro"
+
+function handleEdit() {
+    console.log("Editando...");
+}
+
+function handleDelete() {
+    alert("Eliminado");
+}
 ---
 
 <header class="relative h-24">
@@ -27,6 +37,7 @@ import Oval from '../assets/shapes/oval.svg'
         </svg>
         <!--<Oval class="w-full h-20 fill-amber-300"/>-->
     </div>
+
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
 
@@ -34,9 +45,9 @@ import Oval from '../assets/shapes/oval.svg'
         <Menu_icon class="transform translate-y-2.5" width='28' height='28' />
         </a>
 
-        <a href="search">
-        <Find_icon class="transform translate-y-3.5" width='28' height='28' />
-        </a>
+        <button id="toggle-search" class="transform translate-y-3.5">
+        <Find_icon width="28" height="28" />
+        </button>
 
         <a href="/">
         <Densora_logo class="transform translate-y-4" width='28' height='28' />
@@ -52,21 +63,96 @@ import Oval from '../assets/shapes/oval.svg'
 
         <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28' />
         <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28' />
-   
+
+        <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon" icons={[Star_icon, Menu_icon]}/>
+        <Button
+                text="Acciones"
+                design="icon"
+                icon={Densora_logo}
+                icons={[Star_icon, Menu_icon]}
+                actions={[handleEdit, handleDelete]}
+        />
+
+        
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeIcons = document.querySelectorAll('#theme-icon');
-            const html = document.documentElement;
-            
-            themeIcons.forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            });
-        });
-    </script>
+    <!-- 🔎 Barra de búsqueda oculta al inicio -->
+    <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
+    <div class="relative w-2/3 max-w-md">
+        <input
+        id="search-input"
+        type="text"
+        placeholder="Buscar..."
+        class="w-full px-4 py-2 pr-10 rounded-full border text-primaryText-light border-primaryBackground-light shadow focus:outline-none focus:ring-1 focus:ring-primaryBackground-light dark:text-primaryText-dark dark:bg-gray-800"
+        />
+        <button
+        id="clear-search"
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500"
+        >
+        <Equis class="w-4 h-4" />
+        </button>
+    </div>
+    </div>
+
+                <script>
+  document.addEventListener('DOMContentLoaded', () => {
+  
+    const themeIcons = document.querySelectorAll('#theme-icon')
+    const html = document.documentElement
+
+    themeIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme')
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+        html.setAttribute('data-theme', newTheme)
+        localStorage.setItem('theme', newTheme)
+      })
+    })
+
+   
+    const searchButton = document.getElementById('toggle-search')
+    const searchBar = document.getElementById('search-bar')
+    const iconBar = document.getElementById('icon-bar')
+    const searchInput = document.getElementById('search-input')
+    const clearSearch = document.getElementById('clear-search')
+
+  
+    searchButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      searchBar.classList.remove('hidden')
+      iconBar.classList.add('hidden')
+      searchInput.focus()
+    })
+
+   
+    clearSearch.addEventListener('click', (e) => {
+      e.stopPropagation()
+      searchInput.value = ''
+      searchBar.classList.add('hidden')
+      iconBar.classList.remove('hidden')
+    })
+
+
+    document.addEventListener('click', (e) => {
+      const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
+      if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
+        searchInput.value = ''
+        searchBar.classList.add('hidden')
+        iconBar.classList.remove('hidden')
+      }
+    })
+
+    searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const query = searchInput.value.trim()
+    if (query !== '') {
+    
+      window.location.href = `/navMap?q=${encodeURIComponent(query)}`
+    }
+  }
+})
+
+
+  })
+</script>
+
 </header> 
