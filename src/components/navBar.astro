@@ -66,16 +66,12 @@ function handleDelete() {
 
         <Button customClass="transform translate-y-1.5" design="icon" icon={Dark_icon} type="button" id="theme-icon" icons={[Star_icon, Menu_icon]}/>
         <Button
-                text="Acciones"
                 design="icon"
                 icon={Densora_logo}
                 icons={[Star_icon, Menu_icon]}
-                actions={[handleEdit, handleDelete]}
+                ids={["theme-icon", "theme-icon"]}
         />
-
-        
     </div>
-    <!-- 🔎 Barra de búsqueda oculta al inicio -->
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
     <div class="relative w-2/3 max-w-md">
         <input
@@ -92,8 +88,7 @@ function handleDelete() {
         </button>
     </div>
     </div>
-
-                <script>
+    <script>
   document.addEventListener('DOMContentLoaded', () => {
   
     const themeIcons = document.querySelectorAll('#theme-icon')
@@ -108,14 +103,22 @@ function handleDelete() {
       })
     })
 
-   
+      setTimeout(() => {
+          const menuAction = document.getElementById("menu-action");
+          if (menuAction) {
+              menuAction.addEventListener("click", () => {
+                  console.log("✅ Acción ejecutada desde tooltip");
+              });
+          } else {
+              console.warn("⚠️ No se encontró #menu-action en el DOM");
+          }
+      }, 250); // Ajusta el delay si es necesario
+
     const searchButton = document.getElementById('toggle-search')
     const searchBar = document.getElementById('search-bar')
     const iconBar = document.getElementById('icon-bar')
     const searchInput = document.getElementById('search-input')
     const clearSearch = document.getElementById('clear-search')
-
-  
     searchButton.addEventListener('click', (e) => {
       e.stopPropagation()
       searchBar.classList.remove('hidden')
@@ -150,9 +153,6 @@ function handleDelete() {
     }
   }
 })
-
-
   })
 </script>
-
 </header> 
