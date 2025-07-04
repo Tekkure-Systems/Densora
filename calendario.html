@@ -1,49 +1,34 @@
-<meta charset="utf-8" />
-<link rel="stylesheet" href="./styles.css" />
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mapa de prueba</title>
+    <style>
+      #mapa {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mapa"></div>
 
-<div></div>
+    <script>
+      // Esta función debe estar en el window global para Google Maps
+      function initMap() {
+        var location = { lat: 22.3, lng: 34.12 };
+        var map = new google.maps.Map(document.getElementById("mapa"), {
+          zoom: 4,
+          center: location,
+        });
+      }
+    </script>
 
-<script>
-  const actualYear = 2025
-  const locale = 'es'
-
-  const intlForMonths = new Intl.DateTimeFormat(locale, { month: 'long' })
-  const months = [...Array(12).keys()]
-
-  const intlForWeeks = new Intl.DateTimeFormat(locale, { weekday: 'short' })
-  const weekDays = [...Array(7).keys()].map((dayIndex) =>
-    intlForWeeks.format(new Date(2021, 2, dayIndex + 1))
-  )
-
-  const calendar = months.map((monthIndex) => {
-    const monthName = intlForMonths.format(new Date(actualYear, monthIndex))
-    const nextMonthIndex = (monthIndex + 1) % 12
-    const daysOfMonth = new Date(actualYear, nextMonthIndex, 0).getDate()
-    const startsOn = new Date(actualYear, monthIndex, 1).getDay()
-
-    return {
-      daysOfMonth,
-      monthName,
-      startsOn
-    }
-  })
-
-  const html = calendar
-    .map(({ daysOfMonth, monthName, startsOn }) => {
-      const days = [...Array(daysOfMonth).keys()]
-      const firstDayAttributes = `class='first-day' style='--first-day-start: ${startsOn}'`
-      const htmlDaysName = weekDays
-        .map((dayName) => `<li class='day-name'>${dayName}</li>`)
-        .join('')
-      const htmlDays = days
-        .map(
-          (day, index) =>
-            `<li ${index === 0 ? firstDayAttributes : ''}>${day + 1}</li>`
-        )
-        .join('')
-      return `<h2>${monthName} ${actualYear}</h2><ol>${htmlDaysName}${htmlDays}</ol>`
-    })
-    .join('')
-
-  document.querySelector('div').innerHTML = html
-</script>
+    <!-- Esta es la forma correcta de cargar el script desde Google Maps -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoYIlrfSriqVxqq2Oj_M3gfSP4VeGOBSU&callback=initMap">
+    </script>
+  </body>
+</html>

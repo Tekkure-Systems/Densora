@@ -3,7 +3,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { db } from '../bd/firebase.js'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, getDoc } from "firebase/firestore";
+
 
 const calendarEl = document.getElementById('calendar')
 
@@ -42,22 +43,13 @@ if (calendarEl) {
     ],
 
     dateClick(info) {
-      // 🟢 Crea un nuevo evento con un ID único
-      const nuevoEvento = {
-        id: crypto.randomUUID(),
-        title: 'Nuevo evento',
-        start: info.dateStr,
-        allDay: true,
-        color: '#16a34a',
-        textColor: '#fff'
-      }
-
-
-      calendar.addEvent(nuevoEvento)
-
+      if(event==true){
+              calendar.addEvent(nuevoEvento)
 
       const url = `/evento?id=${encodeURIComponent(nuevoEvento.id)}&title=${encodeURIComponent(nuevoEvento.title)}&start=${encodeURIComponent(nuevoEvento.start)}`
       window.location.href = url
+      }
+
     },
 
 
@@ -71,4 +63,21 @@ if (calendarEl) {
 
 
   calendar.render()
+}
+
+const docRef = doc(db, 'pacientes', 'paciente prueba');  // reemplaza 'paciente_1' por el ID real
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Datos del paciente:", docSnap.data());
+
+
+  const citasRef = collection(docRef, 'citas');
+  const citasSnap = await getDocs(citasRef);
+
+  const citas = citasSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  console.log("Citas del paciente:", citas);
+
+} else {
+  console.log("El paciente no existe");
 }

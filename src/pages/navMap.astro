@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <div id="mapa" style="height: 400px; width: 100%;"></div>
 
+
   <script>
     function initMap() {
       var location = { lat: 22.3, lng: 34.12 };
@@ -15,9 +16,10 @@ import Layout from "../layouts/Layout.astro";
     }
   </script>
 
+ 
   <script
     async
     defer
-    src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
   </script>
 </Layout>

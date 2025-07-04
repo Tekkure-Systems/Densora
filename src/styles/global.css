@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
     --color-primary: #26CBB0;
@@ -12,4 +13,64 @@
     --color-primaryText-dark: #BEE9DF;
     --color-hover-light: #93E4D7;
     --color-hover-dark: #29433D;
+}
+
+/* ===============================
+   🗓️ Estilo para eventos visibles
+   =============================== */
+
+.fc-event {
+  border-radius: 0.5rem;           /* Bordes redondeados para los eventos */
+  padding: 0.25rem 0.5rem;         /* Espaciado interno horizontal y vertical */
+  font-size: 0.875rem;             /* Tamaño de fuente de los eventos */
+  font-weight: 600;                /* Letra un poco más gruesa */
+}
+
+
+/* =====================================================
+   📆 Casilla del día actual (el día de hoy resaltado)
+   ===================================================== */
+
+.fc-daygrid-day.fc-day-today {
+  background-color: #fef9c3;       /* Fondo amarillo claro para destacar el día de hoy */
+}
+
+
+/* =============================================
+   🔢 Números del calendario (1, 2, 3, ... 31...)
+   ============================================= */
+
+.fc .fc-daygrid-day-number {
+  font-weight: 700;                /* Números del calendario en negrita */
+  color: #1f2937;                  /* Color gris oscuro para buena visibilidad */
+}
+
+
+/* ==========================================
+   🧭 Título del calendario (ej. "junio 2025")
+   ========================================== */
+
+.fc .fc-toolbar-title {
+  font-family: 'Inter', sans-serif;  /* Fuente personalizada para el título */
+  font-size: 1.25rem;                /* Tamaño del título */
+  font-weight: 700;                  /* Negrita */
+  color: #111827;                    /* Gris muy oscuro para contraste */
+}
+
+
+/* ================================
+   🔘 Botones de navegación (prev, next, today, etc.)
+   ================================ */
+
+.fc-button {
+  background-color: #3b82f6 !important;    /* Azul fuerte */
+  border: none !important;                 /* Sin bordes */
+  border-radius: 0.375rem !important;      /* Bordes redondeados */
+  padding: 0.25rem 0.75rem !important;     /* Espaciado interno */
+  font-weight: 500;                        /* Negrita ligera */
+}
+
+/* Al pasar el mouse por encima del botón */
+.fc-button:hover {
+  background-color: #2563eb !important;    /* Azul un poco más oscuro */
 }
