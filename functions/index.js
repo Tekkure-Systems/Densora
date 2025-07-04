@@ -6,9 +6,7 @@ const db = admin.firestore();
 exports.generateOtp = functions.https.onCall(async (data, context) => {
     try {
         console.log("Payload recibido:", data);
-
         const pacienteId = data?.pacienteId;
-
         if (!pacienteId || typeof pacienteId !== "string" || pacienteId.trim() === "") {
             console.log("PacienteId es inválido o vacío:", pacienteId);
             throw new functions.https.HttpsError(
@@ -16,12 +14,9 @@ exports.generateOtp = functions.https.onCall(async (data, context) => {
                 "Missing or invalid pacienteId."
             );
         }
-
         console.log("generateOtp called with pacienteId:", pacienteId);
-
         // verificar que el doc existe
         const docSnap = await db.collection("pacientes").doc(pacienteId).get();
-
         if (!docSnap.exists) {
             console.log("Paciente NO existe:", pacienteId);
             throw new functions.https.HttpsError(
@@ -29,10 +24,8 @@ exports.generateOtp = functions.https.onCall(async (data, context) => {
                 `Paciente ${pacienteId} no existe en Firestore.`
             );
         }
-
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         const expiresAt = Date.now() + 5 * 60 * 1000;
-
         await db
             .collection("pacientes")
             .doc(pacienteId)
@@ -42,10 +35,8 @@ exports.generateOtp = functions.https.onCall(async (data, context) => {
                 code: otp,
                 expiresAt,
             });
-
         console.log("OTP generado correctamente!");
         return { success: true, otp };
-
     } catch (error) {
         console.error("Error en generateOtp:", error);
         throw new functions.https.HttpsError(

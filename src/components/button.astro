@@ -1,21 +1,7 @@
 ---
 import Text from "./text.astro";
 import Tooltip from "./toolTip.astro";
-const {
-    text,
-    mt,
-    mb,
-    href,
-    type,
-    design,
-    id,
-    toolTipText,
-    icon: Icon,
-    customClass,
-    icons = [],
-    ids = []
-} = Astro.props;
-
+const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons = [], ids = []} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -45,7 +31,6 @@ if (design == "noBg") {
 if (design == "icon") {
     iconButton = true;
 }
-
 const primaryDesign = `flex items-center justify-center w-128 max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-16 py-2 rounded text-white`;
 const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
 const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop} ${marginBottom} bg-none px-16 py-2 rounded text-white`;

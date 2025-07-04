@@ -3,8 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import Section from "../components/section.astro";
 import DentistCard from "../components/dentistCard.astro";
 import ConsultorioCard from "../components/consultorioCard.astro";
+import Densora_logo from "../assets/icons/densora_logo.svg";
+import Star_icon from "../assets/icons/star_icon.svg";
+import Button from "../components/button.astro";
+import Start_icon from "../assets/icons/star_icon.svg";
+import Menu_icon from "../assets/icons/menu_icon.svg";
 ---
 <Layout align="center" orientation="row">
+    <p>boton para probar el tooltip con botones, no mover, se poncharan llantas</p>
+    <Button
+            design="icon"
+            icon={Densora_logo}
+            icons={[Star_icon, Menu_icon]}
+            ids={["theme-icon", "menu-"]}
+    />
     <Section importance="secondary" orientation="col" mb="true">
         <p>tu historial de citas</p>
     </Section>
