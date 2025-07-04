@@ -1,17 +1,31 @@
 ---
 import Section from "./section.astro";
-const { profilePhoto } = Astro.props;
+const {profilePhoto, name, description, cal = 0, mt, mb} = Astro.props;
 import Text from "../components/text.astro";
+import Star_icon from "../assets/icons/star_icon.svg";
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+if (mt === "true") {
+    marginTop = "mt-4";
+}
+if (mb === "true") {
+    marginBottom = "mb-4";
+}
+const stars = Array.from({length: parseInt(cal)}); // crea un array de n elementos
 ---
-<div class="w-80 h-80">
-    {profilePhoto && (
-            <img src={profilePhoto} alt="Foto de perfil" class="w-full h-full object-cover" loading="lazy" />
-    )}
+<div class={`flex flex-row ${marginTop} ${marginBottom} w-auto`}>
+    <div class="w-80 h-80">
+        {profilePhoto && (
+                <img src={profilePhoto} class="w-full h-full object-cover" loading="lazy"/>
+        )}
+    </div>
+    <Section orientation="row" importance="primary" align="left">
+        <Text text={name} type="title"/>
+        <Text text={description} type="title"/>
+        <div class="flex gap-1">
+            {stars.map(() => (
+                    <Star_icon width="25"/>
+            ))}
+        </div>
+    </Section>
 </div>
-
-
-<Section orientation="row" importance="primary">
-    <Text text="Nombre del dentista" type="title"/>
-    <Text text="Lorem Impsum ewfwjfwefwfwfwffwfkwfhjwefkwfhkejwhfwefewf" type="title"/>
-    <Text text="Nombre del dentista" type="title"/>
-</Section>

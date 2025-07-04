@@ -9,12 +9,20 @@ let layoutOrientation = "";
 if(orientation == "row"){
     layoutOrientation = "flex-col"
 }
-if(orientation == "column"){
+if (orientation == "column"){
     layoutOrientation = "flex-row"
-
 }
-if(align == "center") {
+if (orientation == "row") {
+    layoutOrientation = "flex-col"
+}
+if (align == "center") {
     contentWraper = 'flex items-center justify-center ';
+}
+if (align == "left") {
+    contentWraper = 'flex items-start justify-start ';
+}
+if (align == "right") {
+    contentWraper = 'flex items-end justify-end ';
 }
 ---
 <html lang="es" data-theme="light">
@@ -31,12 +39,10 @@ if(align == "center") {
 </header>
 
 <slot/>
-<script type="module" src="/scripts/barraDeBusqueda.js" />
-
+<script type="module" src="/src/scripts/barraDeBusqueda.js" />
 <div class={contentWraper + layoutOrientation}>
-    <slot/>
-</div>
 
+</div>
 </body>
 </html>
 <style>

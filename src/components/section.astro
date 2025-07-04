@@ -1,9 +1,10 @@
 ---
-const {importance, mt, mb, orientation} = Astro.props;
+const {importance, mt, mb, orientation, align} = Astro.props;
 let containerClass = "";
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let flexOrientation = "";
+let alignment = "";
 if (mt == "true") {
     marginTop = "mt-4";
 }
@@ -22,7 +23,16 @@ if(orientation == "col"){
 if(orientation == "row"){
     flexOrientation = "flex-col";
 }
+if (align == "center") {
+    alignment = "items-center"
+}
+if (align == "left") {
+    alignment = "items-start"
+}
+if (align == "right") {
+    alignment = "items-end"
+}
 ---
-<div class={`flex ${flexOrientation} ${marginTop} ${marginBottom} items-center justify-center p-4 ${containerClass}`}>
+<div class={`flex ${flexOrientation} ${marginTop} ${marginBottom} ${alignment} justify-center p-4 ${containerClass}`}>
     <slot />
 </div>
