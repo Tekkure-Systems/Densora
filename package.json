@@ -10,18 +10,16 @@
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.6",
-    "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.10.0",
-    "dotenv": "^16.5.0",
-    "tailwindcss": "^4.1.10",
-    "@fontsource-variable/manrope": "^5.2.6",
-    "dotenv": "^16.5.0",
-    "firebase": "^11.9.1",
-    "twilio": "^5.7.1",
     "@fullcalendar/core": "^6.1.17",
     "@fullcalendar/daygrid": "^6.1.17",
     "@fullcalendar/interaction": "^6.1.17",
     "@fullcalendar/list": "^6.1.17",
-    "@fullcalendar/timegrid": "^6.1.17"
+    "@fullcalendar/timegrid": "^6.1.17",
+    "@tailwindcss/vite": "^4.1.10",
+    "astro": "^5.10.0",
+    "dotenv": "^16.5.0",
+    "firebase": "^11.9.1",
+    "tailwindcss": "^4.1.10",
+    "twilio": "^5.7.1"
   }
 }
