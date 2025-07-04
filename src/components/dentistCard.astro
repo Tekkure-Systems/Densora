@@ -1,27 +1,35 @@
 ---
 import Section from "./section.astro";
-const {profilePhoto, name, description, cal = 0, mt, mb} = Astro.props;
+const {profilePhoto, name, description, cal = 0, mt, mb, ml, mr} = Astro.props;
 import Text from "../components/text.astro";
 import Star_icon from "../assets/icons/star_icon.svg";
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
+let marginLeft = "ml-none";
+let marginRight = "mr-none";
 if (mt === "true") {
     marginTop = "mt-4";
 }
 if (mb === "true") {
     marginBottom = "mb-4";
 }
-const stars = Array.from({length: parseInt(cal)}); // crea un array de n elementos
+if(ml === "true") {
+    marginLeft = "ml-4"
+}
+if(mr === "true") {
+    marginRight = "mr-4"
+}
+const stars = Array.from({length: parseInt(cal)});
 ---
-<div class={`flex flex-row ${marginTop} ${marginBottom} w-auto`}>
-    <div class="w-80 h-80">
+<div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
+    <div class="w-32 h-32">
         {profilePhoto && (
-                <img src={profilePhoto} class="w-full h-full object-cover" loading="lazy"/>
+                <img src={profilePhoto} class="w-full h-full object-cover rounded" loading="lazy"/>
         )}
     </div>
     <Section orientation="row" importance="primary" align="left">
         <Text text={name} type="title"/>
-        <Text text={description} type="title"/>
+        <Text text={description} type="text"/>
         <div class="flex gap-1">
             {stars.map(() => (
                     <Star_icon width="25"/>

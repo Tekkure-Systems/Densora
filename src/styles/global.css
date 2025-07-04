@@ -1,6 +1,4 @@
 @import "tailwindcss";
-
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
     --color-primary: #26CBB0;
@@ -9,16 +7,16 @@
     --color-primaryBackground-dark: #222B29;
     --color-secondaryBackground-light: #A5DAD1;
     --color-secondaryBackground-dark: #263835;
+    --color-tertiaryBackground-light: #9dcac2;
+    --color-tertiaryBackground-dark: #344c48;
     --color-primaryText-light: #222B29;
     --color-primaryText-dark: #BEE9DF;
     --color-hover-light: #93E4D7;
     --color-hover-dark: #29433D;
 }
-
 /* ===============================
    🗓️ Estilo para eventos visibles
    =============================== */
-
 .fc-event {
   border-radius: 0.5rem;           /* Bordes redondeados para los eventos */
   padding: 0.25rem 0.5rem;         /* Espaciado interno horizontal y vertical */
