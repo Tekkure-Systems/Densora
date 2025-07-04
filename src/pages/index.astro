@@ -2,10 +2,18 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/section.astro";
 import DentistCard from "../components/dentistCard.astro";
+import ConsultorioCard from "../components/consultorioCard.astro";
 ---
 <Layout align="center" orientation="row">
-    <Section importance="secondary" orientation="col">
-        <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="test" description="lorem ipsum" cal="2" mr="true"/>
+    <Section importance="secondary" orientation="col" mb="true">
+        <p>tu historial de citas</p>
+    </Section>
+    <Section importance="secondary" orientation="col" mb="true">
+        <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" description="lorem ipsum" cal="2" mr="true"/>
         <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="test" description="lorem ipsum" cal="2"/>
+    </Section>
+    <Section importance="secondary" orientation="col">
+        <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="lorem ipsum" cal="2" mr="true"/>
+        <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="test" description="lorem ipsum" cal="2"/>
     </Section>
 </Layout>
