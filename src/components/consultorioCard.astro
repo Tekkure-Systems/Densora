@@ -3,6 +3,8 @@ import Section from "./section.astro";
 const {profilePhoto, name, description, especialidad, ubicacion, cal = 0, mt, mb, ml, mr} = Astro.props;
 import Text from "../components/text.astro";
 import Star_icon from "../assets/icons/star_icon.svg";
+import Chat_icon from "../assets/icons/chat_icon.svg";
+import Button from "../components/button.astro";
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let marginLeft = "ml-none";
@@ -22,20 +24,20 @@ if(mr === "true") {
 const stars = Array.from({length: parseInt(cal)});
 ---
 <div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
-    <div class="w-64 h-32">
+    <div class="w-40 h-40">
         {profilePhoto && (
                 <img src={profilePhoto} class="w-full h-full object-cover rounded" loading="lazy"/>
         )}
     </div>
     <Section orientation="row" importance="primary" align="left">
         <Text text={name} type="title"/>
-        <Text text={description} type="text"/>
-        <Text text={especialidad} type="text"/>
-        <Text text={ubicacion} type="text"/>
-        <div class="flex gap-1">
-            {stars.map(() => (
-                    <Star_icon width="25" class="fill-primary"/>
-            ))}
-        </div>
+        <Text text={ubicacion} type="mini" mb="true"/>
+        <Section orientation="col" padding="false" extraClass=" w-full justify-between">
+            <div class="flex gap-1">
+                {stars.map(() => (
+                        <Star_icon width="24" class="fill-primary"/>
+                ))}
+            </div>
+        </Section>
     </Section>
 </div>
