@@ -1,7 +1,7 @@
 ---
 import Text from "./text.astro";
 import Tooltip from "./toolTip.astro";
-const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons = [], ids = []} = Astro.props;
+const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons = [], ids = [], fill} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -81,14 +81,14 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 {isLink && iconButton && (
 <Tooltip text={toolTipText} icons={icons} ids={ids}>
     <a href={href} class={iconDesign}>
-        <Icon class="transform translate-y-2.5" width='28' height='28' />
+        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`} />
     </a>
 </Tooltip>
     )}
 {!isLink && iconButton && (
 <Tooltip text={toolTipText} icons={icons} ids={ids}>
     <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <Icon class="transform translate-y-2.5" width='28' height='28' />
+        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`} />
     </button>
 </Tooltip>
     )}
