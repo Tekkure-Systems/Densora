@@ -36,7 +36,6 @@ if (hasHalfStar) {
     emptyStars -= 1;
 }
 ---
-
 <div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
     <div class="w-40 h-40">
         {profilePhoto && (
@@ -45,7 +44,6 @@ if (hasHalfStar) {
     </div>
     <Section orientation="row" importance="primary" align="left">
         <Text text={name} type="title"/>
-        <Text text={especialidad} type="text"/>
         <Text text={ubicacion} type="mini" mb="true"/>
         <Section orientation="col" padding="false" extraClass=" w-full justify-between">
             <div class="flex gap-1">

@@ -1,10 +1,25 @@
 ---
 import Text from "./text.astro";
 import Tooltip from "./toolTip.astro";
-const {text, mt, mb, href, type, design, id, toolTipText, icon: Icon, customClass, icons} = Astro.props;
+const {
+    text,
+    mt,
+    mb,
+    href,
+    type,
+    design,
+    id,
+    toolTipText,
+    icon: Icon,
+    customClass,
+    icons = [],
+    ids = [],
+    fill
+} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
+let isSlot = false;
 let primaryButton = false;
 let secondaryButton = false;
 let noBackgroundButton = false;
@@ -19,17 +34,20 @@ if (mb === "true") {
 if (href && href !== "") {
     isLink = true;
 }
-if (design == "primary"){
+if (design == "primary") {
     primaryButton = true;
 }
-if (design == "secondary"){
+if (design == "secondary") {
     secondaryButton = true;
 }
-if (design == "noBg"){
+if (design == "noBg") {
     noBackgroundButton = true;
 }
 if (design == "icon") {
     iconButton = true;
+}
+if (design == "slot") {
+    isSlot = true;
 }
 const primaryDesign = `flex items-center justify-center w-128 max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-16 py-2 rounded text-white`;
 const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
@@ -45,50 +63,64 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     )}
 {!isLink && primaryButton && (
 <Tooltip text={toolTipText}>
-<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
-    <Text text={text} type="title"/>
-</button>
-</Tooltip>
-)}
-{isLink && secondaryButton &&(
-<Tooltip text={toolTipText}>
-<a href={href} class={secondaryDesign}>
-    <Text text={text} type="title" />
-</a>
-</Tooltip>
-)}
-{!isLink && secondaryButton &&(
-<Tooltip text={toolTipText}>
-<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-    <Text text={text} type="title" />
-</button>
+    <button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+        <Text text={text} type="title"/>
+    </button>
 </Tooltip>
     )}
-{isLink && noBackgroundButton &&(
+{isLink && secondaryButton && (
 <Tooltip text={toolTipText}>
-<a href={href} class={noBgDesign}>
-    <Text text={text} type="title" />
-</a>
+    <a href={href} class={secondaryDesign}>
+        <Text text={text} type="title"/>
+    </a>
 </Tooltip>
     )}
-{!isLink && noBackgroundButton &&(
+{!isLink && secondaryButton && (
 <Tooltip text={toolTipText}>
-<button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-    <Text text={text} type="title" />
-</button>
+    <button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+        <Text text={text} type="title"/>
+    </button>
 </Tooltip>
-)}
+    )}
+{isLink && noBackgroundButton && (
+<Tooltip text={toolTipText}>
+    <a href={href} class={noBgDesign}>
+        <Text text={text} type="title"/>
+    </a>
+</Tooltip>
+    )}
+{!isLink && noBackgroundButton && (
+<Tooltip text={toolTipText}>
+    <button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+        <Text text={text} type="title"/>
+    </button>
+</Tooltip>
+    )}
 {isLink && iconButton && (
-<Tooltip text={toolTipText} icons={icons}>
+<Tooltip text={toolTipText} icons={icons} ids={ids}>
     <a href={href} class={iconDesign}>
-        <Icon class="transform translate-y-2.5" width='28' height='28'  />
+        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
     </a>
 </Tooltip>
     )}
 {!isLink && iconButton && (
-<Tooltip text={toolTipText} icons={icons}>
+<Tooltip text={toolTipText} icons={icons} ids={ids}>
     <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <Icon class="transform translate-y-2.5" width='28' height='28' />
+        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
+    </button>
+</Tooltip>
+    )}
+{isSlot && (
+<Tooltip text={toolTipText} icons={icons} ids={ids}>
+    <a href={href}>
+        <slot/>
+    </a>
+</Tooltip>
+    )}
+{!isSlot  && (
+<Tooltip text={toolTipText} icons={icons} ids={ids}>
+    <button id={id} type={type} class={`cursor-pointer`} onClick={() => alert("Botón presionado")}>
+        <slot/>
     </button>
 </Tooltip>
     )}

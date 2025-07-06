@@ -1,8 +1,9 @@
 ---
 const {text, mt, mb, type} = Astro.props;
-let marginTop = "mt-none"
-let marginBottom = "mb-none"
-let textSize = ""
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let textSize = "";
+let textWeight = "";
 if (mt == "true"){
     marginTop = "mt-4"
 }
@@ -11,16 +12,19 @@ if (mb == "true"){
 }
 if (type == "text") {
     textSize = "text-xl";
+    textWeight = "font-medium"
 }
 if (type == "title") {
+    textWeight = "font-bold"
     textSize = "text-3xl";
 }
 if (type == "bigTitle") {
+    textWeight = "font-black"
     textSize = "text-6xl";
 }
 if (type == "mini") {
     textSize = "text-sm";
+    textWeight = "font-light";
 }
-
 ---
-<p class={`${textSize} font-medium ${marginTop} ${marginBottom} text-primaryText-light dark:text-primaryText-dark`}>{text}</p>
+<p class={`${textSize} ${marginTop} ${marginBottom} ${textWeight} text-primaryText-light dark:text-primaryText-dark`}>{text}</p>

@@ -3,6 +3,9 @@ import "../styles/global.css";
 import '@fontsource-variable/manrope';
 import {ClientRouter} from 'astro:transitions';
 import NavBar from "../components/navBar.astro";
+import Whatsapp_icon from "../assets/icons/whatsapp_icon.svg";
+import Mexico_flag from "../assets/flags/mexico_flag.svg";
+import Button from "../components/button.astro";
 const {align, orientation} = Astro.props;
 let contentWraper = "";
 let layoutOrientation = "";
@@ -33,16 +36,24 @@ if (align == "right") {
     <meta name="generator" content={Astro.generator}/>
     <ClientRouter/>
 </head>
-<body class=" bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans p-12 pt-0">
+<body class={`min-h-screen flex flex-col bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans`}>
 <header>
     <NavBar />
 </header>
+<main class="flex-grow p-12 pt-0 ${contentWraper} ${layoutOrientation}">
+    <slot />
+</main>
+<footer class="flex relative w-screen h-10 mt-auto">
+    <div class="absolute left-4 top-1/2 -translate-y-1/2">
+        <Button design="icon" icon={Mexico_flag} />
+    </div>
 
-<slot/>
+    <!-- Botón alineado a la derecha -->
+    <div class="absolute right-4 top-1/2 -translate-y-1/2">
+        <Button design="icon" href="https://wa.me/1XXXXXXXXXX" icon={Whatsapp_icon} fill="fill-primary" />
+    </div>
+</footer>
 <script type="module" src="/src/scripts/barraDeBusqueda.js" />
-<div class={contentWraper + layoutOrientation}>
-
-</div>
 </body>
 </html>
 <style>

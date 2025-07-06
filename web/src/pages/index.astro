@@ -2,9 +2,48 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/section.astro";
 import DentistCard from "../components/dentistCard.astro";
+import ConsultorioCard from "../components/consultorioCard.astro";
+import Densora_logo from "../assets/icons/densora_logo.svg";
+import Star_icon from "../assets/icons/star_icon.svg";
+import Button from "../components/button.astro";
+import Menu_icon from "../assets/icons/menu_icon.svg";
+import Carousel from "../components/carousel.astro";
 ---
-<Layout>
-    <Section importance="secondary" orientation="col">
-    <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3"/>
+<Layout align="center" orientation="row">
+    <p>boton para probar el tooltip con botones, no mover, se poncharan llantas</p>
+    <Button design="icon" icon={Densora_logo} icons={[Star_icon, Menu_icon]} ids={["theme-icon", "menu-"]}/>
+    <Section importance="secondary" orientation="col" mb="true">
+        <p>tu historial de citas</p>
     </Section>
+    <p>recomendaciones de dentistas</p>
+    <Carousel importance="secondary" orientation="col" mb="true">
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+    </Carousel>
+    <p>recomendaciones de consultorios</p>
+    <Carousel importance="secondary" orientation="col">
+        <Button design="slot" href="consultorio">
+            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
+        </Button>
+        <Button design="slot" href="consultorio">
+            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
+        </Button>
+        <Button design="slot" href="consultorio">
+            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
+        </Button>
+        <Button design="slot" href="consultorio">
+            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
+        </Button>
+    </Carousel>
+    <p>estos van a ser carruseles como el de spotify16k</p>
 </Layout>

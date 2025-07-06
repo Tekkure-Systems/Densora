@@ -1,0 +1,24 @@
+---
+const { placeholder, id, type, mt, mb, ml, mr} = Astro.props;
+
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let marginLeft = "ml-none";
+let marginRight = "mr-none";
+
+if (mt === "true") {
+    marginTop = "mt-4";
+}
+if (mb === "true") {
+    marginBottom = "mb-4";
+}
+if (ml === "true") {
+    marginLeft = "ml-4";
+}
+if (mr === "true") {
+    marginRight = "mr-4";
+}
+---
+<div class={`group flex justify-between w-full max-w-8 border-3 p-2 rounded transition-colors duration-200 ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} border-secondary bg-transparent focus-within:border-primary focus-within:bg-hover-light dark:focus-within:bg-hover-dark`}>
+    <input type={type} id={id} name={id} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark"/>
+</div>

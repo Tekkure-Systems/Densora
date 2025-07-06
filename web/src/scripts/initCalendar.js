@@ -2,42 +2,82 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import { db } from '../bd/firebase.js'
+import { doc, getDoc } from "firebase/firestore";
+
 
 const calendarEl = document.getElementById('calendar')
 
 if (calendarEl) {
+
   const calendar = new Calendar(calendarEl, {
-    plugins: [dayGridPlugin, interactionPlugin],
+    //Plugins activos
+    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+
     initialView: 'dayGridMonth',
-    editable: true,
+
+    editable: false,
     selectable: true,
-    droppable: true,
+
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
+
     events: [
       {
-        title: 'Evento inicial',
+        id: '1',
+        title: 'Reunión de equipo',
         start: new Date().toISOString().split('T')[0],
-        color: '#3b82f6'
+        color: '#1d4ed8',
+        textColor: '#fff'
+      },
+      {
+        id: '2',
+        title: 'Presentación',
+        start: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+        color: '#dc2626',
+        textColor: '#fff'
       }
     ],
+
     dateClick(info) {
-      const title = prompt('¿Título del nuevo evento?')
-      if (title) {
-        calendar.addEvent({
-          title,
-          start: info.dateStr,
-          allDay: true
-        })
+      if(event==true){
+              calendar.addEvent(nuevoEvento)
+
+      const url = `/evento?id=${encodeURIComponent(nuevoEvento.id)}&title=${encodeURIComponent(nuevoEvento.title)}&start=${encodeURIComponent(nuevoEvento.start)}`
+      window.location.href = url
       }
+
     },
-    eventDrop(info) {
-      alert(`Evento movido a ${info.event.start.toISOString().split('T')[0]}`)
+
+
+    eventClick(info) {
+      info.jsEvent.preventDefault()
+      const { id, title, start } = info.event
+      const url = `/evento?id=${encodeURIComponent(id)}&title=${encodeURIComponent(title)}&start=${encodeURIComponent(start.toISOString())}`
+      window.location.href = url
     }
   })
 
+
   calendar.render()
+}
+
+const docRef = doc(db, 'pacientes', 'paciente prueba');  // reemplaza 'paciente_1' por el ID real
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Datos del paciente:", docSnap.data());
+
+
+  const citasRef = collection(docRef, 'citas');
+  const citasSnap = await getDocs(citasRef);
+
+  const citas = citasSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  console.log("Citas del paciente:", citas);
+
+} else {
+  console.log("El paciente no existe");
 }
