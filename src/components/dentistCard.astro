@@ -1,28 +1,42 @@
 ---
 import Section from "./section.astro";
-const {profilePhoto, name, description, especialidad, ubicacion, cal = 0, mt, mb, ml, mr} = Astro.props;
+const { profilePhoto, name, description, especialidad, ubicacion, cal = 0, mt, mb, ml, mr } = Astro.props;
 import Text from "../components/text.astro";
-import Star_icon from "../assets/icons/star_icon.svg";
-import Chat_icon from "../assets/icons/chat_icon.svg";
-import Button from "../components/button.astro";
+import Theeth_icon from "../assets/icons/theeth_icon.svg";
+import TheethFull_icon from "../assets/icons/theethFull.svg";
+import HalfTheet_icon from "../assets/icons/halfTheet_icon.svg";
+
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let marginLeft = "ml-none";
 let marginRight = "mr-none";
+
 if (mt === "true") {
     marginTop = "mt-4";
 }
 if (mb === "true") {
     marginBottom = "mb-4";
 }
-if(ml === "true") {
-    marginLeft = "ml-4"
+if (ml === "true") {
+    marginLeft = "ml-4";
 }
-if(mr === "true") {
-    marginRight = "mr-4"
+if (mr === "true") {
+    marginRight = "mr-4";
 }
-const stars = Array.from({length: parseInt(cal)});
+
+const totalStars = 5;
+let fullStars = Math.floor(cal);
+let hasHalfStar = false;
+
+if (cal % 1 >= 0.25 && cal % 1 < 0.75) {
+    hasHalfStar = true;
+}
+let emptyStars = totalStars - fullStars;
+if (hasHalfStar) {
+    emptyStars -= 1;
+}
 ---
+
 <div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
     <div class="w-40 h-40">
         {profilePhoto && (
@@ -35,8 +49,12 @@ const stars = Array.from({length: parseInt(cal)});
         <Text text={ubicacion} type="mini" mb="true"/>
         <Section orientation="col" padding="false" extraClass=" w-full justify-between">
             <div class="flex gap-1">
-                {stars.map(() => (
-                        <Star_icon width="24" class="fill-primary"/>
+                {Array.from({ length: fullStars }).map(() => (
+                        <TheethFull_icon width="24" class="fill-primary" />
+                ))}
+                {hasHalfStar && <HalfTheet_icon width="24" class="fill-primary" />}
+                {Array.from({ length: emptyStars }).map(() => (
+                        <Theeth_icon width="24" class="fill-primary" />
                 ))}
             </div>
         </Section>

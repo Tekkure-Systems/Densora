@@ -43,9 +43,15 @@ if (align == "right") {
 <main class="flex-grow p-12 pt-0 ${contentWraper} ${layoutOrientation}">
     <slot />
 </main>
-<footer class="flex relative w-full h-10 justify-between mt-auto">
-    <Button design="icon" icon={Mexico_flag}/>
-    <Button design="icon" href="https://wa.me/1XXXXXXXXXX" icon={Whatsapp_icon} fill="fill-primary"/>
+<footer class="flex relative w-screen h-10 mt-auto">
+    <div class="absolute left-4 top-1/2 -translate-y-1/2">
+        <Button design="icon" icon={Mexico_flag} />
+    </div>
+
+    <!-- Botón alineado a la derecha -->
+    <div class="absolute right-4 top-1/2 -translate-y-1/2">
+        <Button design="icon" href="https://wa.me/1XXXXXXXXXX" icon={Whatsapp_icon} fill="fill-primary" />
+    </div>
 </footer>
 <script type="module" src="/src/scripts/barraDeBusqueda.js" />
 </body>
