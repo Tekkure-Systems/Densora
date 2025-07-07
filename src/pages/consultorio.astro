@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/section.astro";
 import Text from "../components/text.astro";
+import DentistCard from "../components/dentistCard.astro";
+import Button from "../components/button.astro";
 ---
 
 <Layout orientation="col">
@@ -20,6 +22,19 @@ import Text from "../components/text.astro";
 
     <Section>
         <p>ubicacion mapa</p>
+    </Section>
+    <p>dentistas en este consultorio: </p>
+    <Section orientation="row">
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+        <Button href="dentist" design="slot">
+            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
+        </Button>
+
     </Section>
     <Section>
 

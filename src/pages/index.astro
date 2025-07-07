@@ -6,9 +6,10 @@ import ConsultorioCard from "../components/consultorioCard.astro";
 import Densora_logo from "../assets/icons/densora_logo.svg";
 import Star_icon from "../assets/icons/star_icon.svg";
 import Button from "../components/button.astro";
-import Menu_icon from "../assets/icons/menu_icon.svg";
 import Carousel from "../components/carousel.astro";
 import ToolTip from "../components/toolTip.astro";
+import LastCita from "../components/lastCita.astro";
+import ClinicsMap from "../components/clinicsMap.astro";
 ---
 <Layout align="center" orientation="row">
     <ToolTip text="este es un tooltip de solo texto">
@@ -17,9 +18,10 @@ import ToolTip from "../components/toolTip.astro";
     <ToolTip icons={[Densora_logo, Star_icon]} ids={["theme-icon", "menu-"]}>
         <Button design="icon" icon={Densora_logo}}/>
     </ToolTip>
-
+    <p>tu historial de citas</p>
     <Section importance="secondary" orientation="col" mb="true">
-        <p>tu historial de citas</p>
+        <LastCita profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="nombreDentista" mr="true" date="12/06/23" time="12:00 P.M."/>
+        <ClinicsMap profilePhoto="https://cdn.conahcyt.mx/sisdai/landing-sisdai/catalogo/visualizaciones/mapa/puntos-agrupados/2-anatomia-tamanodelpunto.png"/>
     </Section>
     <p>recomendaciones de dentistas</p>
     <Carousel importance="secondary" orientation="col" mb="true">

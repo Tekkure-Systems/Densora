@@ -1,0 +1,42 @@
+---
+import Section from "./section.astro";
+const { profilePhoto, name, description, especialidad, ubicacion, consultorio, date, time, mt, mb, ml, mr } = Astro.props;
+import Text from "../components/text.astro";
+import Theeth_icon from "../assets/icons/theeth_icon.svg";
+import TheethFull_icon from "../assets/icons/theethFull.svg";
+import HalfTheet_icon from "../assets/icons/halfTheet_icon.svg";
+
+let marginTop = "mt-none";
+let marginBottom = "mb-none";
+let marginLeft = "ml-none";
+let marginRight = "mr-none";
+
+if (mt === "true") {
+    marginTop = "mt-4";
+}
+if (mb === "true") {
+    marginBottom = "mb-4";
+}
+if (ml === "true") {
+    marginLeft = "ml-4";
+}
+if (mr === "true") {
+    marginRight = "mr-4";
+}
+---
+<div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
+    <Section orientation="row" importance="primary" align="left">
+        <Text text="Tu Ultima Cita" type="title"/>
+        <Section orientation="column">
+            {profilePhoto && (
+                    <img src={profilePhoto} class="w-24 h-24 object-cover rounded" loading="lazy"/>
+            )}
+            <Section orientation="row" padding="false" ml="true">
+                <Text text={name} type="text"/>
+                <Text text={date} type="mini"/>
+                <Text text={time} type="mini"/>
+                <Text text={consultorio} type="text"/>
+            </Section>
+        </Section>
+    </Section>
+</div>
