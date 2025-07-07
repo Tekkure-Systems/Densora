@@ -10,6 +10,9 @@ import Carousel from "../components/carousel.astro";
 import ToolTip from "../components/toolTip.astro";
 import LastCita from "../components/lastCita.astro";
 import ClinicsMap from "../components/clinicsMap.astro";
+import CitaHistorial from "../components/citaHistorial.astro";
+import DentistCardData from "../components/dentistCardData.astro";
+import ConsultorioCardData from "../components/consultorioCardData.astro";
 ---
 <Layout align="center" orientation="row">
     <ToolTip text="este es un tooltip de solo texto">
@@ -20,37 +23,110 @@ import ClinicsMap from "../components/clinicsMap.astro";
     </ToolTip>
     <p>tu historial de citas</p>
     <Section importance="secondary" orientation="col" mb="true">
-        <LastCita profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="nombreDentista" mr="true" date="12/06/23" time="12:00 P.M."/>
+        <LastCita>
+            <CitaHistorial name={["test", "test2"]} profilePhoto={["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC_7ujg8NYufVgQK4cGTnWTgGBE4VIUCs01w&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-qqdHsUXEy2PiQFqI1RZ1OSEnZVrlSa9K_A&s"]} date={["12/06/25", "06/12/25"]} time={["1:42 P.M.", "4:21 P.M."]}/>
+        </LastCita>
         <ClinicsMap profilePhoto="https://cdn.conahcyt.mx/sisdai/landing-sisdai/catalogo/visualizaciones/mapa/puntos-agrupados/2-anatomia-tamanodelpunto.png"/>
     </Section>
     <p>recomendaciones de dentistas</p>
     <Carousel importance="secondary" orientation="col" mb="true">
         <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mr="true" especialidad="especialidad" ubicacion="calle test"/>
+            <DentistCard mr="true">
+                <DentistCardData
+                        name={[
+                            "Dra. lena",
+                            "Dra. Gemini",
+                            "Dr. Carlos",
+                            "Dra. María",
+                            "Dr. Juan Pérez",
+                            "Dra. Sofía López",
+                            "Dr. Eduardo Ramírez",
+                            "Dra. Valeria Torres"
+                        ]}
+                        especialidad={[
+                            "Especialista en enamorar",
+                            "Especialidad test",
+                            "Ortodoncia avanzada",
+                            "Endodoncia y estética dental",
+                            "Implantes dentales",
+                            "Pediatría dental",
+                            "Cirugía maxilofacial",
+                            "Periodoncia"
+                        ]}
+                        cal={[2.1, 4, 4.7, 3.9, 4.8, 3.5, 4.2, 3.7]}
+                        ubicacion={[
+                            "Mexico",
+                            "Italia",
+                            "España",
+                            "Argentina",
+                            "Chile",
+                            "Colombia",
+                            "Perú",
+                            "Uruguay"
+                        ]}
+                        profilePhoto={[
+                            "https://imgproxy.filmmakers.eu/DFzgkE9NziKxplVWUxZlK-biIhn_Kf4A9OuzySh7UT4/rt:fit/w:3840/h:2160/czM6Ly9maWxtbWFr/ZXJzLWV1LXdlc3Qt/MS9wcm9kdWN0aW9u/L2VkNjcyYjFlLWMw/MWQtNDVhMi05NWQ3/LTgyMzZjOWY4YTQw/MS5KUEc",
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaSDqlR8vMzGIZDUbO1Yy549u4d9K36Fuy7Q&s",
+                            "https://randomuser.me/api/portraits/men/32.jpg",
+                            "https://randomuser.me/api/portraits/women/44.jpg",
+                            "https://randomuser.me/api/portraits/men/45.jpg",
+                            "https://randomuser.me/api/portraits/women/68.jpg",
+                            "https://randomuser.me/api/portraits/men/52.jpg",
+                            "https://randomuser.me/api/portraits/women/54.jpg"
+                        ]}
+                />
+            </DentistCard>
         </Button>
     </Carousel>
     <p>recomendaciones de consultorios</p>
-    <Carousel importance="secondary" orientation="col">
-        <Button design="slot" href="consultorio">
-            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
-        </Button>
-        <Button design="slot" href="consultorio">
-            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
-        </Button>
-        <Button design="slot" href="consultorio">
-            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
-        </Button>
-        <Button design="slot" href="consultorio">
-            <ConsultorioCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="consultorioCard" description="descripcion" cal="2" mr="true" especialidad="test" ubicacion="calle test"/>
+
+    <Carousel importance="secondary" orientation="col" mb="true">
+        <Button href="dentist" design="slot">
+            <ConsultorioCard mr="true">
+                <ConsultorioCardData
+                        name={[
+                            "Consultorio Rodriguez",
+                            "Consultorio test",
+                            "Clínica Sonrisa",
+                            "Centro Dental Oasis",
+                            "Consultorio Central",
+                            "Clínica Dental Estrella",
+                            "Odonto Plus",
+                            "Consultorio Dental Vida"
+                        ]}
+                        description={[
+                            "very nice",
+                            "el diablo",
+                            "Atención personalizada y tecnología de punta",
+                            "Consultorio con especialidad en implantes dentales",
+                            "Equipamiento moderno y cómodo",
+                            "Especialistas en tratamientos de ortodoncia",
+                            "Ambiente familiar y profesional",
+                            "Tratamientos a precios accesibles"
+                        ]}
+                        cal={[2.1, 4, 4.5, 3.8, 4.3, 3.9, 4.0, 4.6]}
+                        ubicacion={[
+                            "Calle san ignacio",
+                            "Teuchitlan",
+                            "Av. Reforma 123",
+                            "Paseo de la Reforma",
+                            "Calle Juárez 45",
+                            "Av. Insurgentes Sur",
+                            "Plaza Dental Centro",
+                            "Calle Los Pinos 789"
+                        ]}
+                        profilePhoto={[
+                            "https://www.heraldo.mx/wp-content/uploads/2017/03/casa-abandonada-_SC_1014-696x464.jpg",
+                            "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/P2J4IVGOCNAVRLOXVKO7M3V4VA.jpg",
+                            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+                            "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+                            "https://images.unsplash.com/photo-1556228724-4bc7c72a466e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+                            "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+                            "https://images.unsplash.com/photo-1486308510493-cb42f0b3b7ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+                            "https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+                        ]}
+                />
+            </ConsultorioCard>
         </Button>
     </Carousel>
     <p>estos van a ser carruseles como el de spotify16k</p>

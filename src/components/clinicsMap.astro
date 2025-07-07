@@ -24,13 +24,13 @@ if (mr === "true") {
     marginRight = "mr-4";
 }
 ---
-<div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
+<div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-128 w-max-128 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
     <Section orientation="row" importance="primary" align="left">
         <Text text="Consultorios Cercanos" type="title"/>
         <Text text="Aqui podras navegar por los consultorios a tu alrededor" type="text"/>
         <Section orientation="column">
             {profilePhoto && (
-                    <img src={profilePhoto} class="w-24 h-24 object-cover rounded" loading="lazy"/>
+                    <img src={profilePhoto} class=" object-cover rounded" loading="lazy"/>
             )}
         </Section>
     </Section>

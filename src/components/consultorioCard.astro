@@ -37,24 +37,5 @@ if (hasHalfStar) {
 }
 ---
 <div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
-    <div class="w-40 h-40">
-        {profilePhoto && (
-                <img src={profilePhoto} class="w-full h-full object-cover rounded" loading="lazy"/>
-        )}
-    </div>
-    <Section orientation="row" importance="primary" align="left">
-        <Text text={name} type="title"/>
-        <Text text={ubicacion} type="mini" mb="true"/>
-        <Section orientation="col" padding="false" extraClass=" w-full justify-between">
-            <div class="flex gap-1">
-                {Array.from({ length: fullStars }).map(() => (
-                        <TheethFull_icon width="24" class="fill-primary" />
-                ))}
-                {hasHalfStar && <HalfTheet_icon width="24" class="fill-primary" />}
-                {Array.from({ length: emptyStars }).map(() => (
-                        <Theeth_icon width="24" class="fill-primary" />
-                ))}
-            </div>
-        </Section>
-    </Section>
+    <slot/>
 </div>
