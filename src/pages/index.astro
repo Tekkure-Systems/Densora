@@ -8,10 +8,16 @@ import Star_icon from "../assets/icons/star_icon.svg";
 import Button from "../components/button.astro";
 import Menu_icon from "../assets/icons/menu_icon.svg";
 import Carousel from "../components/carousel.astro";
+import ToolTip from "../components/toolTip.astro";
 ---
 <Layout align="center" orientation="row">
-    <p>boton para probar el tooltip con botones, no mover, se poncharan llantas</p>
-    <Button design="icon" icon={Densora_logo} icons={[Star_icon, Menu_icon]} ids={["theme-icon", "menu-"]}/>
+    <ToolTip text="este es un tooltip de solo texto">
+        <Button design="icon" icon={Densora_logo}}/>
+    </ToolTip>
+    <ToolTip icons={[Densora_logo, Star_icon]} ids={["theme-icon", "menu-"]}>
+        <Button design="icon" icon={Densora_logo}}/>
+    </ToolTip>
+
     <Section importance="secondary" orientation="col" mb="true">
         <p>tu historial de citas</p>
     </Section>

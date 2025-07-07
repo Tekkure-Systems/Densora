@@ -8,6 +8,8 @@ import Find_icon from '../assets/icons/find_icon.svg'
 import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
 import Equis from '../assets/icons/x_icon.svg'
+import Button from "./button.astro";
+import ToolTip from "./toolTip.astro";
 function handleEdit() {
     console.log("Editando...");
 }
@@ -49,8 +51,10 @@ function handleDelete() {
         <a href="calendar">
             <Calendar_icon class="transform translate-y-2.5" width='28' height='28'/>
         </a>
-        <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28'/>
-        <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28'/>
+
+        <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
+            <Button customClass="transform translate-y-4" design="icon" icon={Light_icon}}/>
+        </ToolTip>
     </div>
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
         <div class="relative w-2/3 max-w-md">
@@ -72,16 +76,6 @@ function handleDelete() {
                     localStorage.setItem('theme', newTheme)
                 })
             })
-            setTimeout(() => {
-                const menuAction = document.getElementById("menu-action");
-                if (menuAction) {
-                    menuAction.addEventListener("click", () => {
-                        console.log("✅ Acción ejecutada desde tooltip");
-                    });
-                } else {
-                    console.warn("⚠️ No se encontró #menu-action en el DOM");
-                }
-            }, 250); //delay hay que ajustarlo
             const searchButton = document.getElementById('toggle-search')
             const searchBar = document.getElementById('search-bar')
             const iconBar = document.getElementById('icon-bar')
