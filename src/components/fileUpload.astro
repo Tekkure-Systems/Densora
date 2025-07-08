@@ -1,0 +1,66 @@
+---
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { app } from "../bd/firebase.js";
+
+const { id = "upload", label = "Sube tus documentos:" } = Astro.props;
+
+// Variables que solo funcionarán en el navegador
+let uploadedUrls = [];
+let files = [];
+---
+
+<script type="module" client:load>
+  import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+  import { app } from "../bd/firebase.js";
+
+  const input = document.getElementById(`${id}`);
+  const lista = document.getElementById(`lista-${id}`);
+
+  async function mostrarArchivos() {
+    const storage = getStorage(app);
+    const folderRef = ref(storage, `documentos/${id}`);
+    const result = await listAll(folderRef);
+    const urls = await Promise.all(result.items.map(item => getDownloadURL(item)));
+
+    urls.forEach((url, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${url}" target="_blank" class="underline text-blue-600">Documento ${index + 1}</a>`;
+      lista.appendChild(li);
+    });
+  }
+
+  async function subirArchivos(e) {
+    const storage = getStorage(app);
+    const files = Array.from(e.target.files);
+
+    for (const file of files) {
+      const fileRef = ref(storage, `documentos/${id}/${file.name}`);
+      await uploadBytes(fileRef, file);
+      const url = await getDownloadURL(fileRef);
+
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${url}" target="_blank" class="underline text-blue-600">Documento</a>`;
+      lista.appendChild(li);
+    }
+  }
+
+  input.addEventListener("change", subirArchivos);
+  mostrarArchivos();
+</script>
+
+<div class="space-y-2">
+  <label for={id} class="block font-medium">{label}</label>
+  <input
+    type="file"
+    id={id}
+    name={id}
+    multiple
+    accept=".pdf,.png,.jpg,.jpeg"
+    class="block file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondaryBackground-light dark:file:bg-secondaryBackground-dark file:text-primaryText-light dark:file:text-primaryText-dark hover:file:bg-hover-light dark:hover:file:bg-hover-dark"
+  />
+
+  <div class="mt-4">
+    <p class="font-medium text-primaryText-light dark:text-primaryText-dark">Archivos subidos:</p>
+    <ul id={`lista-${id}`} class="list-disc list-inside text-sm"></ul>
+  </div>
+</div>
