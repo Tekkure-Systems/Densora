@@ -1,11 +1,87 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/button.astro";
+import User_icon from '../assets/icons/user_icon.svg';
+import Circle from '../assets/shapes/oval.svg';
+import Input from "../components/input.astro";
+import Calendar_icon from '../assets/icons/calendar_icon.svg';
+import Treatment_icon from '../assets/icons/theeth_icon.svg';
+import Next_icon from '../assets/icons/next_icon.svg';
 ---
 
 <Layout>
-  
-    <p>perfil</p>
-    <Button design="primary" href="historialMedico" text="Ir a historial medico"/>
-    <p>historial medico</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+
+    <!-- PERFIL: SOLO LECTURA -->
+    <div class="perfil bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-6">
+      <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Perfil</h2>
+
+      <!-- Ícono circular -->
+      <div class="relative w-24 h-24 mb-8 mx-auto">
+        <Circle class="absolute top-0 left-0 w-24 h-24 fill-blue-100 dark:fill-blue-900 z-0" />
+        <User_icon class="relative z-10 w-20 h-20 mx-auto translate-y-1" />
+      </div>
+
+      <!-- Datos solo lectura -->
+      <div class="space-y-4 text-primaryText-light dark:text-primaryText-dark text-center md:text-left">
+        <div class="flex items-center gap-2">
+          <User_icon class="w-5 h-5 fill-secondary" />
+          <span class="font-medium">Juan Pérez</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <User_icon class="w-5 h-5 fill-secondary" />
+          <span class="font-medium">555-123-4567</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <User_icon class="w-5 h-5 fill-secondary" />
+          <span class="font-medium">Masculino</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <User_icon class="w-5 h-5 fill-secondary" />
+          <span class="font-medium">Dr. Martínez</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL MÉDICO: EDITABLE -->
+    <div class="historial bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-6">
+  <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Historial Médico</h2>
+
+  <!-- Datos personales -->
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Datos personales</h3>
+    <Input placeholder="Edad" id="edad" iconLeft={User_icon} mb="true" />
+    <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true" />
+    <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true" />
+  </div>
+
+  <!-- Alergias -->
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Alergias</h3>
+    <Input placeholder="Medicamentos" id="alergia_meds"  mb="true" />
+    <Input placeholder="Alimentos" id="alergia_alimentos"  mb="true" />
+  </div>
+
+  <!-- Enfermedades genéticas -->
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Enfermedades genéticas</h3>
+    <Input placeholder="Diabetes" id="genetica_diabetes" iconLeft={Treatment_icon} mb="true" />
+    <Input placeholder="Hipertensión" id="genetica_hipertension" iconLeft={Treatment_icon} mb="true" />
+  </div>
+
+  <!-- Citas pasadas -->
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Citas pasadas</h3>
+    <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true" />
+    <Input placeholder="Motivo de la cita" id="motivo_cita"  mb="true" />
+    <Input placeholder="Observaciones" id="observaciones"  mb="true" />
+  </div>
+
+  <div class="mt-6">
+    <Button design="primary" href="#" text="Guardar cambios" />
+  </div>
+</div>
+
+
+  </div>
 </Layout>
