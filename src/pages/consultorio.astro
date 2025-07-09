@@ -4,14 +4,17 @@ import Section from "../components/section.astro";
 import Text from "../components/text.astro";
 import DentistCard from "../components/dentistCard.astro";
 import Button from "../components/button.astro";
+import DentistCardData from "../components/dentistCardData.astro";
+import { Image } from 'astro:assets';
+import consultorio from "../assets/pictures/consultorio.jpg";
+import MapActions from "../components/mapActions.astro";
 ---
 
 <Layout orientation="col">
     <Section extraClass="flex justify-between">
-        <div>
-            <img width="250px" src="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3">
-
-        </div>
+        <Section mr="true">
+            <Image width="500" height="250" src={consultorio} alt=""/>
+        </Section>
         <div class="w-full">
             <Text type="title" text="nombre del consultorio"></Text>
             <Text type="text" text="descripcion del consultorio"></Text>
@@ -20,23 +23,59 @@ import Button from "../components/button.astro";
         </div>
     </Section>
 
-    <Section>
-        <p>ubicacion mapa</p>
-    </Section>
-    <p>dentistas en este consultorio: </p>
-    <Section orientation="row">
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-        <Button href="dentist" design="slot">
-            <DentistCard profilePhoto="https://i.scdn.co/image/ab67616d0000b273dbc606d7a57e551c5b9d4ee3" name="dentistCard" cal={2.5} mb="true" especialidad="especialidad" ubicacion="calle test"/>
-        </Button>
-
-    </Section>
-    <Section>
-
+    <Section extraClass="flex justify-between">
+        <Section>
+            <MapActions profilePhoto="https://motor.elpais.com/wp-content/uploads/2022/01/google-maps-22-1200x675.jpg"/>
+        </Section>
+        <Section orientation="row">
+            <p>dentistas en este consultorio: </p>
+            <Button href="dentist" design="slot">
+                <DentistCard mr="true">
+                    <DentistCardData
+                            name={[
+                                "Dra. lena",
+                                "Dra. Gemini",
+                                "Dr. Carlos",
+                                "Dra. María",
+                                "Dr. Juan Pérez",
+                                "Dra. Sofía López",
+                                "Dr. Eduardo Ramírez",
+                                "Dra. Valeria Torres"
+                            ]}
+                            especialidad={[
+                                "Especialista en enamorar",
+                                "Especialidad test",
+                                "Ortodoncia avanzada",
+                                "Endodoncia y estética dental",
+                                "Implantes dentales",
+                                "Pediatría dental",
+                                "Cirugía maxilofacial",
+                                "Periodoncia"
+                            ]}
+                            cal={[2.1, 4, 4.7, 3.9, 4.8, 3.5, 4.2, 3.7]}
+                            ubicacion={[
+                                "Mexico",
+                                "Italia",
+                                "España",
+                                "Argentina",
+                                "Chile",
+                                "Colombia",
+                                "Perú",
+                                "Uruguay"
+                            ]}
+                            profilePhoto={[
+                                "https://imgproxy.filmmakers.eu/DFzgkE9NziKxplVWUxZlK-biIhn_Kf4A9OuzySh7UT4/rt:fit/w:3840/h:2160/czM6Ly9maWxtbWFr/ZXJzLWV1LXdlc3Qt/MS9wcm9kdWN0aW9u/L2VkNjcyYjFlLWMw/MWQtNDVhMi05NWQ3/LTgyMzZjOWY4YTQw/MS5KUEc",
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaSDqlR8vMzGIZDUbO1Yy549u4d9K36Fuy7Q&s",
+                                "https://randomuser.me/api/portraits/men/32.jpg",
+                                "https://randomuser.me/api/portraits/women/44.jpg",
+                                "https://randomuser.me/api/portraits/men/45.jpg",
+                                "https://randomuser.me/api/portraits/women/68.jpg",
+                                "https://randomuser.me/api/portraits/men/52.jpg",
+                                "https://randomuser.me/api/portraits/women/54.jpg"
+                            ]}
+                    />
+                </DentistCard>
+            </Button>
+        </Section>
     </Section>
 </Layout>
