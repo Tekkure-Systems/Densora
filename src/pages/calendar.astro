@@ -2,8 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/navBar.astro";
 import Text from "../components/text.astro";
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
+import "../styles/global.css";
 
 ---
 
@@ -13,6 +12,7 @@ import '@fullcalendar/timegrid/main.css';
       <Text text="Calendario" mb="true"/>
 
       <div id="calendar" class="min-h-[600px] bg-white p-4 rounded shadow"></div>
+      <script src="../scripts/initCalendar.js"></script>
     </div>
 
   </div>
