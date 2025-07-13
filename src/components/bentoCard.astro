@@ -1,0 +1,20 @@
+---
+const {style, size, mb, mt, ml, mr} = Astro.props;
+let marginBottom, marginTop, marginLeft, marginRight;
+
+if (mb == "true") {
+    marginBottom = "mb-4"
+}
+if (mt == "true") {
+    marginTop = "mt-4"
+}
+if (ml == "true") {
+    marginLeft = "ml-4"
+}
+if (mr == "true") {
+    marginRight = "mr-4"
+}
+---
+<div class={`p-12 rounded ${marginBottom} ${marginTop} ${marginLeft} ${marginRight} bg-secondaryBackground-light dark: bg-secondaryBackground-dark`}>
+    <slot/>
+</div>

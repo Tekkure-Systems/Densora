@@ -4,43 +4,43 @@ import Button from "../components/button.astro";
 import User_icon from '../assets/icons/user_icon.svg';
 import Circle from '../assets/shapes/circle.svg';
 import Input from "../components/input.astro";
+import Text from "../components/text.astro";
 import Calendar_icon from '../assets/icons/calendar_icon.svg';
 import Treatment_icon from '../assets/icons/theeth_icon.svg';
 import Next_icon from '../assets/icons/next_icon.svg';
+import { Image } from 'astro:assets';
+import Cover from "../assets/pictures/cover.jpg";
+import Section from "../components/section.astro";
+import BentoCard from "../components/bentoCard.astro";
+import Bento from "../components/bento.astro";
 ---
 
 <Layout>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-
     <div class="perfil p-6">
       <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Perfil</h2>
+      <Section mb="true" padding="false">
+        <Image src={Cover} alt="" class="w-96"/>
+      </Section>
+      <Section orientation="row" padding="false">
+        <Bento>
+            <BentoCard mb="true">
+              <Text type="text" text="Juan Perez"/>
+            </BentoCard>
+          <BentoCard mb="true">
+            <Text type="text" text="555-123-4567"/>
+          </BentoCard>
+          <BentoCard mb="true">
+            <Text type="text" text="Masculino"/>
+          </BentoCard>
+          <BentoCard mb="true">
+            <Text type="text" text="Dr. Martine<"/>
+          </BentoCard>
+        </Bento>
+      </Section>
 
-      <div class="relative w-24 h-24 mb-8 mx-auto">
-        <Circle class="absolute top-0 left-0 w-24 h-24 fill-primary dark:fill-secondary z-0" />
-        <User_icon class="relative z-10 w-20 h-20 mx-auto translate-y-1" />
-      </div>
-
-      <div class="space-y-4 text-primaryText-light dark:text-primaryText-dark text-center md:text-left">
-        <div class="flex items-center gap-2">
-          <User_icon class="w-5 h-5 fill-secondary" />
-          <span class="font-medium">Juan Pérez</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <User_icon class="w-5 h-5 fill-secondary" />
-          <span class="font-medium">555-123-4567</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <User_icon class="w-5 h-5 fill-secondary" />
-          <span class="font-medium">Masculino</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <User_icon class="w-5 h-5 fill-secondary" />
-          <span class="font-medium">Dr. Martínez</span>
-        </div>
-      </div>
     </div>
-
-    <div class="historial bg-secondaryBackground-light dark:bg-secondaryBackground-dark shadow-xl rounded-2xl p-6">
+    <div class="w-128 bg-secondaryBackground-light dark:bg-secondaryBackground-dark shadow-xl rounded-2xl p-6">
   <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Historial Médico</h2>
 
   <div class="mb-4">
@@ -67,12 +67,9 @@ import Next_icon from '../assets/icons/next_icon.svg';
     <Input placeholder="Motivo de la cita" id="motivo_cita"  mb="true" />
     <Input placeholder="Observaciones" id="observaciones"  mb="true" />
   </div>
-
   <div class="mt-6">
     <Button design="primary" href="historialMedico" text="ver mas..." />
   </div>
 </div>
-
-
   </div>
 </Layout>
