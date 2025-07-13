@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/navBar.astro";
 import Text from "../components/text.astro";
+import "../styles/global.css";
+
 ---
 
 <Layout>
@@ -9,11 +11,9 @@ import Text from "../components/text.astro";
     <div class="text-center bg-secondaryBackground-light dark:bg-secondaryBackground-dark p-6 rounded shadow w-full max-w-4xl">
       <Text text="Calendario" mb="true"/>
 
-      <!-- Aquí va el calendario directamente -->
       <div id="calendar" class="min-h-[600px] bg-white p-4 rounded shadow"></div>
+      <script src="../scripts/initCalendar.js"></script>
     </div>
 
-    <!-- Script JS que inicializa FullCalendar -->
-    <script type="module" src="/src/scripts/initCalendar.js" client:load></script>
   </div>
 </Layout>

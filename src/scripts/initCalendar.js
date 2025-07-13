@@ -1,21 +1,47 @@
-import { Calendar } from '@fullcalendar/core'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-
-import { db } from '../bd/firebase.js'
-import { doc, collection, getDoc, getDocs } from 'firebase/firestore'
-
-const calendarEl = document.getElementById('calendar')
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 
-    db.collection("pacientes").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data()}`);
-      });
+document.addEventListener('DOMContentLoaded', () => {
+
+  let request="/eventos.json"
+
+  const calendarEl = document.getElementById('calendar');
+  if (calendarEl) {
+    const calendar = new Calendar(calendarEl, {
+      plugins: [dayGridPlugin, timeGridPlugin],
+      initialView: 'dayGridMonth',
+
+      events:function(info,successCallback,failureCallback){
+        fetch(request)
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(data){
+            let events =data.events.map(function(event){
+              return{
+                title: event.eventTitle,
+                start: new Date(event.eventStartDate),
+                end: new Date(event.eventEndDate),
+                url: event.eventUrl,
+                location: event.eventLocation,
+                timeStart: event.eventTimeStart,
+                timeEnd: event.eventTimeEnd
+              }
+            })
+
+            successCallback(events)
+
+          })
+          .catch(function(error){
+            failureCallback(error)
+          })
+              
+          
+      },
+
     });
-    
-    
-
-    
-
+    calendar.render();
+  }
+});
