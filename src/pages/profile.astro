@@ -8,68 +8,91 @@ import Text from "../components/text.astro";
 import Calendar_icon from '../assets/icons/calendar_icon.svg';
 import Treatment_icon from '../assets/icons/theeth_icon.svg';
 import Next_icon from '../assets/icons/next_icon.svg';
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
+import Resena from "../components/resena.astro";
 import Cover from "../assets/pictures/cover.jpg";
 import Section from "../components/section.astro";
 import BentoCard from "../components/bentoCard.astro";
 import Bento from "../components/bento.astro";
+import Calification from "../components/calification.astro";
+import CalificationBentoCard from "../components/bentoCards/calificationBentoCard.astro";
 ---
 
-<Layout>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-    <div class="perfil p-6">
-      <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Perfil</h2>
-      <Section mb="true" padding="false">
-        <Image src={Cover} alt="" class="w-96"/>
-      </Section>
-      <Section orientation="row" padding="false">
-        <Bento>
-            <BentoCard mb="true">
-              <Text type="text" text="Juan Perez"/>
-            </BentoCard>
-          <BentoCard mb="true">
-            <Text type="text" text="555-123-4567"/>
-          </BentoCard>
-          <BentoCard mb="true">
-            <Text type="text" text="Masculino"/>
-          </BentoCard>
-          <BentoCard mb="true">
-            <Text type="text" text="Dr. Martine<"/>
-          </BentoCard>
-        </Bento>
-      </Section>
+<Layout orientation="col">
+    <Section extraClass="w-full" padding="false">
+        <Section extraClass="w-fit" padding="false" mb="true">
+            <Image src={Cover} alt="" class="w-96 rounded"/>
+        </Section>
+        <Section extraClass="w-fit" padding="false" ml="true">
+            <Bento orientation="col" mb="true">
+                <BentoCard mr="true" width="fit">
+                    <Text type="text" text="Maximiliano Alejandro Santiago Leonardo Emmanuel Christopher Sebastián"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text type="text" text="Especialista en Odontopediatría"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text type="text" text="+52 1234 5678"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text type="text" text="Masculino"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <CalificationBentoCard cal={[2.5]} profilePhoto={[""]}/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text type="text" text="Consultorio lorem ipsum"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text type="text" text="Metodos de pago aceptados: "/>
+                    <Text type="title" text="Efectivo, Transferencia"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Button design="primary" text="Agendar"/>
+                </BentoCard>
+                <BentoCard mr="true">
+                    <Text text="Servicios Ofrecidos:"/>
+                    <Text type="title" text="Revision General"/>
+                    <Text type="title" text="Selladores"/>
+                    <Text type="title" text="Aplicacion de fluor"/>
+                </BentoCard>
+                <BentoCard width="full" height="full">
+                    <Text text="Reseñas"/>
+                    <Resena owner="dueño de la reseña" reseñaText="esta es la reseña"/>
+                </BentoCard>
+            </Bento>
+        </Section>
+    </Section>
+    <Section orientation="row" importance="secondary">
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Datos
+          personales</h3>
+        <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true"/>
+        <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true"/>
+      </div>
 
-    </div>
-    <div class="w-128 bg-secondaryBackground-light dark:bg-secondaryBackground-dark shadow-xl rounded-2xl p-6">
-  <h2 class="text-2xl font-bold text-primaryText-light dark:text-primaryText-dark mb-6">Historial Médico</h2>
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Alergias</h3>
+        <Input placeholder="Medicamentos" id="alergia_meds" mb="true"/>
+        <Input placeholder="Alimentos" id="alergia_alimentos" mb="true"/>
+      </div>
 
-  <div class="mb-4">
-    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Datos personales</h3>
-    <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true" />
-    <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true" />
-  </div>
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Enfermedades
+          genéticas</h3>
+        <Input placeholder="Diabetes" id="genetica_diabetes" iconLeft={Treatment_icon} mb="true"/>
+        <Input placeholder="Hipertensión" id="genetica_hipertension" iconLeft={Treatment_icon} mb="true"/>
+      </div>
 
-  <div class="mb-4">
-    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Alergias</h3>
-    <Input placeholder="Medicamentos" id="alergia_meds"  mb="true" />
-    <Input placeholder="Alimentos" id="alergia_alimentos"  mb="true" />
-  </div>
-
-  <div class="mb-4">
-    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Enfermedades genéticas</h3>
-    <Input placeholder="Diabetes" id="genetica_diabetes" iconLeft={Treatment_icon} mb="true" />
-    <Input placeholder="Hipertensión" id="genetica_hipertension" iconLeft={Treatment_icon} mb="true" />
-  </div>
-
-  <div class="mb-4">
-    <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Citas pasadas</h3>
-    <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true" />
-    <Input placeholder="Motivo de la cita" id="motivo_cita"  mb="true" />
-    <Input placeholder="Observaciones" id="observaciones"  mb="true" />
-  </div>
-  <div class="mt-6">
-    <Button design="primary" href="historialMedico" text="ver mas..." />
-  </div>
-</div>
-  </div>
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Citas
+          pasadas</h3>
+        <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true"/>
+        <Input placeholder="Motivo de la cita" id="motivo_cita" mb="true"/>
+        <Input placeholder="Observaciones" id="observaciones" mb="true"/>
+      </div>
+      <div class="mt-6">
+        <Button design="primary" href="historialMedico" text="ver mas..."/>
+      </div>
+    </Section>
 </Layout>
