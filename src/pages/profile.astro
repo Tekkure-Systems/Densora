@@ -1,98 +1,60 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/button.astro";
-import User_icon from '../assets/icons/user_icon.svg';
-import Circle from '../assets/shapes/circle.svg';
 import Input from "../components/input.astro";
-import Text from "../components/text.astro";
-import Calendar_icon from '../assets/icons/calendar_icon.svg';
-import Treatment_icon from '../assets/icons/theeth_icon.svg';
-import Next_icon from '../assets/icons/next_icon.svg';
-import {Image} from 'astro:assets';
-import Resena from "../components/resena.astro";
-import Cover from "../assets/pictures/cover.jpg";
-import Section from "../components/section.astro";
-import BentoCard from "../components/bentoCard.astro";
-import Bento from "../components/bento.astro";
-import Calification from "../components/calification.astro";
-import CalificationBentoCard from "../components/bentoCards/calificationBentoCard.astro";
+import User_icon from "../assets/icons/user_icon.svg";
+import Circle from "../assets/shapes/circle.svg";
+import Calendar_icon from "../assets/icons/calendar_icon.svg";
+import Treatment_icon from "../assets/icons/theeth_icon.svg";
 ---
 
-<Layout orientation="col">
-    <Section extraClass="w-full" padding="false">
-        <Section extraClass="w-fit" padding="false" mb="true">
-            <Image src={Cover} alt="" class="w-96 rounded"/>
-        </Section>
-        <Section extraClass="w-fit" padding="false" ml="true">
-            <Bento orientation="col" mb="true">
-                <BentoCard mr="true" width="fit">
-                    <Text type="text" text="Maximiliano Alejandro Santiago Leonardo Emmanuel Christopher Sebastián"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text type="text" text="Especialista en Odontopediatría"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text type="text" text="+52 1234 5678"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text type="text" text="Masculino"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <CalificationBentoCard cal={[2.5]} profilePhoto={[""]}/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text type="text" text="Consultorio lorem ipsum"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text type="text" text="Metodos de pago aceptados: "/>
-                    <Text type="title" text="Efectivo, Transferencia"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Button design="primary" text="Agendar"/>
-                </BentoCard>
-                <BentoCard mr="true">
-                    <Text text="Servicios Ofrecidos:"/>
-                    <Text type="title" text="Revision General"/>
-                    <Text type="title" text="Selladores"/>
-                    <Text type="title" text="Aplicacion de fluor"/>
-                </BentoCard>
-                <BentoCard width="full" height="full">
-                    <Text text="Reseñas"/>
-                    <Resena owner="dueño de la reseña" reseñaText="esta es la reseña"/>
-                </BentoCard>
-            </Bento>
-        </Section>
-    </Section>
-    <Section orientation="row" importance="secondary">
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Datos
-          personales</h3>
-        <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true"/>
-        <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true"/>
-      </div>
+<Layout>
+  <div class="flex justify-center items-start min-h-screen bg-primaryBackground-light dark:bg-primaryBackground-dark px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
 
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Alergias</h3>
-        <Input placeholder="Medicamentos" id="alergia_meds" mb="true"/>
-        <Input placeholder="Alimentos" id="alergia_alimentos" mb="true"/>
-      </div>
+      <!-- 🧑 Perfil -->
+      <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full">
+        <div class="flex flex-col items-center text-center">
+          <h2 class="text-2xl font-bold mb-6">Perfil</h2>
 
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Enfermedades
-          genéticas</h3>
-        <Input placeholder="Diabetes" id="genetica_diabetes" iconLeft={Treatment_icon} mb="true"/>
-        <Input placeholder="Hipertensión" id="genetica_hipertension" iconLeft={Treatment_icon} mb="true"/>
-      </div>
+          <!-- Icono de usuario sobre círculo -->
+          <div class="relative flex justify-center items-center mb-6 h-24">
+            <Circle class="absolute w-24 h-24 fill-[#B6E4DC] dark:fill-[#263835]" />
+            <User_icon class="relative z-10 w-20 h-20" />
+          </div>
+        </div>
 
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-primaryText-light dark:text-primaryText-dark mb-2">Citas
-          pasadas</h3>
-        <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true"/>
-        <Input placeholder="Motivo de la cita" id="motivo_cita" mb="true"/>
-        <Input placeholder="Observaciones" id="observaciones" mb="true"/>
-      </div>
-      <div class="mt-6">
-        <Button design="primary" href="historialMedico" text="ver mas..."/>
-      </div>
-    </Section>
+        <!-- Datos personales (solo lectura) -->
+        <div class="space-y-4">
+          <Input placeholder="Nombre" id="nombre" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Apellido" id="apellido" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Correo electrónico" id="email" iconLeft={User_icon} mb="true" />
+        </div>
+      </section>
+
+      <!-- 🩺 Historial Médico -->
+      <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full flex flex-col justify-between">
+        <h2 class="text-2xl font-bold mb-6 text-center">Historial Médico</h2>
+
+        <!-- Datos médicos -->
+        <div class="space-y-4">
+          <Input placeholder="Edad" id="edad" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Alergias (medicamentos)" id="alergia_meds" mb="true" />
+          <Input placeholder="Alergias (alimentos)" id="alergia_alimentos" mb="true" />
+          <Input placeholder="Antecedentes genéticos" id="genetica" iconLeft={Treatment_icon} mb="true" />
+          <Input placeholder="Condiciones actuales" id="condiciones" iconLeft={Treatment_icon} mb="true" />
+          <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true" />
+        </div>
+
+        <!-- Botones -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Button design="primary" href="#" text="Guardar cambios" />
+          <Button design="secondary" href="historialMedico" text="Ver más..." />
+        </div>
+      </section>
+
+    </div>
+  </div>
 </Layout>
