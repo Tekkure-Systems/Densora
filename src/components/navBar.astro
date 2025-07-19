@@ -10,6 +10,7 @@ import Star_icon from '../assets/icons/star_icon.svg'
 import Equis from '../assets/icons/x_icon.svg'
 import Button from "./button.astro";
 import ToolTip from "./toolTip.astro";
+import Despliegue from "./desplegar.astro"
 function handleEdit() {
     console.log("Editando...");
 }
@@ -36,9 +37,35 @@ function handleDelete() {
     </div>
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
-        <a href="/options">
+
+        <Despliegue menuItems={[
+                {
+                    label:"servicios",
+                    href:"#",
+                    icon: Star_icon,
+                    submenu:[
+                        {label:"limpieza", href:"#", icon: Calendar_icon},
+                        {label:"software", href:"#"},
+                        {
+                            label: "software",
+                            href: "#",
+                            submenu:[
+                                {label:"embebidos", href:"#", icon: Calendar_icon},
+                                {label:"web", href:"#"},
+                            ]
+                        }
+                    ]
+                },
+                {
+                    label: "Acerca de",
+                    href: "#",
+                    icon: User_icon
+                }
+            ]}>
             <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
-        </a>
+        </Desplegar>
+            
+
         <button id="toggle-search" class="transform translate-y-3.5">
             <Find_icon width="28" height="28"/>
         </button>
