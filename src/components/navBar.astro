@@ -11,6 +11,8 @@ import Equis from '../assets/icons/x_icon.svg'
 import Button from "./button.astro";
 import ToolTip from "./toolTip.astro";
 import Despliegue from "./desplegar.astro"
+import Help_icon from "../assets/icons/help_icon.svg"
+import Gear_icon from "../assets/icons/Gear_icon.svg"
 function handleEdit() {
     console.log("Editando...");
 }
@@ -40,26 +42,19 @@ function handleDelete() {
 
         <Despliegue menuItems={[
                 {
-                    label:"servicios",
+                    label:"Config",
                     href:"#",
-                    icon: Star_icon,
+                    icon: Gear_icon,
                     submenu:[
-                        {label:"limpieza", href:"#", icon: Calendar_icon},
-                        {label:"software", href:"#"},
-                        {
-                            label: "software",
-                            href: "#",
-                            submenu:[
-                                {label:"embebidos", href:"#", icon: Calendar_icon},
-                                {label:"web", href:"#"},
-                            ]
-                        }
+                        {label:"letra", href:"#"},
+                        {label:"otra cosa", href:"#"},
+                        {label:"mas cosas",href:"#"}
                     ]
                 },
                 {
-                    label: "Acerca de",
-                    href: "#",
-                    icon: User_icon
+                    label: "Acerca de...",
+                    href: "acercaDe",
+                    icon: Help_icon
                 }
             ]}>
             <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
