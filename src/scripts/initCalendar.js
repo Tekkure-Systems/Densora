@@ -1,7 +1,8 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-
+import { db, functions, firebaseConfig } from '../bd/firebase';
+import { collection, getDocs } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,3 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     calendar.render();
   }
 });
+
+const pacientesRef = collection(db, "pacientes");
+
+getDocs(pacientesRef).then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });
+});
+
