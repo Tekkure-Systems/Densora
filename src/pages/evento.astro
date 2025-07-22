@@ -1,7 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/button.astro";
 ---
 <Layout>
-    <p>oal, revisa la consola de comandos</p>
-    <script src="../scripts/evento.js"></script>
+  <h1>Detalles de la Cita</h1>
+  
+    <p><strong>Motivo:</strong> <span id="motivo">Cargando...</span></p>
+    <p><strong>Estado:</strong> <span id="estado">Cargando...</span></p>
+    <p><strong>Fecha:</strong> <span id="fecha">Cargando...</span></p>
+    <p><strong>Duración:</strong> <span id="duracion">Cargando...</span></p>
+    <p><strong>Dentista:</strong> <span id="dentistaId">Cargando...</span></p>
+    <p><strong>Consultorio:</strong> <span id="consultorioId">Cargando...</span></p>
+    <Button design="secondary" href="calendar" text="regresar"></Button>
+  <script src="../scripts/evento.js"></script>
 </Layout>
