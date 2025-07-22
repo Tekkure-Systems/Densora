@@ -9,8 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const calendarEl = document.getElementById('calendar');
   if (calendarEl) {
     const calendar = new Calendar(calendarEl, {
-      plugins: [dayGridPlugin, timeGridPlugin],
-      initialView: 'dayGridMonth',
+        plugins: [dayGridPlugin, timeGridPlugin],
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'timeGridWeek,timeGridDay,dayGridMonth'
+    },
 
       events: async function(info, successCallback, failureCallback) {
       /*try {
@@ -58,19 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
       citasSnap.forEach((citaDoc) => {
         const cita = citaDoc.data();
 
-        const fecha = cita["fecha/hora"].toDate(); // Firestore Timestamp -> JS Date
-        const duracion = cita.duracionMinutos || 30; // Por defecto 30 minutos
+        const fecha = cita["fecha/hora"].toDate(); 
+        const duracion = cita.duracionMinutos || 30;
 
         const evento = {
           title: `${cita.motivo || "Sin motivo"}`,
           start: fecha,
           allDay: true,
-          end: new Date(fecha.getTime() + duracion * 60000),
+          end: new Date(fecha.getTime() + duracion * 60000),//esto si no se para que
           extendedProps: {
             pacienteId: pacienteDoc.id,
             estado: cita.estado,
             consultorioId: cita.consultorioId,
-            dentistaId: cita.dentistaId
+            dentistaId: cita.dentistaId,
+            citaId: citaDoc.id
           }
         };
 
@@ -83,7 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
     failureCallback(error);
   }
 
-}
+},
+  eventClick: function(info) {
+    const evento = info.event;
+    const citaId = evento.extendedProps.citaId;
+    const pacienteId = evento.extendedProps.pacienteId;
+
+    // Redireccionamos a otra página con parámetros
+    window.location.href = `evento?citaId=${citaId}&pacienteId=${pacienteId}`;
+  },
 
 
   });

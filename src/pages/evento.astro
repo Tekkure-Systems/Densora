@@ -1,11 +1,7 @@
 ---
-const url = new URL(Astro.request.url)
-const id = url.searchParams.get("id")
-const title = url.searchParams.get("title")
-const start = url.searchParams.get("start")
+import Layout from "../layouts/Layout.astro";
 ---
-
-<h1>Evento recibido</h1>
-<p>ID: {id}</p>
-<p>Título: {title}</p>
-<p>Fecha: {start}</p>
+<Layout>
+    <p>oal, revisa la consola de comandos</p>
+    <script src="../scripts/evento.js"></script>
+</Layout>
