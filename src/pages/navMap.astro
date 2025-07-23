@@ -13,19 +13,15 @@ import Layout from "../layouts/Layout.astro";
       const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 20.6736, lng: -103.344 },
         zoom: 14,
-      });
-
-      new google.maps.Marker({
-        position: { lat: 20.6736, lng: -103.344 },
-        map,
-        title: "Ubicación ejemplo",
+        mapId: "DEMO_MAP_ID" 
       });
     }
+
+    window.initMap = initMap;
   </script>
 
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoYIlrfSriqVxqq2Oj_M3gfSP4VeGOBSU&callback=initMap"
-    async
-    defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRowQ-04b2LWwUaXDJStDoG_gDHOh4Qsc&callback=initMap&libraries=marker"
+    loading="async"
   ></script>
 </Layout>
