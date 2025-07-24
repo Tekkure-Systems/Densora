@@ -1,0 +1,33 @@
+---
+const {style, size, mb, mt, ml, mr, width, height, extraClass} = Astro.props;
+let marginBottom, marginTop, marginLeft, marginRight;
+let bentoWidth = "w-fit";
+let bentoHeight = "h-fit";
+if (mb == "true") {
+    marginBottom = "mb-4"
+}
+if (mt == "true") {
+    marginTop = "mt-4"
+}
+if (ml == "true") {
+    marginLeft = "ml-4"
+}
+if (mr == "true") {
+    marginRight = "mr-4"
+}
+if(width == "fit") {
+    bentoWidth = "w-fit"
+}
+if(width == "full") {
+    bentoWidth = "w-full"
+}
+if (height == "fit") {
+    bentoHeight = "h-fit"
+}
+if (height == "full") {
+    bentoHeight = "h-full"
+}
+---
+<div class={` w-max-full h-max-full p-4 rounded ${bentoWidth} ${bentoHeight} ${extraClass} ${marginBottom} ${marginTop} ${marginLeft} ${marginRight} bg-secondaryBackground-light dark:bg-secondaryBackground-dark`}>
+    <slot/>
+</div>

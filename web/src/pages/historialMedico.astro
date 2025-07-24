@@ -1,22 +1,74 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Input from "../components/input.astro";
+import Button from "../components/button.astro";
+import FileUpload from "../components/fileUpload.astro";
 import User_icon from "../assets/icons/user_icon.svg";
 ---
 
 <Layout>
-    <Input placeholder="Nombre" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Apellido" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Edad" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Numero" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Alergias" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Sexo" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Ultima Cita" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Dentista Actual" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Tratamientos Realizados" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Materiales Usados" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Diagnosticos previos" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Citas previas" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Observaciones clinicas" id="name" iconLeft={User_icon} mb="true"/>
-    <Input placeholder="Medicamentos recetados" id="name" iconLeft={User_icon} mb="true"/>
+  <div class="max-w-7xl mx-auto px-4 py-6 space-y-10 text-primaryText-light dark:text-primaryText-dark">
+    
+    <h1 class="text-3xl font-bold">Historial Médico Dental</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Columna izquierda: Información médica -->
+      <div class="space-y-8">
+        <section>
+          <h2 class="text-2xl font-semibold mb-2">Datos personales</h2>
+          <Input placeholder="Nombre" id="nombre" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Apellido" id="apellido" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Edad" id="edad" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Número de contacto" id="telefono" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Sexo" id="sexo" iconLeft={User_icon} mb="true" />
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold mb-2">Información médica general</h2>
+          <Input placeholder="Alergias" id="alergias" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Enfermedades genéticas" id="geneticas" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Condiciones médicas actuales" id="condiciones" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Medicamentos actuales" id="medicamentos" iconLeft={User_icon} mb="true" />
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold mb-2">Historial clínico dental</h2>
+          <Input placeholder="Última cita" id="ultimaCita" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Citas previas" id="citasPrevias" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Observaciones clínicas" id="observaciones" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Diagnósticos previos" id="diagnosticos" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Notas del dentista" id="notasDentista" iconLeft={User_icon} mb="true" />
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold mb-2">Tratamientos y procedimientos</h2>
+          <Input placeholder="Dentista actual" id="dentista" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Tratamientos realizados" id="tratamientos" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Materiales utilizados" id="materiales" iconLeft={User_icon} mb="true" />
+          <Input placeholder="Complicaciones o reacciones" id="complicaciones" iconLeft={User_icon} mb="true" />
+        </section>
+      </div>
+
+      <!-- Columna derecha: Documentos -->
+      <div class="space-y-8">
+        <section>
+          <h2 class="text-2xl font-semibold mb-2">Documentos adjuntos</h2>
+          <FileUpload id="documentos" label="Subir documentos PDF, RX, escaneos, etc." />
+
+          <div class="mt-4 space-y-2">
+            <p class="font-medium">Archivos subidos:</p>
+            <ul class="list-disc list-inside text-sm text-hover-dark dark:text-hover-light">
+              <li><a href="/docs/rx1.pdf" target="_blank" class="underline">Radiografía panorámica - Mayo 2025</a></li>
+              <li><a href="/docs/diagnostico.pdf" target="_blank" class="underline">Diagnóstico de caries avanzada</a></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="pt-8">
+      <Button design="secondary" href="profile" text="← Volver al perfil" />
+    </div>
+
+  </div>
 </Layout>

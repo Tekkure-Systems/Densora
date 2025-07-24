@@ -1,21 +1,6 @@
 ---
 import Text from "./text.astro";
-import Tooltip from "./toolTip.astro";
-const {
-    text,
-    mt,
-    mb,
-    href,
-    type,
-    design,
-    id,
-    toolTipText,
-    icon: Icon,
-    customClass,
-    icons = [],
-    ids = [],
-    fill
-} = Astro.props;
+const {text, mt, mb, href, type, design, id, icon: Icon, customClass, fill} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -55,72 +40,52 @@ const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop}
 const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-white ${marginTop} ${marginBottom} ${customClass}`;
 ---
 {isLink && primaryButton && (
-<Tooltip text={toolTipText}>
-    <a href={href} class={primaryDesign}>
-        <Text text={text} type="title"/>
-    </a>
-</Tooltip>
+<a href={href} class={primaryDesign}>
+    <Text text={text} type="title"/>
+</a>
     )}
 {!isLink && primaryButton && (
-<Tooltip text={toolTipText}>
-    <button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
-        <Text text={text} type="title"/>
-    </button>
-</Tooltip>
+<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
     )}
 {isLink && secondaryButton && (
-<Tooltip text={toolTipText}>
-    <a href={href} class={secondaryDesign}>
-        <Text text={text} type="title"/>
-    </a>
-</Tooltip>
+<a href={href} class={secondaryDesign}>
+    <Text text={text} type="title"/>
+</a>
     )}
 {!isLink && secondaryButton && (
-<Tooltip text={toolTipText}>
-    <button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <Text text={text} type="title"/>
-    </button>
-</Tooltip>
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
     )}
 {isLink && noBackgroundButton && (
-<Tooltip text={toolTipText}>
-    <a href={href} class={noBgDesign}>
-        <Text text={text} type="title"/>
-    </a>
-</Tooltip>
+<a href={href} class={noBgDesign}>
+    <Text text={text} type="title"/>
+</a>
     )}
 {!isLink && noBackgroundButton && (
-<Tooltip text={toolTipText}>
-    <button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <Text text={text} type="title"/>
-    </button>
-</Tooltip>
+<button id={id} type={type} class={`${noBgDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
     )}
 {isLink && iconButton && (
-<Tooltip text={toolTipText} icons={icons} ids={ids}>
-    <a href={href} class={iconDesign}>
-        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
-    </a>
-</Tooltip>
+<a href={href} class={iconDesign}>
+    <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
+</a>
     )}
 {!isLink && iconButton && (
-<Tooltip text={toolTipText} icons={icons} ids={ids}>
-    <button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
-    </button>
-</Tooltip>
+<button id={id} type={type} class={`${iconDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Icon class="transform translate-y-2.5" width='28' height='28' class={`${fill}`}/>
+</button>
     )}
 {isSlot && (
-<Tooltip text={toolTipText} icons={icons} ids={ids}>
-    <a href={href}>
-        <slot/>
-    </a>
-</Tooltip>
+<a href={href}>
+    <slot/>
+</a>
     )}
 {!isSlot  && (
-<Tooltip text={toolTipText} icons={icons} ids={ids}>
-    <button id={id} type={type} class={`cursor-pointer`} onClick={() => alert("Botón presionado")}>
-        <slot/>
-    </button>
-</Tooltip>
+<button id={id} type={type} class={`cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <slot/>
+</button>
     )}

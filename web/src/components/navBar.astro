@@ -8,6 +8,11 @@ import Find_icon from '../assets/icons/find_icon.svg'
 import Menu_icon from '../assets/icons/menu_icon.svg'
 import Star_icon from '../assets/icons/star_icon.svg'
 import Equis from '../assets/icons/x_icon.svg'
+import Button from "./button.astro";
+import ToolTip from "./toolTip.astro";
+import Despliegue from "./desplegar.astro"
+import Help_icon from "../assets/icons/help_icon.svg"
+import Gear_icon from "../assets/icons/Gear_icon.svg"
 function handleEdit() {
     console.log("Editando...");
 }
@@ -30,13 +35,32 @@ function handleDelete() {
                      Q100,100 200,100Z"
                   class="fill-primary dark:fill-secondary"/>
         </svg>
-        <!--<Oval class="w-full h-20 fill-amber-300"/>-->
+
     </div>
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
-        <a href="/options">
+
+        <Despliegue menuItems={[
+                {
+                    label:"Config",
+                    href:"#",
+                    icon: Gear_icon,
+                    submenu:[
+                        {label:"letra", href:"#"},
+                        {label:"otra cosa", href:"#"},
+                        {label:"mas cosas",href:"#"}
+                    ]
+                },
+                {
+                    label: "Acerca de...",
+                    href: "acercaDe",
+                    icon: Help_icon
+                }
+            ]}>
             <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
-        </a>
+        </Desplegar>
+            
+
         <button id="toggle-search" class="transform translate-y-3.5">
             <Find_icon width="28" height="28"/>
         </button>
@@ -49,8 +73,10 @@ function handleDelete() {
         <a href="calendar">
             <Calendar_icon class="transform translate-y-2.5" width='28' height='28'/>
         </a>
-        <Light_icon id="theme-icon" class='transform translate-y-1.5 hidden dark:block' width='28' height='28'/>
-        <Dark_icon id="theme-icon" class="transform translate-y-1.5 block dark:hidden" width='28' height='28'/>
+
+        <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
+            <Button customClass="transform translate-y-4" design="icon" icon={Light_icon}}/>
+        </ToolTip>
     </div>
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
         <div class="relative w-2/3 max-w-md">
@@ -72,16 +98,6 @@ function handleDelete() {
                     localStorage.setItem('theme', newTheme)
                 })
             })
-            setTimeout(() => {
-                const menuAction = document.getElementById("menu-action");
-                if (menuAction) {
-                    menuAction.addEventListener("click", () => {
-                        console.log("✅ Acción ejecutada desde tooltip");
-                    });
-                } else {
-                    console.warn("⚠️ No se encontró #menu-action en el DOM");
-                }
-            }, 250); //delay hay que ajustarlo
             const searchButton = document.getElementById('toggle-search')
             const searchBar = document.getElementById('search-bar')
             const iconBar = document.getElementById('icon-bar')

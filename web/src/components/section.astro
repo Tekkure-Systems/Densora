@@ -1,8 +1,10 @@
 ---
-const {importance, mt, mb, orientation, align, extraClass, padding} = Astro.props;
+const {importance, mt, mb, ml, mr, orientation, align, extraClass, padding} = Astro.props;
 let containerClass = "";
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
+let marginLeft = "ml-none";
+let marginRight = "mr-right";
 let flexOrientation = "";
 let alignment = "";
 let p = "p-4";
@@ -11,6 +13,12 @@ if (mt == "true") {
 }
 if (mb == "true") {
     marginBottom = "mb-4";
+}
+if (ml == "true") {
+    marginLeft = "ml-4";
+}
+if (mr == "true") {
+    marginRight = "mr-4";
 }
 if(importance == "primary") {
     containerClass = "bg-primaryBackground-light dark:bg-primaryBackground-dark";
@@ -37,6 +45,6 @@ if (padding == "false") {
     p = "p-none"
 }
 ---
-<div class={`flex ${flexOrientation} ${marginTop} ${marginBottom} ${alignment} ${extraClass} ${p} ${containerClass} rounded`}>
+<div class={`flex ${flexOrientation} ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} ${alignment} ${extraClass} ${p} ${containerClass} rounded`}>
     <slot />
 </div>

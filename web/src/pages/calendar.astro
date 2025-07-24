@@ -1,18 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/navBar.astro";
+import Text from "../components/text.astro";
+import "../styles/global.css";
+
 ---
 
 <Layout>
   <div class="grid place-items-center min-h-screen bg-primaryBackground-light dark:bg-primaryBackground-dark">
-    <div class="bg-amber-400 p-6 rounded shadow w-full max-w-4xl">
-      <p class="text-center font-bold text-lg mb-4">Calendario</p>
+    <div class="text-center bg-secondaryBackground-light dark:bg-secondaryBackground-dark p-6 rounded shadow w-full max-w-4xl">
+      <Text text="Calendario" mb="true"/>
 
-      <!-- Aquí va el calendario directamente -->
       <div id="calendar" class="min-h-[600px] bg-white p-4 rounded shadow"></div>
+      <script src="../scripts/initCalendar.js"></script>
     </div>
 
-    <!-- Script JS que inicializa FullCalendar -->
-    <script type="module" src="/web/src/scripts/initCalendar.js" client:load></script>
   </div>
 </Layout>

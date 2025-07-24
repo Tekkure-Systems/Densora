@@ -3,23 +3,25 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div id="mapa" style="height: 400px; width: 100%;"></div>
+  <div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Mapa de ubicación</h1>
+    <div id="map" class="w-full h-[500px] rounded shadow-lg"></div>
+  </div>
 
-
-  <script>
+  <script is:inline>
     function initMap() {
-      var location = { lat: 22.3, lng: 34.12 };
-      var map = new google.maps.Map(document.getElementById("mapa"), {
-        zoom: 4,
-        center: location,
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 20.6736, lng: -103.344 },
+        zoom: 14,
+        mapId: "DEMO_MAP_ID" 
       });
     }
+
+    window.initMap = initMap;
   </script>
 
- 
   <script
-    async
-    defer
-    src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
-  </script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRowQ-04b2LWwUaXDJStDoG_gDHOh4Qsc&callback=initMap&libraries=marker"
+    loading="async"
+  ></script>
 </Layout>

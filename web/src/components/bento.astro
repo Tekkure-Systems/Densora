@@ -1,0 +1,13 @@
+---
+const {orientation} = Astro.props;
+let layoutOrientation = "";
+if(orientation == "row") {
+    layoutOrientation = "flex-col";
+}
+if(orientation == "col") {
+    layoutOrientation = "flex-row";
+}
+---
+<div class={`flex ${layoutOrientation}`}>
+    <slot/>
+</div>
