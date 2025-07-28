@@ -12,4 +12,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const functions = getFunctions(app, "us-central1");
 const db = getFirestore(app);
-export { db, functions, firebaseConfig };
+export { db, functions, firebaseConfig, app};
