@@ -1,8 +1,4 @@
 @import "tailwindcss";
-/*@import "@fullcalendar/core/index.css";
-@import "@fullcalendar/daygrid/index.css";
-@import "@fullcalendar/timegrid/index.css";  esta vaina causa el problema*/
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
     --color-primary: #26CBB0;
