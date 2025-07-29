@@ -1,6 +1,6 @@
 ---
 import Text from "./text.astro";
-const {text, mt, mb, href, type, design, id, icon: Icon, customClass, fill, animation, onClick} = Astro.props;
+const {text, mt, mb, href, type, design, id, icon: Icon, customClass, fill, animation} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -45,7 +45,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
     )}
 {!isLink && primaryButton && (
-<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={onClick ? onClick : () => alert("Botón presionado")}>
+<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}
@@ -55,7 +55,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
     )}
 {!isLink && secondaryButton && (
-<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={onClick ? onClick : () => alert("Botón presionado")}>
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}
@@ -65,7 +65,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
     )}
 {!isLink && secondaryButton && animation === "timer" && (
-<button id={id} type={type} class={`${secondaryTimerDesign} cursor-pointer`} onClick={onClick ? onClick : () => alert("Botón presionado")}>
+<button id={id} type={type} class={`${secondaryTimerDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}

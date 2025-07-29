@@ -1,11 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Text from "../components/text.astro";
-import Button from "../components/button.astro"
+import Button from "../components/button.astro";
 ---
-<Layout orientation="center">
-    <Text text="Esta página necesita cuidados especiales - te ayudamos a llegar al lugar correcto." type="title" mb="true"/>
-    <Button text="Volver a Inicio" design="secondary" href="/" animation="timer"/>
+<Layout align="center" orientation="row">
+    <Text text="Esta página necesita cuidados especiales, te ayudamos a llegar al lugar correcto." type="title" mb="true"/>
     <Button id="go-back-btn" text="Volver atras" design="secondary" animation="timer"/>
     <script>
       if (typeof window !== 'undefined') {
@@ -16,6 +15,9 @@ import Button from "../components/button.astro"
               window.history.back();
             });
           }
+          setTimeout(function() {
+            window.history.back();
+          }, 2000);
         });
       }
     </script>
