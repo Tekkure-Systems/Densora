@@ -10,11 +10,6 @@ import Phone_icon from "../assets/icons/phone_icon.svg";
 import Button from "../components/button.astro";
 ---
 <Layout>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inicio</title>
-    </head>
     <div class="flex flex-col items-center justify-center w-full">
         <Text text="Bievenido a Densora" type="title"/>
         <Text text="Inicia Sesion para continuar" mb="true"/>
@@ -23,9 +18,9 @@ import Button from "../components/button.astro";
             <Button text="Inciar Sesion" mb="true" design="primary"/>
         </Form>
         <p id="response"></p>
-        <Button text="Crear Cuenta" mb="true" href="registro" design="secondary" icons={[Mexico_flag]}>
-            <Section importance="primary">
-                <Text text="terminos y condiciones" mb="true" type="mini"/>
+        <Button text="Crear Cuenta" mb="true" href="registro" design="secondary" icons={[Mexico_flag]} />
+            <Section importance="primary" orientation="row" align="center">
+                <Text text="terminos y condiciones" mb="true" type="text"/>
                 <StepIndicator/>
             </Section>
     </div>
