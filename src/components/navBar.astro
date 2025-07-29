@@ -35,31 +35,28 @@ function handleDelete() {
                      Q100,100 200,100Z"
                   class="fill-primary dark:fill-secondary"/>
         </svg>
-
     </div>
     <div class="flex gap-10 items-center justify-center h-15 relative z-10">
         <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
-
         <Despliegue menuItems={[
-                {
-                    label:"Config",
-                    href:"#",
-                    icon: Gear_icon,
-                    submenu:[
-                        {label:"letra", href:"#"},
-                        {label:"otra cosa", href:"#"},
-                        {label:"mas cosas",href:"#"}
-                    ]
-                },
-                {
-                    label: "Acerca de...",
-                    href: "acercaDe",
-                    icon: Help_icon
-                }
-            ]}>
+            {
+                label: "Config",
+                href: "#",
+                icon: Gear_icon,
+                submenu: [
+                    {label: "letra", href: "#"},
+                    {label: "otra cosa", href: "#"},
+                    {label: "mas cosas", href: "#"}
+                ]
+            },
+            {
+                label: "Acerca de...",
+                href: "acercaDe",
+                icon: Help_icon
+            }
+        ]}>
             <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
         </Despliegue>
-
         <button id="toggle-search" class="transform translate-y-3.5">
             <Find_icon width="28" height="28"/>
         </button>
@@ -72,15 +69,16 @@ function handleDelete() {
         <a href="calendar">
             <Calendar_icon class="transform translate-y-2.5" width='28' height='28'/>
         </a>
-
         <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
-            <Button customClass="transform translate-y-4" design="icon" icon={Light_icon}}/>
+            <Button customClass="transform translate-y-4" design="icon" icon={Light_icon} }/>
         </ToolTip>
     </div>
     <div id="search-bar" class="hidden w-full flex justify-center mt-4 relative z-10">
         <div class="relative w-2/3 max-w-md">
-            <input id="search-input" type="text" placeholder="Buscar..." class="w-full px-4 py-2 pr-10 rounded-full border text-primaryText-light border-primaryBackground-light shadow focus:outline-none focus:ring-1 focus:ring-primaryBackground-light dark:text-primaryText-dark dark:bg-gray-800"/>
-            <button id="clear-search" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500">
+            <input id="search-input" type="text" placeholder="Buscar..."
+                   class="w-full px-4 py-2 pr-10 rounded-full border text-primaryText-light border-primaryBackground-light shadow focus:outline-none focus:ring-1 focus:ring-primaryBackground-light dark:text-primaryText-dark dark:bg-gray-800"/>
+            <button id="clear-search"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500">
                 <Equis class="w-4 h-4"/>
             </button>
         </div>

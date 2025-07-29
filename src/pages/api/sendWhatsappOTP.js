@@ -1,11 +1,8 @@
 export const prerender = false;
-
 import twilio from 'twilio';
 const { Twilio } = twilio;
-
 const accountSid = import.meta.env.accountSid;
 const authToken = import.meta.env.authToken;
-
 const client = new Twilio(accountSid, authToken);
 export async function POST({ request }) {
     let to, code;

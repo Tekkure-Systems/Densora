@@ -1,17 +1,12 @@
 ---
 import Section from "./section.astro";
-const { profilePhoto, name, description, especialidad, ubicacion, consultorio, date, time, mt, mb, ml, mr } = Astro.props;
+const { profilePhoto, mt, mb, ml, mr } = Astro.props;
 import Text from "../components/text.astro";
-import Theeth_icon from "../assets/icons/theeth_icon.svg";
-import TheethFull_icon from "../assets/icons/theethFull.svg";
-import HalfTheet_icon from "../assets/icons/halfTheet_icon.svg";
 import Button from "../components/button.astro";
-
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let marginLeft = "ml-none";
 let marginRight = "mr-none";
-
 if (mt === "true") {
     marginTop = "mt-4";
 }

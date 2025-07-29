@@ -1,16 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-const {reseñaText, owner, profilePhoto} = Astro.props;
+const {reseñaText, owner} = Astro.props;
 import ProfilePhoto from "../assets/pictures/cover.jpg";
 import Text from "../components/text.astro"
 import Section from "../components/section.astro";
 ---
-
 <Section extraClass="rounded" padding="false" extraClass="w-full">
     <Image src={ProfilePhoto} alt=""/>
     <Section padding="false">
         <Text type="title" text={owner}/>
         <Text type="text" text={reseñaText}/>
     </Section>
-
 </Section>

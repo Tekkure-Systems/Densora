@@ -24,13 +24,12 @@ import Button from "../components/button.astro";
         </Form>
         <p id="response"></p>
         <Button text="Crear Cuenta" mb="true" href="registro" design="secondary" icons={[Mexico_flag]}>
-        <Section importance="primary">
-            <Text text="terminos y condiciones" mb="true" type="mini"/>
-            <StepIndicator/>
-        </Section>
+            <Section importance="primary">
+                <Text text="terminos y condiciones" mb="true" type="mini"/>
+                <StepIndicator/>
+            </Section>
     </div>
 </Layout>
-
 <script type="module">
     const form = document.getElementById("whatsappOTP");
     const response = document.getElementById("response");
@@ -47,9 +46,7 @@ import Button from "../components/button.astro";
                     to: phone
                 }),
             });
-
             const data = await res.json();
-
             if (res.ok) {
                 response.textContent = "Mensaje enviado correctamente ✅";
             } else {

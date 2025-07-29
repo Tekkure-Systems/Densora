@@ -2,7 +2,6 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.firestore();
-
 exports.generateOtp = functions.https.onCall(async (data, context) => {
     try {
         console.log("Payload recibido:", data);
@@ -15,7 +14,6 @@ exports.generateOtp = functions.https.onCall(async (data, context) => {
             );
         }
         console.log("generateOtp called with pacienteId:", pacienteId);
-        // verificar que el doc existe
         const docSnap = await db.collection("pacientes").doc(pacienteId).get();
         if (!docSnap.exists) {
             console.log("Paciente NO existe:", pacienteId);

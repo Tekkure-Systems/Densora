@@ -9,7 +9,6 @@ import User_icon from '../assets/icons/user_icon.svg';
 import Mexico_flag from "../assets/flags/mexico_flag.svg";
 import Phone_icon from "../assets/icons/phone_icon.svg";
 import Button from "../components/button.astro";
-import ToolTip from "../components/toolTip.astro";
 ---
 <Layout>
     <head>
@@ -21,8 +20,8 @@ import ToolTip from "../components/toolTip.astro";
         <Text text="Bievenido a Densora" type="title"/>
         <Text text="Crea una cuenta para continuar" mb="true"/>
         <Form id="register">
-           <Input placeholder="Nombre Completo" id="name" iconLeft={User_icon} mb="true"/>
-           <Input placeholder="Numero de Telefono" id="phone" iconLeft={Phone_icon} iconRight={Mexico_flag} mb="true"/>
+            <Input placeholder="Nombre Completo" id="name" iconLeft={User_icon} mb="true"/>
+            <Input placeholder="Numero de Telefono" id="phone" iconLeft={Phone_icon} iconRight={Mexico_flag} mb="true"/>
             <Button text="Crear tu Cuenta" mb="true" design="primary" toolTipText="qfew"/>
         </Form>
         <p id="response"></p>
@@ -32,5 +31,4 @@ import ToolTip from "../components/toolTip.astro";
         </Section>
     </div>
 </Layout>
-
 <script type="module" src="/src/scripts/register.js"></script>

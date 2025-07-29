@@ -1,11 +1,5 @@
 ---
-import Section from "./section.astro";
-const { profilePhoto, name, description, especialidad, ubicacion, cal = 0, mt, mb, ml, mr } = Astro.props;
-import Text from "../components/text.astro";
-import Theeth_icon from "../assets/icons/theeth_icon.svg";
-import TheethFull_icon from "../assets/icons/theethFull.svg";
-import HalfTheet_icon from "../assets/icons/halfTheet_icon.svg";
-
+const {mt, mb, ml, mr} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let marginLeft = "ml-none";
@@ -24,7 +18,6 @@ if (mr === "true") {
     marginRight = "mr-4";
 }
 ---
-
 <div class={`flex flex-row ${marginTop} ${marginBottom} ${marginLeft} ${marginRight} w-fit w-max-64 p-2 rounded bg-tertiaryBackground-light dark:bg-tertiaryBackground-dark`}>
     <slot/>
 </div>

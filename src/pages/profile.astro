@@ -7,49 +7,40 @@ import Circle from "../assets/shapes/circle.svg";
 import Calendar_icon from "../assets/icons/calendar_icon.svg";
 import Treatment_icon from "../assets/icons/theeth_icon.svg";
 ---
-
 <Layout>
-  <div class="flex justify-center items-start min-h-screen bg-primaryBackground-light dark:bg-primaryBackground-dark px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
-
-      <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full">
-        <div class="flex flex-col items-center text-center">
-          <h2 class="text-2xl font-bold mb-6">Perfil</h2>
-
-          <div class="relative flex justify-center items-center mb-6 h-24">
-            <Circle class="absolute w-24 h-24 fill-[#B6E4DC] dark:fill-[#263835]" />
-            <User_icon class="relative z-10 w-20 h-20" />
-          </div>
+    <div class="flex justify-center items-start min-h-screen bg-primaryBackground-light dark:bg-primaryBackground-dark px-4 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+            <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full">
+                <div class="flex flex-col items-center text-center">
+                    <h2 class="text-2xl font-bold mb-6">Perfil</h2>
+                    <div class="relative flex justify-center items-center mb-6 h-24">
+                        <Circle class="absolute w-24 h-24 fill-[#B6E4DC] dark:fill-[#263835]"/>
+                        <User_icon class="relative z-10 w-20 h-20"/>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <Input placeholder="Nombre" id="nombre" iconLeft={User_icon} mb="true"/>
+                    <Input placeholder="Apellido" id="apellido" iconLeft={User_icon} mb="true"/>
+                    <Input placeholder="Correo electrónico" id="email" iconLeft={User_icon} mb="true"/>
+                </div>
+            </section>
+            <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full flex flex-col justify-between">
+                <h2 class="text-2xl font-bold mb-6 text-center">Historial Médico</h2>
+                <div class="space-y-4">
+                    <Input placeholder="Edad" id="edad" iconLeft={User_icon} mb="true"/>
+                    <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true"/>
+                    <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true"/>
+                    <Input placeholder="Alergias (medicamentos)" id="alergia_meds" mb="true"/>
+                    <Input placeholder="Alergias (alimentos)" id="alergia_alimentos" mb="true"/>
+                    <Input placeholder="Antecedentes genéticos" id="genetica" iconLeft={Treatment_icon} mb="true"/>
+                    <Input placeholder="Condiciones actuales" id="condiciones" iconLeft={Treatment_icon} mb="true"/>
+                    <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true"/>
+                </div>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Button design="primary" href="#" text="Guardar cambios"/>
+                    <Button design="secondary" href="historialMedico" text="Ver más..."/>
+                </div>
+            </section>
         </div>
-
-        <div class="space-y-4">
-          <Input placeholder="Nombre" id="nombre" iconLeft={User_icon} mb="true" />
-          <Input placeholder="Apellido" id="apellido" iconLeft={User_icon} mb="true" />
-          <Input placeholder="Correo electrónico" id="email" iconLeft={User_icon} mb="true" />
-        </div>
-      </section>
-
-      <section class="bg-secondaryBackground-light dark:bg-secondaryBackground-dark rounded-2xl p-6 shadow-md w-full flex flex-col justify-between">
-        <h2 class="text-2xl font-bold mb-6 text-center">Historial Médico</h2>
-
-        <div class="space-y-4">
-          <Input placeholder="Edad" id="edad" iconLeft={User_icon} mb="true" />
-          <Input placeholder="Peso (kg)" id="peso" iconLeft={User_icon} mb="true" />
-          <Input placeholder="Altura (cm)" id="altura" iconLeft={User_icon} mb="true" />
-          <Input placeholder="Alergias (medicamentos)" id="alergia_meds" mb="true" />
-          <Input placeholder="Alergias (alimentos)" id="alergia_alimentos" mb="true" />
-          <Input placeholder="Antecedentes genéticos" id="genetica" iconLeft={Treatment_icon} mb="true" />
-          <Input placeholder="Condiciones actuales" id="condiciones" iconLeft={Treatment_icon} mb="true" />
-          <Input placeholder="Última cita" id="ultima_cita" iconLeft={Calendar_icon} mb="true" />
-        </div>
-
-        <!-- Botones -->
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Button design="primary" href="#" text="Guardar cambios" />
-          <Button design="secondary" href="historialMedico" text="Ver más..." />
-        </div>
-      </section>
-
     </div>
-  </div>
 </Layout>

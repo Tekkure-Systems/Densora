@@ -6,10 +6,9 @@ import InputOTP from "../components/inputOTP.astro";
 import Section from "../components/section.astro";
 import Text from "../components/text.astro";
 ---
-
 <Layout align="center" orientation="row">
-        <Whatsapp_icon class="w-16 h-16 fill-primary"/>
-        <Text type="title" text="Introduce tu codigo de verificacion que te acaba de llegar porfa"/>
+    <Whatsapp_icon class="w-16 h-16 fill-primary"/>
+    <Text type="title" text="Introduce tu codigo de verificacion que te acaba de llegar porfa"/>
     <Section orientation="col">
         <InputOTP ml="true"/>
         <InputOTP ml="true"/>
@@ -18,6 +17,5 @@ import Text from "../components/text.astro";
         <InputOTP ml="true"/>
         <InputOTP ml="true" mr="true"/>
     </Section>
-
     <Button design="primary" text="Verificar Telefono"/>
 </Layout>

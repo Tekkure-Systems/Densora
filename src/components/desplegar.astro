@@ -1,12 +1,10 @@
 ---
-const { icon, menuItems = [] } = Astro.props;
+const {menuItems = []} = Astro.props;
 ---
-
 <div class="relative group">
   <button class="p-2 text-primaryText-light dark:text-primaryText-dark">
     <slot /> 
   </button>
-
   <ul class="absolute top-full mt-2 bg-primaryBackground-light dark:bg-primaryBackground-dark text-sm text-primaryText-light dark:text-primaryText-dark shadow-md rounded-lg py-2 w-40 hidden group-hover:block z-50">
     {menuItems.map((item) => (
       <li class="relative group/menu-item">
@@ -14,7 +12,6 @@ const { icon, menuItems = [] } = Astro.props;
           {item.icon && <item.icon class="w-4 h-4 fill-primaryText-light dark:fill-primaryText-dark" />}
           {item.label}
         </a>
-
         {item.submenu && item.submenu.length > 0 && (
           <ul class="absolute left-full top-0 bg-primaryBackground-light dark:bg-primaryBackground-dark shadow-md rounded-lg py-2 w-40 hidden group-hover/menu-item:block">
             {item.submenu.map((sub) => (
