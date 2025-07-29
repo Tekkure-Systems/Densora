@@ -6,6 +6,8 @@ import User_icon from "../assets/icons/user_icon.svg";
 import Circle from "../assets/shapes/circle.svg";
 import Calendar_icon from "../assets/icons/calendar_icon.svg";
 import Treatment_icon from "../assets/icons/theeth_icon.svg";
+import Densora_logo from "../assets/icons/densora_logo.svg";
+import ToolTip from "../components/toolTip.astro";
 ---
 <Layout>
     <div class="flex justify-center items-start min-h-screen bg-primaryBackground-light dark:bg-primaryBackground-dark px-4 py-10">
@@ -38,7 +40,11 @@ import Treatment_icon from "../assets/icons/theeth_icon.svg";
                 </div>
                 <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <Button design="primary" href="#" text="Guardar cambios"/>
-                    <Button design="secondary" href="historialMedico" text="Ver más..."/>
+
+                    <ToolTip text="tooltip test">
+                        <Button design="secondary" href="historialMedico" text="Ver más..."/>
+                    </ToolTip>
+
                 </div>
             </section>
         </div>
