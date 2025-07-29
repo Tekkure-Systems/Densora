@@ -131,7 +131,19 @@ function handleDelete() {
                 }
             })
         }
+        function initTheme() {
+            // Example: toggle dark mode based on localStorage or system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
         document.addEventListener('DOMContentLoaded', initSearchBar)
         document.addEventListener('astro:page-load', initSearchBar)
+        document.addEventListener('DOMContentLoaded', initTheme)
+        document.addEventListener('astro:page-load', initTheme)
     </script>
-</header> 
+</header>
