@@ -1,6 +1,6 @@
 ---
 import Text from "./text.astro";
-const {text, mt, mb, href, type, design, id, icon: Icon, customClass, fill} = Astro.props;
+const {text, mt, mb, href, type, design, id, icon: Icon, customClass, fill, animation, onClick} = Astro.props;
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
 let isLink = false;
@@ -35,6 +35,7 @@ if (design == "slot") {
 }
 const primaryDesign = `flex items-center justify-center w-128 max-w-md border-3 ${marginTop} ${marginBottom} border-primary bg-primary px-16 py-2 rounded text-white`;
 const secondaryDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white`;
+const secondaryTimerDesign = `flex items-center justify-center w-128 max-w-md border-3 px-16 py-2 rounded ${marginTop} ${marginBottom} border-primary bg-hover-light dark:bg-hover-dark text-white secondary-timer-animate`;
 const noBgDesign = `flex items-center justify-center w-128 max-w-md ${marginTop} ${marginBottom} bg-none px-16 py-2 rounded text-white`;
 const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-white ${marginTop} ${marginBottom} ${customClass}`;
 ---
@@ -44,7 +45,7 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
     )}
 {!isLink && primaryButton && (
-<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={() => alert("Botón presionado")}>
+<button id={id} class={`${primaryDesign} cursor-pointer`} type={type} onClick={onClick ? onClick : () => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}
@@ -54,7 +55,17 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
 </a>
     )}
 {!isLink && secondaryButton && (
-<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={onClick ? onClick : () => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
+    )}
+{isLink && secondaryButton && animation === "timer" && (
+<a href={href} class={secondaryTimerDesign}>
+    <Text text={text} type="title"/>
+</a>
+    )}
+{!isLink && secondaryButton && animation === "timer" && (
+<button id={id} type={type} class={`${secondaryTimerDesign} cursor-pointer`} onClick={onClick ? onClick : () => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}

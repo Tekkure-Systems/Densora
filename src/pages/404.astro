@@ -1,7 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Text from "../components/text.astro";
+import Button from "../components/button.astro"
 ---
-<Layout>
-    <Text text="ESTA ES NUESTRA PAGINA DE 404 PERSONALIZADA" type="primary"/>
+<Layout orientation="center">
+    <Text text="Esta página necesita cuidados especiales - te ayudamos a llegar al lugar correcto." type="title" mb="true"/>
+    <Button text="Volver a Inicio" design="secondary" href="/" animation="timer"/>
+    <Button id="go-back-btn" text="Volver atras" design="secondary" animation="timer"/>
+    <script>
+      if (typeof window !== 'undefined') {
+        document.addEventListener('DOMContentLoaded', function() {
+          const btn = document.getElementById('go-back-btn');
+          if (btn) {
+            btn.addEventListener('click', function() {
+              window.history.back();
+            });
+          }
+        });
+      }
+    </script>
 </Layout>

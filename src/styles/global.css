@@ -73,3 +73,27 @@
 .fc-button:hover {
   background-color: #2563eb !important;    /* Azul un poco más oscuro */
 }
+
+/* Tailwind custom animation for secondary button timer fill */
+@layer utilities {
+  .secondary-timer-animate {
+    position: relative;
+    overflow: hidden;
+  }
+  .secondary-timer-animate::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: theme('colors.primary');
+    opacity: 0.3;
+    z-index: 0;
+    animation: timer-fill 2s linear forwards;
+  }
+}
+@keyframes timer-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
