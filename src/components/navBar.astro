@@ -59,7 +59,6 @@ function handleDelete() {
             ]}>
             <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
         </Despliegue>
-            
 
         <button id="toggle-search" class="transform translate-y-3.5">
             <Find_icon width="28" height="28"/>
@@ -87,7 +86,7 @@ function handleDelete() {
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        function initSearchBar() {
             const themeIcons = document.querySelectorAll('#theme-icon')
             const html = document.documentElement
             themeIcons.forEach(icon => {
@@ -103,41 +102,38 @@ function handleDelete() {
             const iconBar = document.getElementById('icon-bar')
             const searchInput = document.getElementById('search-input')
             const clearSearch = document.getElementById('clear-search')
+            if (!searchButton || !searchBar) return;
             searchButton.addEventListener('click', (e) => {
                 e.stopPropagation()
                 searchBar.classList.remove('hidden')
-                iconBar.classList.add('hidden')
-                searchInput.focus()
+                if (iconBar) iconBar.classList.add('hidden')
+                searchInput?.focus()
             })
-            clearSearch.addEventListener('click', (e) => {
+
+            clearSearch?.addEventListener('click', (e) => {
                 e.stopPropagation()
                 searchInput.value = ''
                 searchBar.classList.add('hidden')
-                iconBar.classList.remove('hidden')
+                if (iconBar) iconBar.classList.remove('hidden')
             })
             document.addEventListener('click', (e) => {
                 const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
                 if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
                     searchInput.value = ''
                     searchBar.classList.add('hidden')
-                    iconBar.classList.remove('hidden')
+                    if (iconBar) iconBar.classList.remove('hidden')
                 }
             })
-            searchInput.addEventListener('keydown', (e) => {
+            searchInput?.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     const query = searchInput.value.trim()
                     if (query !== '') {
-
                         window.location.href = `/navMap?q=${encodeURIComponent(query)}`
                     }
                 }
             })
-        })
-
-
-
-
-
+        }
+        document.addEventListener('DOMContentLoaded', initSearchBar)
+        document.addEventListener('astro:page-load', initSearchBar)
     </script>
-    <script type="module" src="/src/scripts/barraDeBusqueda.js" />
 </header> 
