@@ -1,5 +1,6 @@
 ---
 import Section from "./section.astro";
+import { Image } from 'astro:assets';
 const {profilePhoto = [], name = [], especialidad = [], ubicacion = [], cal = []} = Astro.props;
 import Text from "../components/text.astro";
 import Theeth_icon from "../assets/icons/theeth_icon.svg";
@@ -29,7 +30,7 @@ if (hasHalfStar) {
     <>
         <div class="w-48" key={index}>
             {photo && (
-                    <img src={photo} class="w-full h-full object-cover rounded" loading="lazy"/>
+                    <Image src={photo} class="w-full h-full object-cover rounded" alt=""/>
             )}
         </div>
         <Section orientation="row" importance="primary" align="left">

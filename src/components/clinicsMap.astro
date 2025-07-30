@@ -1,6 +1,7 @@
 ---
 import Section from "./section.astro";
-const { profilePhoto, name, description, especialidad, ubicacion, consultorio, date, time, mt, mb, ml, mr } = Astro.props;
+import { Image } from 'astro:assets';
+const { profilePhoto, mt, mb, ml, mr } = Astro.props;
 import Text from "../components/text.astro";
 let marginTop = "mt-none";
 let marginBottom = "mb-none";
@@ -25,7 +26,7 @@ if (mr === "true") {
         <Text text="Aqui podras navegar por los consultorios a tu alrededor" type="text"/>
         <Section orientation="column">
             {profilePhoto && (
-                    <img src={profilePhoto} class=" object-cover rounded" loading="lazy"/>
+                    <Image src={profilePhoto} class="object-cover rounded"/>
             )}
         </Section>
     </Section>

@@ -2,11 +2,12 @@
 const {profilePhoto = [], name = [], date = [], time = [], consultorio = []} = Astro.props;
 import Section from "../components/section.astro";
 import Text from "../components/text.astro";
+import { Image } from 'astro:assets';
 ---
 {profilePhoto.map((photo, index) => (
 <Section orientation="column">
     {photo && (
-            <img src={photo} class="w-24 h-24 object-cover rounded" loading="lazy" />
+            <Image src={photo} class="w-24 h-24 object-cover rounded"/>
     )}
     <Section orientation="row" padding="false" ml="true">
         <Text text={name[index]} type="text" />
