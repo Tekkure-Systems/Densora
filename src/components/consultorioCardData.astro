@@ -30,8 +30,7 @@ if (hasHalfStar) {
     <>
         <div class="w-128 h-64" key={index}>
             {photo && (
-                    <Image src={photo}/>
-                    <img src={photo} class="w-full h-full object-cover rounded" loading="lazy"/>
+                    <Image src={photo} class="w-full h-full object-cover rounded" alt="" width={128} height={128}/>
             )}
         </div>
         <Section orientation="row" importance="primary" align="left">

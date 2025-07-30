@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 {profilePhoto.map((photo, index) => (
 <Section orientation="column">
     {photo && (
-            <Image src={photo} class="w-24 h-24 object-cover rounded"/>
+            <Image src={photo} class="w-24 h-24 object-cover rounded" alt="" width={128} height={128}/>
     )}
     <Section orientation="row" padding="false" ml="true">
         <Text text={name[index]} type="text" />
