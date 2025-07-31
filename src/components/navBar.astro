@@ -10,19 +10,17 @@ import Star_icon from '../assets/icons/star_icon.svg'
 import Equis from '../assets/icons/x_icon.svg'
 import Button from "./button.astro";
 import ToolTip from "./toolTip.astro";
-import Despliegue from "./desplegar.astro"
+import Desplegar from "./desplegar.astro"
 import Help_icon from "../assets/icons/help_icon.svg"
 import Gear_icon from "../assets/icons/Gear_icon.svg"
 import Input from "./input.astro";
 import Navbar from "../assets/shapes/navBar.svg";
+import Section from "./section.astro";
 ---
-<header class="relative h-24">
-    <div class="absolute top-0 left-0 w-full h-20 overflow-hidden -z-10">
-        <Navbar/>
-    </div>
-    <div class="flex gap-10 items-center justify-center h-15 relative z-10">
-        <Star_icon class='transform translate-y-1.5' width='28' height='28'/>
-        <Despliegue menuItems={[
+<header class=" h-24">
+    <Section extraClass="">
+        <Button design="icon" icon={Star_icon} customClass="transform"></Button>
+        <Desplegar menuItems={[
             {
                 label: "Config",
                 href: "#",
@@ -39,21 +37,21 @@ import Navbar from "../assets/shapes/navBar.svg";
                 icon: Help_icon
             }
         ]}>
-            <Menu_icon class="transform translate-y-2.5" width='28' height='28'/>
-        </Despliegue>
-        <button id="toggle-search" class="transform translate-y-3.5"><Find_icon width="28" height="28"/></button>
-        <a href="/"><Densora_logo class="transform translate-y-4" width='28' height='28'/></a>
-        <a href="/profile"><User_icon class="transform translate-y-3.5" width='28' height='28'/></a>
-        <a href="/calendar"><Calendar_icon class="transform translate-y-2.5" width='28' height='28'/></a>
+        <Button id="toggle-search" design="icon" icon={Menu_icon} customClass="transform"></Button>
+        </Desplegar>
+        <Button id="toggle-search" design="icon" icon={Find_icon} customClass="transform"></Button>
+        <Button href="/" design="icon" icon={Densora_logo} customClass="transform"></Button>
+        <Button href="/profile" design="icon" icon={User_icon} customClass="transform"></Button>
+        <Button href="/calendar" design="icon" icon={Calendar_icon} customClass="transform"></Button>
         <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
-            <Button customClass="transform translate-y-4" design="icon" icon={Light_icon} }/>
+            <Button customClass="transform" design="icon" icon={Light_icon} }/>
         </ToolTip>
-    </div>
-    <div id="search-bar" class="hidden w-full items-center flex justify-center mt-4 relative z-10">
-        <div class="relative w-2/3 max-w-md">
+    </Section>
+    <Section id="search-bar" extraClass="hidden w-full items-center flex justify-center mt-4 relative z-10">
+        <Section extraClass="relative w-2/3 max-w-md">
             <Input placeholder="Buscar..." id="search-input" iconRight={Equis} mt="true" iconRightButton="clear-search"/>
-        </div>
-    </div>
+        </Section>
+    </Section>
     <script>
         function initSearchBar() {
             const themeIcons = document.querySelectorAll('#theme-icon')
@@ -78,7 +76,6 @@ import Navbar from "../assets/shapes/navBar.svg";
                 if (iconBar) iconBar.classList.add('hidden')
                 searchInput?.focus()
             })
-
             clearSearch?.addEventListener('click', (e) => {
                 e.stopPropagation()
                 searchInput.value = ''
