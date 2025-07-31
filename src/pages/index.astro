@@ -3,11 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Section from "../components/section.astro";
 import DentistCard from "../components/dentistCard.astro";
 import ConsultorioCard from "../components/consultorioCard.astro";
-import Densora_logo from "../assets/icons/densora_logo.svg";
-import Star_icon from "../assets/icons/star_icon.svg";
 import Button from "../components/button.astro";
 import Carousel from "../components/carousel.astro";
-import ToolTip from "../components/toolTip.astro";
 import LastCita from "../components/lastCita.astro";
 import ClinicsMap from "../components/clinicsMap.astro";
 import CitaHistorial from "../components/citaHistorial.astro";
@@ -15,14 +12,12 @@ import DentistCardData from "../components/dentistCardData.astro";
 import ConsultorioCardData from "../components/consultorioCardData.astro";
 ---
 <Layout align="center" orientation="row">
-    <p>tu historial de citas</p>
-    <Section importance="secondary" orientation="col" mb="true">
-        <LastCita>
+    <Section importance="secondary" orientation="col" mt="true" mb="true">
+        <LastCita mr="true">
             <CitaHistorial name={["test", "test2"]} profilePhoto={["https://randomuser.me/api/portraits/men/32.jpg", "https://randomuser.me/api/portraits/men/32.jpg"]} date={["12/06/25", "06/12/25"]} time={["1:42 P.M.", "4:21 P.M."]}/>
         </LastCita>
         <ClinicsMap profilePhoto="https://cdn.conahcyt.mx/sisdai/landing-sisdai/catalogo/visualizaciones/mapa/puntos-agrupados/2-anatomia-tamanodelpunto.png"/>
     </Section>
-    <p>recomendaciones de dentistas</p>
     <Carousel importance="secondary" orientation="col" mb="true">
         <Button href="dentist" design="slot">
             <DentistCard mr="true">
@@ -72,10 +67,9 @@ import ConsultorioCardData from "../components/consultorioCardData.astro";
             </DentistCard>
         </Button>
     </Carousel>
-    <p>recomendaciones de consultorios</p>
     <Carousel importance="secondary" orientation="col" mb="true">
         <Button href="consultorio" design="slot">
-            <ConsultorioCard mr="true">
+            <ConsultorioCard>
                 <ConsultorioCardData
                         name={[
                             "Consultorio Rodriguez",
