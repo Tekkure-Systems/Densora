@@ -17,99 +17,98 @@ import Input from "./input.astro";
 import Navbar from "../assets/shapes/navBar.svg";
 import Section from "./section.astro";
 ---
-<header class=" h-24">
-    <Section extraClass="">
-        <Button design="icon" icon={Star_icon} customClass="transform"></Button>
-        <Desplegar menuItems={[
-            {
-                label: "Config",
-                href: "#",
-                icon: Gear_icon,
-                submenu: [
-                    {label: "letra", href: "#"},
-                    {label: "otra cosa", href: "#"},
-                    {label: "mas cosas", href: "#"}
-                ]
-            },
-            {
-                label: "Acerca de...",
-                href: "acercaDe",
-                icon: Help_icon
-            }
-        ]}>
+<Navbar class="absolute top-2 w-128 h-24 object-cover -z-10 transform rotate-180" />
+<Section extraClass="gap-3 mt-2">
+    <Button design="icon" icon={Star_icon} customClass="transform" ml="true" mr="true"/>
+    <Desplegar menuItems={[
+        {
+            label: "Config",
+            href: "#",
+            icon: Gear_icon,
+            submenu: [
+                {label: "letra", href: "#"},
+                {label: "otra cosa", href: "#"},
+                {label: "mas cosas", href: "#"}
+            ]
+        },
+        {
+            label: "Acerca de...",
+            href: "acercaDe",
+            icon: Help_icon
+        }
+    ]}>
         <Button id="toggle-search" design="icon" icon={Menu_icon} customClass="transform"></Button>
-        </Desplegar>
-        <Button id="toggle-search" design="icon" icon={Find_icon} customClass="transform"></Button>
-        <Button href="/" design="icon" icon={Densora_logo} customClass="transform"></Button>
-        <Button href="/profile" design="icon" icon={User_icon} customClass="transform"></Button>
-        <Button href="/calendar" design="icon" icon={Calendar_icon} customClass="transform"></Button>
-        <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
-            <Button customClass="transform" design="icon" icon={Light_icon} }/>
-        </ToolTip>
+    </Desplegar>
+    <Button id="toggle-search" design="icon" icon={Find_icon} customClass="transform"></Button>
+    <Button href="/" design="icon" icon={Densora_logo} customClass="transform"></Button>
+    <Button href="/profile" design="icon" icon={User_icon} customClass="transform"></Button>
+    <Button href="/calendar" design="icon" icon={Calendar_icon} customClass="transform"></Button>
+    <ToolTip icons={[Light_icon, Dark_icon]} ids={["theme-icon", "theme-icon"]}>
+        <Button customClass="transform" design="icon" icon={Light_icon} }/>
+    </ToolTip>
+</Section>
+<Section id="search-bar" extraClass="hidden w-full items-center flex justify-center mt-4 relative z-10">
+    <Section extraClass="relative w-2/3 max-w-md">
+        <Input placeholder="Buscar..." id="search-input" iconRight={Equis} mt="true" iconRightButton="clear-search"/>
     </Section>
-    <Section id="search-bar" extraClass="hidden w-full items-center flex justify-center mt-4 relative z-10">
-        <Section extraClass="relative w-2/3 max-w-md">
-            <Input placeholder="Buscar..." id="search-input" iconRight={Equis} mt="true" iconRightButton="clear-search"/>
-        </Section>
-    </Section>
-    <script>
-        function initSearchBar() {
-            const themeIcons = document.querySelectorAll('#theme-icon')
-            const html = document.documentElement
-            themeIcons.forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme')
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
-                    html.setAttribute('data-theme', newTheme)
-                    localStorage.setItem('theme', newTheme)
-                })
+</Section>
+<script>
+    function initSearchBar() {
+        const themeIcons = document.querySelectorAll('#theme-icon')
+        const html = document.documentElement
+        themeIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme')
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+                html.setAttribute('data-theme', newTheme)
+                localStorage.setItem('theme', newTheme)
             })
-            const searchButton = document.getElementById('toggle-search')
-            const searchBar = document.getElementById('search-bar')
-            const iconBar = document.getElementById('icon-bar')
-            const searchInput = document.getElementById('search-input')
-            const clearSearch = document.getElementById('clear-search')
-            if (!searchButton || !searchBar) return;
-            searchButton.addEventListener('click', (e) => {
-                e.stopPropagation()
-                searchBar.classList.remove('hidden')
-                if (iconBar) iconBar.classList.add('hidden')
-                searchInput?.focus()
-            })
-            clearSearch?.addEventListener('click', (e) => {
-                e.stopPropagation()
+        })
+        const searchButton = document.getElementById('toggle-search')
+        const searchBar = document.getElementById('search-bar')
+        const iconBar = document.getElementById('icon-bar')
+        const searchInput = document.getElementById('search-input')
+        const clearSearch = document.getElementById('clear-search')
+        if (!searchButton || !searchBar) return;
+        searchButton.addEventListener('click', (e) => {
+            e.stopPropagation()
+            searchBar.classList.remove('hidden')
+            if (iconBar) iconBar.classList.add('hidden')
+            searchInput?.focus()
+        })
+        clearSearch?.addEventListener('click', (e) => {
+            e.stopPropagation()
+            searchInput.value = ''
+            searchBar.classList.add('hidden')
+            if (iconBar) iconBar.classList.remove('hidden')
+        })
+        document.addEventListener('click', (e) => {
+            const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
+            if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
                 searchInput.value = ''
                 searchBar.classList.add('hidden')
                 if (iconBar) iconBar.classList.remove('hidden')
-            })
-            document.addEventListener('click', (e) => {
-                const isInsideSearch = searchBar.contains(e.target) || searchButton.contains(e.target)
-                if (!isInsideSearch && !searchBar.classList.contains('hidden')) {
-                    searchInput.value = ''
-                    searchBar.classList.add('hidden')
-                    if (iconBar) iconBar.classList.remove('hidden')
-                }
-            })
-            searchInput?.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value.trim()
-                    if (query !== '') {
-                        window.location.href = `/navMap?q=${encodeURIComponent(query)}`
-                    }
-                }
-            })
-        }
-        function initTheme() {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
             }
+        })
+        searchInput?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim()
+                if (query !== '') {
+                    window.location.href = `/navMap?q=${encodeURIComponent(query)}`
+                }
+            }
+        })
+    }
+    function initTheme() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
-        document.addEventListener('DOMContentLoaded', initTheme)
-        document.addEventListener('astro:page-load', initTheme)
-        document.addEventListener('astro:page-load', initSearchBar)
-    </script>
-</header>
+    }
+    document.addEventListener('DOMContentLoaded', initTheme)
+    document.addEventListener('astro:page-load', initTheme)
+    document.addEventListener('astro:page-load', initSearchBar)
+</script>
