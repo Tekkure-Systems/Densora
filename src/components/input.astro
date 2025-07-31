@@ -12,13 +12,13 @@ if (mb === "true") {
 {(iconLeftButton || iconRightButton) ? (
   <div class={`group flex justify-between w-full max-w-md border-3 p-2 rounded transition-colors duration-200 ${marginTop} ${marginBottom} border-secondary bg-transparent focus-within:border-primary focus-within:bg-hover-light dark:focus-within:bg-hover-dark`}>
     {IconLeft && iconLeftButton ? (
-      <button id={iconLeftButton}><IconLeft width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary"/></button>
+      <button id={iconLeftButton}><IconLeft width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary cursor-pointer"/></button>
     ) : IconLeft ? (
       <IconLeft width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary"/>
     ) : null}
     <input type={type} id={id} name={id} placeholder={placeholder} class="w-full px-2 font-medium outline-none text-primaryText-light dark:text-primaryText-dark"/>
     {IconRight && iconRightButton ? (
-      <button id={iconRightButton}><IconRight width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary"/></button>
+      <button id={iconRightButton}><IconRight width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary cursor-pointer"/></button>
     ) : IconRight ? (
       <IconRight width="24" class="fill-secondary transition-colors duration-200 group-focus-within:fill-primary"/>
     ) : null}

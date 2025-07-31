@@ -18,7 +18,7 @@ import Navbar from "../assets/shapes/navBar.svg";
 import Section from "./section.astro";
 ---
 <Navbar class="absolute top-2 w-128 h-24 object-cover -z-10 transform rotate-180" />
-<Section extraClass="gap-3 mt-2">
+<Section orientation="column" extraClass="gap-3 mt-2">
     <Button design="icon" icon={Star_icon} customClass="transform" ml="true" mr="true"/>
     <Desplegar menuItems={[
         {
@@ -47,9 +47,9 @@ import Section from "./section.astro";
         <Button customClass="transform" design="icon" icon={Light_icon} }/>
     </ToolTip>
 </Section>
-<Section id="search-bar" extraClass="hidden w-full items-center flex justify-center mt-4 relative z-10">
-    <Section extraClass="relative w-2/3 max-w-md">
-        <Input placeholder="Buscar..." id="search-input" iconRight={Equis} mt="true" iconRightButton="clear-search"/>
+<Section id="search-bar" padding="false" extraClass="hidden items-center flex justify-center relative z-10">
+    <Section extraClass="!pb-0 relative w-96 max-w-md">
+        <Input placeholder="Buscar..." id="search-input" iconRight={Equis} iconRightButton="clear-search"/>
     </Section>
 </Section>
 <script>
