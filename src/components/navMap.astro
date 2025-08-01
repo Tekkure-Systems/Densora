@@ -1,35 +1,122 @@
 ---
 import Text from "./text.astro";
-import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+const googleMapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 ---
 <div class="w-128">
     <Text text="Mapa de Ubicacion" mb="true" type="semititle"/>
     <div id="map" class="w-full h-[500px] rounded shadow-lg"></div>
 </div>
 
-<script>
+<script define:vars={{ googleMapsApiKey }}>
+    console.log("API Key en cliente:", googleMapsApiKey);
     let map;
     let isGoogleMapsLoaded = false;
+    const darkMapStyle = [
+        {
+            "elementType": "geometry",
+            "stylers": [{"color": "#222B29"}]
+        },
+        {
+            "elementType": "labels.text.stroke",
+            "stylers": [{"color": "#222B29"}]
+        },
+        {
+            "elementType": "labels.text.fill",
+            "stylers": [{"color": "#BEE9DF"}]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{"color": "#344c48"}]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{"color": "#29433D"}]
+        }
+    ];
+    const lightMapStyle = [
+        {
+            "elementType": "geometry",
+            "stylers": [{"color": "#F6F8F7"}]
+        },
+        {
+            "elementType": "labels.text.stroke",
+            "stylers": [{"color": "#F6F8F7"}]
+        },
+        {
+            "elementType": "labels.text.fill",
+            "stylers": [{"color": "#222B29"}]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{"color": "#BEE9DF"}]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{"color": "#E3F6F2"}]
+        }
+    ];
+    function getCurrentTheme() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
     function initMap() {
         const mapElement = document.getElementById("map");
-        if (!mapElement) return;
+        if (!mapElement) {
+            console.log("Elemento del mapa no encontrado");
+            return;
+        }
         if (map) {
             map = null;
         }
-        map = new google.maps.Map(mapElement, {
-            center: {lat: 20.6736, lng: -103.344},
-            zoom: 14,
-            mapId: "DEMO_MAP_ID"
+        const isDarkMode = getCurrentTheme();
+        try {
+            map = new google.maps.Map(mapElement, {
+                center: {lat: 20.6736, lng: -103.344},
+                zoom: 14,
+                styles: isDarkMode ? darkMapStyle : lightMapStyle,
+                mapTypeId: 'roadmap',
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                rotateControl: false,
+                fullscreenControl: false,
+                gestureHandling: 'auto',
+                keyboardShortcuts: false,
+                clickableIcons: true,
+                disableDoubleClickZoom: false,
+            });
+        } catch (error) {
+            console.error("Error al inicializar el mapa:", error);
+        }
+    }
+    function updateMapTheme() {
+        if (!map) return;
+        const isDarkMode = getCurrentTheme();
+        map.setOptions({
+            styles: isDarkMode ? darkMapStyle : lightMapStyle
         });
+        console.log("Tema del mapa actualizado:", isDarkMode ? "oscuro" : "claro");
     }
     function loadGoogleMaps() {
+        if (!googleMapsApiKey) {
+            console.error("API Key de Google Maps no está definida");
+            return;
+        }
         if (isGoogleMapsLoaded || window.google?.maps) {
             initMap();
             return;
         }
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMapCallback&libraries=marker`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMapCallback`;
         script.async = true;
+        script.defer = true;
+        script.onerror = function() {
+            console.error("Error al cargar Google Maps API");
+        };
         window.initMapCallback = function() {
             isGoogleMapsLoaded = true;
             initMap();
@@ -37,17 +124,40 @@ import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
         document.head.appendChild(script);
     }
     function handlePageLoad() {
-        setTimeout(loadGoogleMaps, 0);
+        setTimeout(loadGoogleMaps, 100);
+    }
+    let themeObserver;
+    function setupThemeObserver() {
+        if (themeObserver) {
+            themeObserver.disconnect();
+        }
+        themeObserver = new MutationObserver(() => {
+            updateMapTheme();
+        });
+        themeObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
     }
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', handlePageLoad);
+        document.addEventListener('DOMContentLoaded', () => {
+            handlePageLoad();
+            setupThemeObserver();
+        });
     } else {
         handlePageLoad();
+        setupThemeObserver();
     }
-    document.addEventListener('astro:page-load', handlePageLoad);
+    document.addEventListener('astro:page-load', () => {
+        handlePageLoad();
+        setupThemeObserver();
+    });
     document.addEventListener('astro:before-preparation', () => {
         if (map) {
             map = null;
+        }
+        if (themeObserver) {
+            themeObserver.disconnect();
         }
         delete window.initMapCallback;
     });
