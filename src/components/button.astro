@@ -49,16 +49,6 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     <Text text={text} type="title"/>
 </button>
     )}
-{isLink && secondaryButton && (
-<a href={href} class={secondaryDesign}>
-    <Text text={text} type="title"/>
-</a>
-    )}
-{!isLink && secondaryButton && (
-<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
-    <Text text={text} type="title"/>
-</button>
-    )}
 {isLink && secondaryButton && animation === "timer" && (
 <a href={href} class={secondaryTimerDesign}>
     <Text text={text} type="title"/>
@@ -66,6 +56,16 @@ const iconDesign = `flex items-center justify-center w-10 h-10 bg-none text-whit
     )}
 {!isLink && secondaryButton && animation === "timer" && (
 <button id={id} type={type} class={`${secondaryTimerDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
+    <Text text={text} type="title"/>
+</button>
+    )}
+{isLink && secondaryButton && animation !== "timer" && (
+<a href={href} class={secondaryDesign}>
+    <Text text={text} type="title"/>
+</a>
+    )}
+{!isLink && secondaryButton && animation !== "timer" && (
+<button id={id} type={type} class={`${secondaryDesign} cursor-pointer`} onClick={() => alert("Botón presionado")}>
     <Text text={text} type="title"/>
 </button>
     )}

@@ -1,18 +1,53 @@
 ---
-const googleMapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 ---
 <div class="w-128">
     <h1 class="text-2xl font-bold mb-4">Mapa de ubicación</h1>
     <div id="map" class="w-full h-[500px] rounded shadow-lg"></div>
 </div>
-<script is:inline>
+
+<script>
+    let map;
+    let isGoogleMapsLoaded = false;
     function initMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
+        const mapElement = document.getElementById("map");
+        if (!mapElement) return;
+        if (map) {
+            map = null;
+        }
+        map = new google.maps.Map(mapElement, {
             center: {lat: 20.6736, lng: -103.344},
             zoom: 14,
             mapId: "DEMO_MAP_ID"
         });
     }
-    window.initMap = initMap;
+    function loadGoogleMaps() {
+        if (isGoogleMapsLoaded || window.google?.maps) {
+            initMap();
+            return;
+        }
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMapCallback&libraries=marker`;
+        script.async = true;
+        window.initMapCallback = function() {
+            isGoogleMapsLoaded = true;
+            initMap();
+        };
+        document.head.appendChild(script);
+    }
+    function handlePageLoad() {
+        setTimeout(loadGoogleMaps, 0);
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', handlePageLoad);
+    } else {
+        handlePageLoad();
+    }
+    document.addEventListener('astro:page-load', handlePageLoad);
+    document.addEventListener('astro:before-preparation', () => {
+        if (map) {
+            map = null;
+        }
+        delete window.initMapCallback;
+    });
 </script>
-<script src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap&libraries=marker`} loading="async"></script>

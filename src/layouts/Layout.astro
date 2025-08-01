@@ -6,7 +6,7 @@ import NavBar from "../components/navBar.astro";
 import Whatsapp_icon from "../assets/icons/whatsapp_icon.svg";
 import Mexico_flag from "../assets/flags/mexico_flag.svg";
 import Button from "../components/button.astro";
-const {align, orientation} = Astro.props;
+const {align, orientation, navBar} = Astro.props;
 let contentWraper = "";
 let layoutOrientation = "";
 if (orientation == "row") {
@@ -37,10 +37,12 @@ if (align == "right") {
     <ClientRouter/>
 </head>
 <body class={`min-h-screen flex flex-col bg-primaryBackground-light dark:bg-primaryBackground-dark font-sans`}>
-<header class="flex flex-col items-center justify-center">
+{navBar !== "false" && (
+  <header class="flex flex-col items-center justify-center">
     <NavBar/>
-</header>
-<main class="flex-grow p-12 pt-0 ${contentWraper} ${layoutOrientation}">
+  </header>
+)}
+<main class={`flex-grow p-12 pt-0 ${contentWraper} ${layoutOrientation}`}>
     <slot/>
 </main>
 <footer class="flex relative w-screen h-10 mt-auto">
