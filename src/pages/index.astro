@@ -10,13 +10,16 @@ import ClinicsMap from "../components/clinicsMap.astro";
 import CitaHistorial from "../components/citaHistorial.astro";
 import DentistCardData from "../components/dentistCardData.astro";
 import ConsultorioCardData from "../components/consultorioCardData.astro";
+import NavMap from "../components/navMap.astro";
 ---
 <Layout align="center" orientation="row">
     <Section importance="secondary" orientation="col" mt="true" mb="true">
         <LastCita mr="true">
             <CitaHistorial name={["test", "test2"]} profilePhoto={["https://randomuser.me/api/portraits/men/32.jpg", "https://randomuser.me/api/portraits/men/32.jpg"]} date={["12/06/25", "06/12/25"]} time={["1:42 P.M.", "4:21 P.M."]}/>
         </LastCita>
-        <ClinicsMap profilePhoto="https://cdn.conahcyt.mx/sisdai/landing-sisdai/catalogo/visualizaciones/mapa/puntos-agrupados/2-anatomia-tamanodelpunto.png"/>
+        <ClinicsMap>
+            <NavMap/>
+        </ClinicsMap>
     </Section>
     <Carousel importance="secondary" orientation="col" mb="true">
         <Button href="dentist" design="slot">
