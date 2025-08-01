@@ -14,127 +14,135 @@
     --color-hover-light: #93E4D7;
     --color-hover-dark: #29433D;
 }
-
-/* ===============================
-   🗓️ Estilo para eventos visibles
-   =============================== */
 .fc-event {
-  border-radius: 0.5rem;           /* Bordes redondeados para los eventos */
-  padding: 0.25rem 0.5rem;         /* Espaciado interno horizontal y vertical */
-  font-size: 0.875rem;             /* Tamaño de fuente de los eventos */
-  font-weight: 600;                /* Letra un poco más gruesa */
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primaryText-light);
 }
-
-
-/* =====================================================
-   📆 Casilla del día actual (el día de hoy resaltado)
-   ===================================================== */
-
+:where([data-theme=dark]) .fc-event {
+    color: var(--color-primaryText-dark);
+}
 .fc-daygrid-day.fc-day-today {
-  background-color: #fef9c3;       /* Fondo amarillo claro para destacar el día de hoy */
+    background-color: var(--color-secondaryBackground-light);
 }
-
-
-/* =============================================
-   🔢 Números del calendario (1, 2, 3, ... 31...)
-   ============================================= */
-
+:where([data-theme=dark]) .fc-daygrid-day.fc-day-today {
+    background-color: var(--color-secondaryBackground-dark);
+}
 .fc .fc-daygrid-day-number {
-  font-weight: 700;                /* Números del calendario en negrita */
-  color: #1f2937;                  /* Color gris oscuro para buena visibilidad */
+    font-weight: 700;
+    color: var(--color-primaryText-light);
 }
-
-
-/* ==========================================
-   🧭 Título del calendario (ej. "junio 2025")
-   ========================================== */
-
+:where([data-theme=dark]) .fc .fc-daygrid-day-number {
+    color: var(--color-primaryText-dark);
+}
 .fc .fc-toolbar-title {
-  font-family: 'Inter', sans-serif;  /* Fuente personalizada para el título */
-  font-size: 1.25rem;                /* Tamaño del título */
-  font-weight: 700;                  /* Negrita */
-  color: #111827;                    /* Gris muy oscuro para contraste */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primaryText-light);
 }
-
-
-/* ================================
-   🔘 Botones de navegación (prev, next, today, etc.)
-   ================================ */
-
+:where([data-theme=dark]) .fc .fc-toolbar-title {
+    color: var(--color-primaryText-dark);
+}
 .fc-button {
-  background-color: #3b82f6 !important;    /* Azul fuerte */
-  border: none !important;                 /* Sin bordes */
-  border-radius: 0.375rem !important;      /* Bordes redondeados */
-  padding: 0.25rem 0.75rem !important;     /* Espaciado interno */
-  font-weight: 500;                        /* Negrita ligera */
+    background-color: var(--color-primary) !important;
+    border: none !important;
+    border-radius: 0.375rem !important;
+    padding: 0.25rem 0.75rem !important;
+    font-weight: 500;
+    color: var(--color-primaryText-light) !important;
 }
-
-/* Al pasar el mouse por encima del botón */
+:where([data-theme=dark]) .fc-button {
+    color: var(--color-primaryText-dark) !important;
+}
 .fc-button:hover {
-  background-color: #2563eb !important;    /* Azul un poco más oscuro */
+    background-color: var(--color-secondary) !important;
 }
-
-/* Tailwind custom animation for secondary button timer fill */
 @layer utilities {
-  .secondary-timer-animate {
-    position: relative;
-    overflow: hidden;
-  }
-  .secondary-timer-animate::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%;
-    background: theme('colors.primary');
-    opacity: 0.3;
-    z-index: 0;
-    animation: timer-fill 2s linear forwards;
-  }
+    .secondary-timer-animate {
+        position: relative;
+        overflow: hidden;
+    }
+    .secondary-timer-animate::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        background: theme('colors.primary');
+        opacity: 0.3;
+        z-index: 0;
+        animation: timer-fill 2s linear forwards;
+    }
 }
 @keyframes timer-fill {
-  from { width: 0%; }
-  to { width: 100%; }
+    from { width: 0%; }
+    to { width: 100%; }
 }
-
 #fc-dom-86 {
     color: var(--color-primaryText-light);
 }
-
-.fc-button {
-    background-color: var(--color-primary) !important;
+:where([data-theme=dark]) #fc-dom-86 {
+    color: var(--color-primaryText-dark);
 }
 .fc-h-event {
     background-color: var(--color-primary) !important;
     margin: 0;
-}
-.fc-h-event {
     border: 0 !important;
+    color: var(--color-primaryText-light);
 }
-
+:where([data-theme=dark]) .fc-h-event {
+    color: var(--color-primaryText-dark);
+}
 div.fc-button-group {
     margin-right: 12px;
     gap: 12px !important;
 }
-
-.fc-theme-standard td, .fc-theme-standard th .fc-theme-standard .fc-scrollgrid {
+.fc-theme-standard td, .fc-theme-standard th {
     border: 3px solid var(--color-primary);
+    background-color: var(--color-primaryBackground-light);
 }
-
-.fc-theme-standard td, .fc-theme-standard th  {
-    border: 3px solid var(--color-primary);
+:where([data-theme=dark]) .fc-theme-standard td,
+:where([data-theme=dark]) .fc-theme-standard th {
+    background-color: var(--color-primaryBackground-dark);
 }
-
 table.fc-col-header {
     border-top: 3px solid var(--color-primary) !important;
     border-left: 0 !important;
+    background-color: var(--color-tertiaryBackground-light);
 }
-
+:where([data-theme=dark]) table.fc-col-header {
+    background-color: var(--color-tertiaryBackground-dark);
+}
 table.fc-scrollgrid-sync-table {
     border-left: 3px solid var(--color-primary) !important;
 }
-
+.fc .fc-col-header-cell-cushion {
+    color: var(--color-primaryText-light);
+    font-weight: 600;
+}
+:where([data-theme=dark]) .fc .fc-col-header-cell-cushion {
+    color: var(--color-primaryText-dark);
+}
+.fc {
+    background-color: var(--color-primaryBackground-light);
+}
+:where([data-theme=dark]) .fc {
+    background-color: var(--color-primaryBackground-dark);
+}
+.fc .fc-daygrid-day.fc-day-other {
+    background-color: var(--color-tertiaryBackground-light);
+    opacity: 0.5;
+}
+:where([data-theme=dark]) .fc .fc-daygrid-day.fc-day-other {
+    background-color: var(--color-tertiaryBackground-dark);
+}
 .fc .fc-daygrid-day.fc-day-today {
-    background-color: var(--color-secondaryBackground-light);
+    background-color: var(--color-primary);
+}
+:where([data-theme=dark]) .fc .fc-daygrid-day.fc-day-today {
+    background-color: var(--color-primary);
 }

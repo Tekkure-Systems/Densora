@@ -1,8 +1,9 @@
 ---
+import Text from "./text.astro";
 import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 ---
 <div class="w-128">
-    <h1 class="text-2xl font-bold mb-4">Mapa de ubicación</h1>
+    <Text text="Mapa de Ubicacion" mb="true" type="semititle"/>
     <div id="map" class="w-full h-[500px] rounded shadow-lg"></div>
 </div>
 
